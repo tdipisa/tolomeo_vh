@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Hello World!</title>
+    
+    
+    <!-- js e css per streetview se necessario -->
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>
+		<link href="http://code.google.com/apis/maps/documentation/javascript/examples/standard.css" rel="stylesheet" type="text/css" />
+	
+    
+    <!-- CSS di Tolomeo -->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeo_vh/js/ext/extJS/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeo_vh/css/toloExt-intra.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeo_vh/js/ext/csw/css/csw.css" />
+	
+	<!-- QueryBuilder -->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeo_vh/css/querybuilder.css" />
+
+	<!-- ExtJS4 -->
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/proj4js/proj4js-compressed.js"></script>
+<!-- 	<script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/build/toloExt-all.js"></script>   -->
+
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/ext/extJS/ext-all-debug-w-comments.js" charset="utf-8"></script> 
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/ext/extJS/locale/ext-lang-it.js" charset="utf-8"></script>
+	
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/ext/lz-string/libs/lz-string-1.3.3.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloStreetviewViewer.js"></script>
+ 
+ 	<!-- <script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/lib/OpenLayers.js"></script> -->
+ 
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/OpenLayers-all.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/MapPatch.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/PointFromRef.js"></script>	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/ConstrainedPath.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/ConstrainedPoint.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/ConstrainedPolygon.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/AttributionMulti.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/tolomGeometry.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ExtFix.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloParamsJS.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/toloVars.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloCrossAjax.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloMeasurePanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloPanelBase.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloScaleComboExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloScalePanelExt.js"></script>		
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloViewerOLExt.js"></script>		
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/toloAPIOpCodes.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTOCAbstractDataProvider.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTOCMultiServerDataProvider.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTOCPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTreeTOCPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTOCNodeColumnExt.js"></script> 	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloMenuTOCPanelExt.js"></script> 
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloStylePanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloQueryPanelExt.js"></script> 	
+	<script type="text/JavaScript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloButtonPanelExt.js"></script>   
+ 	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/toloLazyLoad.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloProjection.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloMapAPIExt.js"></script>
+	
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloPointFromRefPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloCADPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloGotoLocationWindowExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloContextMenu.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/extJS/ux/statusbar/StatusBar.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/extJS/ux/Carousel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/extJS/ux/CarouselPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTimeMachinePanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTimeMachineMultiPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloIFrame.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloTOCInfo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloLayerViewerAggregation.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/toloServerMappe.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloMapDefinition.js"></script>		
+    
+    <!--  &url1=http://pubblicazioni.provincia.fi.it/geoserver/wms?&lay1=infomob_poi_campeggi LegendaMultiServer-->
+    <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/ToloExtParamsJSServlet?paramPreset=LegendaMultiServer" charset="utf-8"></script> 
+    <!-- <script type="text/JavaScript" src="http://www.opendatanetwork.it/tolomeo/ToloExtParamsJSServlet?paramPreset=Cerco&url1=http://pubblicazioni.provincia.fi.it/geoserver/wms?SERVICE=WMS&lay1=vinc_architettonico_fi" charset="utf-8"></script> -->   
+    
+    <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script> 
+    
+    <!-- CSW --> 
+	<!-- <script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/toloCswWidget.js"></script>  -->  
+
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/i18n/reader/Property.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/i18n/reader/Json.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/i18n/Bundle.js"></script>
+ 	  
+ 	  
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWRecord.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWRecordsReader.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWHttpProxy.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWGrid.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWCatalogChooser.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWSearchTool.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/csw/src/CSWPagingToolbar.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloWMSExplorerPanel.js"></script>  
+	
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script> -->  
+ 	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/layout/ToloPanelIntraTab.js" charset="utf-8"></script> -->
+ 	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/layout/ToloPanelStradario.js" charset="utf-8"></script> -->
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/layout/ToloPanelViewerOnly.js" charset="utf-8"></script>  -->
+
+ 	<script type="text/JavaScript" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloCesiumPanelExt.js" charset="utf-8"></script>  
+ 	
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloCommand.js"></script>		
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloProcedure.js"></script>		
+ 	
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloFeatureGridPanel.js"></script>		
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloFeatureManager.js"></script>		
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/ToloQueryBuilderExt.js"></script>		 	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/ToloAttributeFilter.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/ToloFilterBuilder.js"></script>
+
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/ToloFilterView.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/ToloLayerSelector.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/ToloSpatialSelector.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/grid/ToloFeatureGrid.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloBBOXFieldset.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloBufferFieldset.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloComparisonComboBox.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloCoordinatePicker.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloFilterField.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/ToloUniqueValuesCombo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/spatialselector/ToloSpatialSelectorMethod.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/spatialselector/ToloPolygonSpatialSelectorMethod.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/spatialselector/ToloBBOXSpatialSelectorMethod.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/spatialselector/ToloBufferSpatialSelectorMethod.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/form/spatialselector/ToloCircleSpatialSelectorMethod.js"></script>
+																													
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/widgets/grid/ToloFeatureGrid.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/events/ToloQueryBuilderEvtManager.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/data/ToloUniqueValuesStore.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/ext/openlayers/SetBox.js"></script>
+
+ 
+  	<!-- Inizio OpenLS -->
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/tolomOLS.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/BaseForm.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/GeocodingForm.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/GeocodingListPanel.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/NavigationSummaryPanel.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/NavigationListPanel.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/ReverseGeocodingForm.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/RoutingNavigationForm.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/ViaListPanel.js"></script>
+ 	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeo_vh/js/tolomeoExt/OLS/ToloOLSPanelExt.js"></script>
+ 	<!-- Fine OpenLS -->
+   
+  </head>
+<body>
+  
+  <script>
+  
+	var ext4Finito=false;
+	var ext3Finito=false;
+		
+	
+	Ext.application({
+		    name: 'TolomeoExt',
+		    appFolder: '/tolomeo_vh/js/tolomeoExt',
+		    requires: ['TolomeoExt.ToloCesiumPanelExt',
+		               'TolomeoExt.ToloButtonPanelExt'],
+		            
+            bundle: {
+                bundle: 'CSWViewer',
+                lang: 'it-IT',
+                path: TolomeoExt.Vars.TOLOMEOServer+TolomeoExt.Vars.TOLOMEOContext+ "/jsp/i18n.jsp",
+                noCache: true,
+                format: "json"
+            },
+		               
+		    launch: function() {		    	
+	
+		    	Ext.BLANK_IMAGE_URL= "http://localhost:8080/tolomeo_vh/img/pixel.gif";
+		    	
+		    	Ext.Ajax.timeout = 180000;
+		    	Ext.data.JsonP.timeout = 180000;
+
+		    	
+		    	var openActionsJS = undefined;
+	    		var codtpn=null;
+	    		var idtpn=null;
+	    		var bbox=null;
+
+	    		tolomeo = new TolomeoExt.ToloPanelIntra({
+	    					withQueryBuilderPanel: true,
+				    		toolbarOpt: {
+								withLegenda: false,
+								withQuery: false,
+								withInfoSelezione: true
+							},
+							region: 'center',
+							border: true
+	    		});
+	    		
+				tolomeo1 = new TolomeoExt.ToloPanelIntra({
+					
+					toolsPanelOpt: {
+						width: 400,
+						minWidth: 250,
+						maxWidth: 700
+					},
+					toolsPanelPosition: 'east',
+					toolsPanelType: 'tabpanel',        // Tipo di tools panel. Supportati accordion (default) e tabpanel
+					dataPanelType:  'window',        // Tipo di tools panel. Supportati panel (default), window (flottante), intoolspanel (lo aggiunge come tab o accordium alle legende)
+					activePanel: 0,   // (quale nel toolpanel deve aprire all'avvio, parte da 0)
+					/*extraPanels: { position: 'first',       // first, last
+						panels: [{
+							html: '<iframe width="100%" height="100%" frameborder="0" src="fototeca_intro.html"></iframe>',
+							text: "Introduzione",
+							title: "titolo1",
+							iconCls: 'iconToc'
+						}]},*/
+					toolbarOpt: {
+						withInfoSelezione: false
+					},
+					/*
+					toolsPanelPosition: 'west',
+					toolsPanelType: 'tabpanel',		// Tipo di tools panel. Supportati accordion (default) e tabpanel
+					dataPanelType:  'window',		// Tipo di tools panel. Supportati panel (default), window, intoolspanel
+					activePanel: 1,
+					extraPanels: { position: 'first',   	// first, last
+								   panels: [{
+												text: "Pannello di prova",
+												title: "titolo1",
+												iconCls: 'iconToc',
+												html: "<b>contenuto</b>"
+											},{
+												text: "Pannello di prova",
+												title: "titolo2",
+												iconCls: 'iconToc',
+												html: "<b>contenuto</b>"
+											}]},
+					toolbarOpt: {
+						withLegenda: false,
+						withQuery: false,
+						withInfoSelezione: true 
+					},*/
+					//toolsPanelOpt: {
+					//	width: 500,
+						//minWidth: 400,
+					//	maxWidth: 700
+					//},
+					region: 'center',
+					border: true,
+					titoloMappa: '', //,
+					APIConfig: {
+						autoCloseChoiceWindow:false,
+						openActionsJS: openActionsJS
+					}
+					/*APIConfig: {
+						autoCloseChoiceWindow:false,
+				        	openActionsJS: function() {
+			             			if (codtpn && idtpn) {
+			                       		 this.zoomToObj(codtpn, idtpn, true );
+			             			} else {
+				             			if (bbox) {
+			       			      	    	// Posizionamento mappa su bbox
+						             	    	tolomeo.api.zoomToExtent(bbox, 0);
+					             	   	} else {
+					             	   		tolomeo.api.viewer.pluginToolSelectZoomAll();
+					             	   		//tolomeoPnl.api.viewer.bOnOpenDrawMap=true;
+					             	   	}
+				         		}
+			       	      }
+				      	}
+					*/
+				});
+				
+				new Ext.Viewport({
+					layout: 'border',
+					monitorResize: true,
+					items: [tolomeo]
+			    });
+				
+							
+				/*
+				tolomeo.api.buttonsPanel.add(
+						{
+							xtype: 'button',
+							text: "WMS",
+							//icon: this.iconBasePath + 'zoomin.gif',
+							enableToggle: false,
+							overflowText: "WMS",
+							//tooltip: {text: 'Aumenta la scala della mappa', title:'Zoom in'},
+							listeners: {
+								click: { fn: function() { 
+												
+									
+												Ext.create('Ext.window.Window',{
+														layout: 'fit',
+														title: 'WMS Explorer',
+														resizable: true,
+														width: 400, 
+														height: 400,
+														items: [
+														        Ext.create('TolomeoExt.ToloWMSExplorerPanel', {})
+														        ]
+													
+												}).show();
+									
+								} }
+							}
+						}
+				);*/
+					
+		    }					
+	});
+
+	function open3DWin() {
+		  
+		tolomeo.api.viewer3DWidgetActivate();
+		/*
+		  // {left: bounds.left, bottom: bounds.bottom, right: bounds.right, top: bounds.top} 
+		  var extent = tolomeo.api.viewer.pluginGetMapExtent();
+		  
+		  var ul = new Point(extent.left, extent.top);
+		  var br = new Point(extent.right, extent.bottom);
+	      
+	      ul.transform(tolomeo.api.viewer.pluginGetProjectionCode(),"EPSG:4326");    
+	      br.transform(tolomeo.api.viewer.pluginGetProjectionCode(),"EPSG:4326");
+	      			
+			var cspnl1 =	new TolomeoExt.ToloCesiumPanelExt({
+		  		startExtentWest: ul.x,
+		  		startExtentEast: br.x,
+		  		startExtentNorth: ul.y,
+		  		startExtentSouth: br.y,
+		  	});  
+			
+			cesiumWin2 = Ext.create('Ext.Window', {
+				width: 500,
+				height: 500,
+				layout: 'fit',
+				title: 'Vista 3D',
+				maximizable: true,
+				items: [ cspnl1  ]
+			}).show();
+
+			
+			tolomeo.api.setViewer3D(cspnl1);
+			*/
+	  }
+	
+ function tuttosmontato() { 
+  
+
+	  Ext.QuickTips.init();
+	
+	  
+	cesiumWidget = null;
+
+
+	ext3Finito = true;
+	
+  
+	  Ext.application({
+		    name: 'TolomeoExt',
+		    appFolder: '/tolomeo_vh/js/tolomeoExt',
+		    requires: ['TolomeoExt.ToloCesiumPanelExt',
+		               'TolomeoExt.ToloButtonPanelExt'],
+		    launch: function() {
+	
+		        
+		    	// ButtonPanel
+		    	var defObj = {};
+		    	TolomeoExt.Vars.ApplyIfDefaults(defObj);
+		    	toolbar = Ext.create('TolomeoExt.ToloButtonPanelExt', defObj);
+		    	Ext.create('Ext.Window',{
+		    		title: 'Ext 4',
+		    		layout: 'fit',
+		    		width: 450,
+		    		height: 100,
+		    		tbar: toolbar
+		    	}).show();
+		        
+		        
+		    	var ricercaPanelOpt = {};
+		    	TolomeoExt.Vars.ApplyIfDefaults(ricercaPanelOpt);
+		    	TolomeoExt.applyIfEmpty(ricercaPanelOpt, {
+		    	title     : 'Trova',
+		    	   autoScroll: 'true',
+		    	   iconCls   : 'iconQuery', 
+		    	   items     : new Array()
+		    	});
+		    	ricercaPanel = Ext.create('TolomeoExt.ToloQueryPanelExt', ricercaPanelOpt );
+		    	Ext.create('Ext.Window',{
+		    		title: 'Ext 4',
+		    		layout: 'fit',
+		    		width: 250,
+		    		height: 250,
+		    		items: [ricercaPanel]
+		    	}).show();
+	
+		    	// Legenda
+		    	var legendaPanelOpt = {};
+		    	TolomeoExt.Vars.ApplyIfDefaults(legendaPanelOpt);
+		    	TolomeoExt.applyIfEmpty(legendaPanelOpt, {
+		    		title         : 'Legenda interattiva',
+		    		autoScroll    : 'true',
+		    		cls           : 'clearCSS',
+		    		iconCls       : 'iconToc'
+		    	});
+		    	legendaPanel =  Ext.create('TolomeoExt.ToloTreeTOCPanelExt', legendaPanelOpt);
+		    	Ext.create('Ext.Window',{
+		    		title: 'Ext 4',
+		    		layout: 'fit',
+		    		width: 250,
+		    		height: 500,
+		    		items: [legendaPanel]
+		    	}).show();
+
+		    
+		    	var viewerConfig = {};	
+				TolomeoExt.Vars.ApplyIfDefaults(viewerConfig);
+				viewerConfig.bOnOpenDrawMap = true;
+				mapPanel = Ext.create('TolomeoExt.ToloViewerOLPanel', viewerConfig); //new TolomeoExt.ToloViewerOLPanel(viewerConfig);
+				Ext.create('Ext.Window',{
+		    		title: 'Ext 4',
+		    		layout: 'fit',
+		    		width: 500,
+		    		height: 500,
+		    		items: [mapPanel],
+		    		listeners: { move: {
+		    						fn: function(){ mapPanel.map.updateSize(); },
+		    						
+		    					} 
+		    						}
+		    	}).show();
+				
+				var stylePanelOpt = {};	
+				TolomeoExt.Vars.ApplyIfDefaults(stylePanelOpt);
+				TolomeoExt.applyIfEmpty(stylePanelOpt, {
+					closeAction: 'hide',
+					width: 450,
+					height: 250
+				});
+				stylePanelOpt.closeAction = 'hide';
+				stylePanel = Ext.create('TolomeoExt.ToloStylePanel', stylePanelOpt); 
+
+				var timeMachinePanelOpt = {};
+				TolomeoExt.Vars.ApplyIfDefaults(timeMachinePanelOpt);
+				timeMachinePanelOpt.carouselConfig = {
+						interval: 3,
+					    autoPlay: true,
+					    showPlayButton: true,
+					    pauseOnNavigate: true,
+					    freezeOnHover: true,
+					    transitionType: 'fade',
+					    transitionEasing: 'fadeIn',    
+					    navigationOnHover: false    	
+					};
+				TolomeoExt.applyIfEmpty(timeMachinePanelOpt, {
+					title     : 'Time Machine'
+				});
+				timeMachinePanel = Ext.create('TolomeoExt.ToloTimeMachinePanel', timeMachinePanelOpt );
+
+				
+			
+				statusbar = Ext.create('Ext.ux.statusbar.StatusBar',{
+			        defaultText: '',
+			        statusAlign: 'left',
+			        items: []
+			    });
+				new Ext.Window({
+					layout: 'fit',
+					width: 500,
+					height: 50,
+					tbar: statusbar
+				}).show();
+				
+		        ext4Finito = true;
+		        tuttiExtFiniti();
+		  
+		    }
+	  
+		  	
+	});
+  
+  
+  //tuttiExtFiniti();
+  
+	
+	
+  }
+  
+  function tuttiExtFiniti() {
+	  
+	 if (ext3Finito && ext4Finito) {
+	  
+		TolomeoExt.Vars.ApplyIfDefaults(this);
+	  
+		  
+		var cfg = {};
+		this.api = new TolomeoExt.ToloMapAPIExt(Ext.apply(cfg,{
+			"paramsJS"        : this.paramsJS,
+			TOLOMEOServer	  : this.TOLOMEOServer,
+			TOLOMEOContext	  : this.TOLOMEOContext,
+			TOLOMEOStaticRoot: this.TOLOMEOStaticRoot,
+		
+			viewer            : mapPanel,
+			buttonsPanel      : toolbar,
+			TOCPanel          : legendaPanel,
+			stylePanel		  : stylePanel,
+			queryPanel        : ricercaPanel,
+			//titoloMappa       : this.titoloMappa,
+			//descrizioneMappa  : this.descrizioneMappa,
+			//urlLogo           : this.urlLogo,
+			//urlLogoSecondario : this.urlLogoSecondario,
+			//stampaReferer     : this.stampaReferer,
+			statusPanel       : statusbar
+		}));
+
+		
+		
+	 }
+	  
+  }
+  
+
+	  
+  
+  
+  </script>
+</body>
+</html>

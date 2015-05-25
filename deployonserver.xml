@@ -1,0 +1,148 @@
+<deployonserver>
+
+   <!-- 
+      Definizione server di SVILUPPO TOLOMEO: 
+      Si utilizza premendo ALT+A o cliccando 'Deploy on Server sui menu contestuali.
+      TAGS: url,port,user,[passw],umask
+   -->
+   <server-1>
+	  <url>vas-dvp.comune.prato.it</url>
+	  <port>22</port>
+	  <user>w3manager</user>
+ 	  <umask>775</umask>
+   </server-1>
+   
+   <!-- 
+      Definizione server di SVILUPPO PRATOMAPS: 
+      E' facoltativo e si utilizza SOLO premendo ALT+K.
+      TAGS: url,port,user,[passw],umask
+   -->
+   <server-2>
+	  <url>vas-dvp.comune.prato.it</url>
+	  <port>22</port>
+	  <user>w3manager</user>
+ 	  <umask>775</umask>
+   </server-2>
+
+   <!-- 
+      Definizione regole di Deploy: 
+        <server> E' un tag facoltativo. Valorizzare con 'a' o 'k' solo 
+                 se si desidera che una regola sia utilizza solo in 
+                 test o produzione.
+        <mask>   Rappresenta la maschera di attivazione della regola
+                 nel formato: <path-locale>**<nome-files>
+                 Il path-locale è sempre relativo a partire dalla root del progetto.
+                 Il nome-file è la porzione finale del full-path-name.
+        <target> Contiene la cartella di destinazione sul server.
+                 Deve essere un path assoluto (senza barra finale) che
+                 verrà sostituito al path-locale della regola.
+        <clean>  E' un tag facoltativo da usare per indicare il path
+                 dove si trovano i compilati delle JSP per effettuare
+                 la rimozione automatica e forzare la ricompilazione.
+   -->
+   <!-- TOLOMEO -->
+   <rule>
+      <server>1</server>
+      <mask>src/**.java</mask>
+      <target>/usr1/test/vh/tolomeo/binj/WEB-INF/classes</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/WEB-INF/**web.xml</mask>
+      <target>/usr1/test/vh/tolomeo/WebContent/WEB-INF</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/jsp/**.jsp</mask>
+      <target>/usr1/test/vh/tolomeo/binj/jsp</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/applet/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/applet</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/css/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/css</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/html/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/html</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/img/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/img</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/js/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/js</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/mycommon/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/mycommon</target>
+   </rule>
+   <rule>
+      <server>1</server>
+      <mask>src/main/webapp/swf/**</mask>
+      <target>/usr1/test/vh/tolomeo/htdocs/swf</target>
+   </rule>
+   
+   
+   <!--  PRATOMAPS -->
+   <rule>
+      <server>2</server>
+      <mask>src/**.java</mask>
+      <target>/usr1/test/vh/pratomaps/binj/WEB-INF/classes</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/WEB-INF/**web.xml</mask>
+      <target>/usr1/test/vh/pratomaps/WebContent/WEB-INF</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/jsp/**.jsp</mask>
+      <target>/usr1/test/vh/pratomaps/binj/jsp</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/applet/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/applet</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/css/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/css</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/html/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/html</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/img/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/img</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/js/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/js</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/mycommon/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/mycommon</target>
+   </rule>
+   <rule>
+      <server>2</server>
+      <mask>src/main/webapp/swf/**</mask>
+      <target>/usr1/test/vh/pratomaps/htdocs/swf</target>
+   </rule>
+
+</deployonserver>

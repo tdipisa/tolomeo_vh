@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/js/ext/extJS/resources/css/ext-all.css" />
+
+<!-- js build (solo per sviluppo) -->
+<script type="text/JavaScript" src="/js/ext/extJS/adapter/ext/ext-base.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="/js/ext/extJS/ext-all.js" charset="utf-8"></script>
+<!-- Utile ad esempio per i messaggi standard di validazione delle form (Es. "Campo obbligatorio" invece di "The field is required") -->
+<script type="text/JavaScript" src="/js/ext/extJS/ext-lang-it.js" charset="utf-8"></script>
+
+
+<style type="text/css">
+.myDiv {
+	border : 1px solid #AAAAAA;
+	width : 200px;
+	height : 35px;
+	cursor : pointer;
+	padding : 2px 2px 2px 2px;
+	margin : 2px 2px 2px 2px;
+}
+
+.icon-saved {
+	background-image: url(/img/statusbar/saved.png) !important;
+}	
+
+.icon-saving {
+	background-image: url(/img/statusbar/saving.gif) !important;
+}	
+
+.icon-loading {
+	background-image: url(/img/statusbar/loading.gif) !important;
+}	
+
+.icon-flag_green, .icon-accept{
+	background-image: url(/img/statusbar/accept.png) !important;
+}	
+
+.icon-flag_red, .icon-reject {
+	background-image: url(/img/statusbar/exclamation.gif) !important;
+}	
+</style>
+
+<script type="text/JavaScript">
+Ext.BLANK_IMAGE_URL="/img/pixel.gif"; 
+
+	
+Ext.onReady(function(){
+	function btnHandler(btn){
+		btn.el.frame();
+	};
+	
+	new Ext.Button({
+		renderTo: Ext.getBody(),
+		text: 'Prova',
+		iconCls: 'icon-saved',
+		handler: btnHandler
+	});
+	
+	var setFlagColor = function(menuItem, checked) { // 1
+		if (checked === true) {
+			var color = menuItem.text.toLowerCase();
+			var iconCls = 'icon-flag_' + color;
+			Ext.getCmp('flagButton').setIconClass(iconCls);
+		}
+	}
+	
+	
+	new Ext.Button({
+		renderTo : Ext.getBody(),
+		text : 'Favorite flag',
+		iconCls : 'icon-flag_green',
+		handler : btnHandler,
+		id : 'flagButton',
+		menu : { // 2
+			defaults : {
+				checked : false,
+				group : 'colorChkGroup',
+				checkHandler : setFlagColor
+			},
+			items : [
+				{ text : 'Red' },
+				{ text : 'Green', checked: true }
+			]
+		}
+	});
+	
+	var setFlagColor2 = function(menuItem, checked) { // 1
+		if (checked === true) {
+			var color = menuItem.text.toLowerCase();
+			var iconCls = 'icon-flag_' + color;
+			Ext.getCmp('flagButton2').setIconClass(iconCls);
+		}
+	}
+	
+	new Ext.SplitButton({ // 1
+		renderTo : Ext.getBody(),
+		text : 'Favorite flag',
+		iconCls : 'icon-flag_green',
+		handler : btnHandler,
+		id : 'flagButton2',
+		// arrowAlign: 'bottom',
+		// iconAlign: 'right',
+		// scale: 'medium',
+		menu : {
+			defaults : {
+				checked : false,
+				group : 'colorChkGroup',
+				checkHandler : setFlagColor2
+			},
+			items : [
+				{ text : 'Red' },
+				{ text : 'Green', checked: true }
+			]
+		}
+	});
+	
+// BUTTON GROUP START	
+	
+	new Ext.ButtonGroup({ // 1
+		renderTo : Ext.getBody(),
+		title : 'Manage Emails',
+		items : [
+			{
+				text : 'Paste as', // 2
+				iconCls : 'icon-saved',
+				menu : [
+				{
+					text : 'Plain Text',
+					iconCls : 'icon-paste_plain'
+				},
+				{
+					text : 'Word',
+					iconCls : 'icon-paste_word'
+				}
+			]
+			},
+			{
+				text : 'Copy',
+				iconCls : 'icon-flag_green'
+			},
+			{
+				text : 'Cut',
+				iconCls : 'icon-flag_red'
+			},
+			{
+				text : 'Clear',
+				iconCls : 'icon-erase'
+			}
+		]
+	});
+	
+	
+	new Ext.ButtonGroup({ // 1
+		renderTo : Ext.getBody(),
+		title : 'Clipboard',
+		columns : 2, // 2
+		items : [
+			{
+			text : 'Paste',
+			iconCls : 'icon-saved',
+			rowspan : '3', // 3
+			scale : 'large', // 4
+			arrowAlign : 'bottom',
+			iconAlign : 'top',
+			width : 50, 
+			menu : [
+				{
+					text : 'Plain Text',
+					iconCls : 'icon-loading'
+					
+				},				
+				{
+					text : 'Word',
+					iconCls : 'icon-saving'
+				}
+			]
+			},
+			{
+				iconCls : 'icon-saving'
+			},
+			{
+				iconCls : 'icon-reject'
+			},
+			{
+				iconCls : 'icon-accept'
+			}
+		]
+	});
+	
+// BUTTON GROUP END
+
+// TOOLBAR START
+/*
+var tbar = { // 1
+	items : [
+		{
+			text : 'Add',
+			iconCls : 'icon-accept'
+		},
+		'-', // 2
+		{
+			text : 'Update',
+			iconCls : 'icon-reject'
+		},		
+		'-',
+		{
+			text : 'Delete',
+			iconCls : 'icon-saving'
+		},
+		'->', // 3
+		'Select one of these: ', // 4
+		{
+			xtype : 'combo', // 5
+			width : 100,
+			store : [
+				'Toolbars',
+				'Are',
+				'Awesome'
+			]
+		}
+	]
+};
+
+new Ext.Window({
+	width : 500,
+	height : 200,
+	tbar : tbar // 6
+}).show();
+*/
+// TOOLBAR END
+
+// Ext.Action START
+var genericHandler = function(menuItem) { // 1
+	Ext.MessageBox.alert('', 'Your choice is ' + menuItem.text);
+}
+
+var cutAction = new Ext.Action({
+	text : 'Load',
+	iconCls : 'icon-loading',
+	handler : genericHandler
+});
+
+var copyAction = new Ext.Action({ // 2
+	text : 'Save',
+	iconCls : 'icon-saving',
+	handler : genericHandler
+});
+
+var pasteAction = new Ext.Action({
+	text : 'Reject',
+	iconCls : 'icon-reject',
+	// handler : genericHandler
+	handler : function(){copyAction.setHidden(!copyAction.isHidden());}
+	// disabled: true
+});
+
+var editMenuBtn = { // 3
+	text : 'Edit',
+	menu : [
+		cutAction,
+		copyAction,
+		pasteAction
+	]
+}
+
+new Ext.Window({
+	width : 300,
+	height : 200,
+	tbar : [
+		editMenuBtn,
+		'->',
+		cutAction, // 4
+		copyAction,
+		pasteAction
+	]
+}).show();
+
+// Ext.Action END
+	
+});	
+
+
+
+</script>
+</head>
+<body>
+<!--  div id='div1' class='myDiv'> </div -->
+</body>
+</html>

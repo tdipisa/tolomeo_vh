@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Demo tolomeo - Validazione toponimo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/css/toloExt-intra.css" />
+ 
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/main.css" type="text/css" media="all" />
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/menu.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/form.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/tabelle.css" type="text/css" media="all" />
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" href="https://tolomeo.comune.prato.it/commonintra2-0/css/sit.css" type="text/css" media="all"/>
+
+<!-- JAVASCRIPT -->
+<!-- js sviluppo -->
+
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/build/toloExt-all-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/layout/ToloPanelToponomastica.js"></script>	
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/layout/ToloWindowToponomastica.js"></script>
+
+<!-- js produzione -->
+<!-- 
+<script type="text/JavaScript" src="http://tolomeo.comune.prato.it/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://tolomeo.comune.prato.it/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://tolomeo.comune.prato.it/js/tolomeoExt/layout/ToloPanelToponomastica.js" charset="utf-8"></script>	
+<script type="text/JavaScript" src="http://tolomeo.comune.prato.it/js/tolomeoExt/layout/ToloWindowToponomastica.js" charset="utf-8"></script>
+-->
+
+<!-- js locale -->
+<!-- 
+<script type="text/JavaScript" src="/js/tolomeoExt/build/toloExt-all-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloPanelToponomastica.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloWindowToponomastica.js"></script>
+-->
+
+<style type="text/css">
+	fieldset.tmpl_form_float input, fieldset.tmpl_form_float textarea {
+		display: inline;
+		width: 40% !important;
+	}
+</style>
+</head>
+
+<body>
+	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Demo tolomeo</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div>
+	<!-- Fine Intestazione/header -->
+	
+	<!-- Logout/Percorso -->
+	<div id="tmpl_barra">
+		<div id="tmpl_barrawrap"> 
+			<div id="tmpl_percorso">
+				<ol title="Percorso di navigazione dalla home page">
+					<li><a href="/tolomeohtdocs/html/">home</a></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<div id="tmpl_logout"><a href="javascript:window.close();">logout</a></div>
+	</div>
+	<!-- Fine Logout/Percorso -->
+	
+	<!-- Menu/Content -->
+	<div id="tmpl_main">
+		<!-- Content -->
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<h1>Validazione toponimo - Cerca civico</h1>
+	 	 
+	 			<form action="" method="get">
+				 	<fieldset class="tmpl_form">
+				 		<legend>Cerca civico</legend>
+				 		
+				 		<div class="tmpl_bottoni">
+				 			<label><input class="cerca" type="button" value="cerca" onclick="new TolomeoExt.ToloWindowCercaCivico({suggestWithGeom:true}).show();" title="apri finestra di ricerca guidata indirizzo" /></label>
+				 		</div>	
+				 		
+				 		<div>
+				 			<label for="idtopo">ID toponimo</label>
+				 			<input type="text" readonly="readonly" name="key" value="" id="idTopo" />
+				 		</div>
+				 		<div>
+				 			<label for="IDStrada">ID strada</label>
+				 			<input type="text" readonly="readonly" name="idStrada" value="" id="idStrada"/>
+				 		</div>
+				 		<div>
+				 			<label for="codVia6">Codice via</label>
+				 			<input type="text" readonly="readonly" name="codVia6" value="" id="codVia6"/>
+				 		</div>
+				 		<div>
+				 			<label for="via">Descrizione via</label>
+				 			<input type="text" readonly="readonly" name="viaDL" value="" id="viaDL"/>
+				 		</div>
+				 		<div>
+				 			<label for="desc">Descrizione toponimo</label>
+				 			<input type="text" readonly="readonly" name="desc" value="" id="descTopo"/>
+				 		</div>
+				 		<div>
+				 			<label for="desc">Numero civico completo</label>
+				 			<input type="text" readonly="readonly" name="numCompleto" value="" id="numCompleto"/>
+				 		</div>					
+					</fieldset>
+				 </form> 
+			</div>
+		</div>
+	</div>
+	
+	<!-- Copyright -->
+	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>
+	<!-- Fine Copyright -->
+</body>
+</html>

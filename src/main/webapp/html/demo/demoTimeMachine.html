@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/js/ext/extJS/resources/css/ext-all.css" />
+<!-- link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" / -->
+<link rel="stylesheet" type="text/css" href="/css/toloExt-intra.css" />
+
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/print.css" media="print" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/gener100.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/aree.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/tabelle.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/formatta.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/immagini.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/liste.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/recapiti.css" type="text/css" />
+
+
+    <script type="text/JavaScript" src="/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>    
+<!-- 
+ <script type="text/javascript" charset="utf-8" src="/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/ext/extJS/ext-all-debug.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/ext/extJS/ext-lang-it.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/openlayers/OpenLayers.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/openlayers/PointFromRef.js"></script>	
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPath.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPoint.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPolygon.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/tolomGeometry.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/ExtFix.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/ToloParamsJS.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloVars.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloCrossAjax.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloMeasurePanelExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/ToloPanelBase.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloScalePanelExt.js"></script>	
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloViewerOLExt.js"></script>	
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloAPIOpCodes.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloTOCAbstractDataProvider.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloTOCMapServerDataProvider.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloTOCNodeUI.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloTOCPanelExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloTreeTOCPanelExt.js"></script> 
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloQueryPanelExt.js"></script>	
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloButtonPanel.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloLazyLoad.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloProjection.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloMapAPIExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloPointFromRefPanelExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloCADPanelExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloGotoLocationWindowExt.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/toloContextMenu.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/extJS/ux/GroupingListView.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/extJS/ux/StatusBar.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/extJS/ux/carousel.js"></script>
+<script type="text/JavaScript" charset="utf-8" src="/js/ext/extJS/ux/CarouselPanel.js"></script>
+<script type="text/JavaScript" charset="utf-8"  src="/js/tolomeoExt/toloTimeMachinePanel.js"></script>			
+ -->
+
+<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script>
+ 
+<script type="text/JavaScript" src="/tolomeobinj/ToloExtParamsJSServlet?paramPreset=TimeMachine"></script>
+ 
+<script type="text/JavaScript">
+Ext.onReady(function(){
+	
+
+	tolomeoPnl = new TolomeoExt.ToloPanelIntra({
+		title: 'Stradario di Prato',
+		width: 800,
+		height: 600,
+		layout: 'fit',
+		renderTo: 'sit_mappa',
+		withDataPanel: false,
+		withToolsPanel: false,
+		toolbarOpt: {
+			withLegenda:false,
+			withQuery:false,
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false,
+			defaults: {scale:'medium'}
+		}
+	});
+	
+	tolomeoWin = new TolomeoExt.ToloPanelIntra({
+		withDataPanel: false,
+		withToolsPanel: false,
+		toolbarOpt: {
+			withLegenda:false,
+			withQuery:false,
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false,
+			defaults: {scale:'medium'} 
+		}
+	
+	
+	});
+
+	finestra = new Ext.Window ({
+		title : 'Stradario di Prato',
+		layout: 'fit',
+		width : 800,
+		height : 600,
+		cls: 'clearCSS',
+		closeAction: 'hide',
+		items: [tolomeoWin]
+	});
+});
+
+function evidenziaVia(idvia) {
+	tolomeoPnl.api.zoomToObj('-510', idvia, false);
+}
+
+function zoomVia(idvia) {
+	finestra.show();
+	tolomeoWin.api.zoomToObj('-510', idvia, false);
+}
+
+</script>
+</head>
+
+<body>
+
+<div id="percorso"> <a href="#salta" accesskey="0" title="salta la barra di navigazione" id="top"><img src="http://www.comune.prato.it/common/gif/elemen/salta.gif" width="5" height="5" alt="salta la barra" /></a>
+  <img src="http://www.comune.prato.it/common/gif/elemen/pixel.gif" height="1" width="1" alt=" " />
+  <a href="http://www.comune.prato.it/">Comune di Prato</a> <img src="http://www.comune.prato.it/common/gif/frecce/c_av4p.gif"
+       width="9"
+       height="10"
+       alt=" " />
+	<a href="http://www.comune.prato.it/trasporti/"
+			title="vai alla home del canale di riferimento del sito">Trasporti e Viabilit&agrave;</a>
+
+    <img src=
+       "http://www.comune.prato.it/common/gif/frecce/c_av4p.gif"
+       width="9"
+       height="10"
+       alt=" " /> Stradario </div>
+
+<div id="intesta">
+<a href="http://www.comune.prato.it/" title="vai alla home del Comune di Prato"><img
+		src="http://www.comune.prato.it/common/gif/logo/hcomune.gif"
+		width="131"
+		height="40"
+		alt="Comune di Prato" /></a>
+</div>
+
+
+<div id="topmain">
+	<img src="http://www.comune.prato.it/common/gif/frecce/c_in3p.gif" alt=" " width="16" height="16" class="imgcentro" />
+  <a href="javascript:history.back();" title="torna alla pagina precedente">indietro</a>
+	<!-- img src="http://www.comune.prato.it/common/gif/icone/help3.gif" alt=" " width="16" height="16" class="imgcentro" />
+  <a href="htm/help.htm" title="vai alla pagina di spiegazione della mappa">help</a -->
+
+</div>
+
+<div id="main">
+
+  <h1 id="salta">Vincoli e salvaguardie</h1>
+	
+				<table>
+					<caption>Elenco vie</caption>
+					<thead>
+						<tr>
+							<th class="thdato1" id="col1"><abbr title="">ID</abbr></th>
+							<th class="thdato1" id="col2"><abbr title="">Descrizione</abbr></th>
+							<th class="thdato1" id="col3"><abbr title="">Zoom all'oggetto</abbr></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tddato1" headers="col1"><a href="#" onmouseover="javascript:evidenziaVia('10007000001325');">10007000001325</a></td>
+							<td class="tddato1" headers="col2">Via Giuseppe Mazzoni</td>
+							<td class="tddato1" headers="col3"><a href="#" onclick="javascript:zoomVia('10007000001325');">apri</a></td>
+						</tr>
+						<tr>
+							<td class="tddato1" headers="col1"><a href="#" onmouseover="javascript:evidenziaVia('10007000001317');">10007000001317</a></td>
+							<td class="tddato1" headers="col2">Via dei Manassei</td>
+							<td class="tddato1" headers="col3"><a href="#" onclick="javascript:zoomVia('10007000001317');">apri</a></td>
+						</tr>
+						<tr>
+							<td class="tddato1" headers="col1"><a href="#" onmouseover="javascript:evidenziaVia('10007000000033');">10007000000033</a></td>
+							<td class="tddato1" headers="col2">Via dell'Altopascio</td>
+							<td class="tddato1" headers="col3"><a href="#" onclick="javascript:zoomVia('10007000000033');">apri</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<br />
+				
+				<input type="button" onclick="javascript:tolomeoPnl.api.zoomToObj('-510', [10007000001325, 10007000001317, 10007000000033], false); showTimeMachine();" value="Zoom a tutte le vie"/>
+				<input type="button" onclick="javascript:tolomeoPnl.api.showTimeMachine(true);" value="Mostra Time Machine"/>
+				<input type="button" onclick="javascript:tolomeoPnl.api.showTimeMachine(false);" value="Nascondi Time Machine"/>
+				
+				<br /><br /><br />
+				
+				<div id="sit_mappa" class="clearCSS"></div>
+		
+</div>
+
+
+<div id="downmain"> <img src="http://www.comune.prato.it/common/gif/frecce/c_in3p.gif" alt=" " width="16" height="16" class="imgcentro" />
+
+  <a href=
+   "javascript:history.back();" title="torna alla pagina precedente">indietro</a> <img src="http://www.comune.prato.it/common/gif/frecce/c_su3p.gif" alt=" " width="16" height="16" class="imgcentro" />
+  <a href="#top" title="torna ad inizio pagina">inizio pagina</a></div>
+
+<div id="copyright">
+	<img src="http://www.comune.prato.it/common/gif/elemen/pixel.gif"
+			width="1" height="1" alt=" " />
+	<a href="http://www.comune.prato.it/policy/htm/c-comune.htm">&copy;
+
+  Comune di Prato</a></div>
+
+</body>
+</html>

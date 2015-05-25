@@ -1,0 +1,504 @@
+ <!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<project name="tolomeo_vh" default="void" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant" >
+	<description>
+		Build per tolomeo
+    </description>
+	<!--DEFINIZIONE TASK CHE INCLUDE TUTTE LE LIBRERIRE DEL CLASSPATH NEL BUILD -->
+	<taskdef name="eclipseCP" classname="it.prato.comune.ant.tasks.DipendenzeTask" />
+	<!--DEFINIZIONE TASK CHE INCLUDE TUTTE LE RISORSE CAMBIATE RISPETTOA  CVS IN UN FILESET -->
+	<taskdef name="cvsChange" classname="it.prato.comune.ant.tasks.CVSEntriesTask" />
+	<!--DEFINIZIONE TASK CHE CANCELLA TUTTI I JARS VECCHI NELLA LIB -->
+	<taskdef name="deleteIfOlder" classname="it.prato.comune.ant.tasks.DeleteIfOlder" />
+	
+	<path id="maven-ant-tasks.classpath" path="${eclipse.workspace}/jars/antTask/maven-ant-tasks-2.1.3.jar" />
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+	         uri="antlib:org.apache.maven.artifact.ant"
+	         classpathref="maven-ant-tasks.classpath" />
+	
+	<tstamp>
+	    <format property="OGGI_IT" pattern="yyyyMMdd" locale="ITALY"/>
+	</tstamp>
+  	
+	<property name="war.pratomaps.file.name" value="it.prato.comune.pratomaps_vh_${OGGI_IT}.war"/>
+	<property name="comune.user.name"	 value="w3manager"/>
+	<property name="dest.host"		     value="\\vas-dvp.comune.prato.it"/>	
+	<property name="dest.config.dir"     value="/usr1/test/config" />
+	<property name="dest.configvh.dir"   value="/usr1/test/configvh" />
+	<property name="dest.env.config.dir" value="/usr1/test/config/env" />	
+	
+	<!-- CARTELLE RISORSE LOCALI -->
+	<property name="workspace.tolomeo.configvh.dir" value="${eclipse.workspace}/configvh/dvp/tolomeo" />
+	<property name="jars.dir"                       value="${eclipse.workspace}/jars" />
+	<property name="jars.ext.dir"                   value="${jars.dir}/ext" />
+	<property name="tolomeovh.dir"                  value="${eclipse.workspace}/tolomeo_vh" />	
+	<property name="local.build.dir"                value="${tolomeovh.dir}/target" />	
+	<property name="local.webContent.dir"           value="${tolomeovh.dir}/src/main/webapp" />
+	<property name="local.js.dir"                   value="${local.webContent.dir}/js" />
+	<property name="local.css.dir"                  value="${local.webContent.dir}/css" />
+	<property name="local.img.dir"                  value="${local.webContent.dir}/img" />
+	<property name="local.html.dir"                 value="${local.webContent.dir}/html" />
+	<property name="local.applet.dir"               value="${local.webContent.dir}/applet" />
+	<property name="local.mycommon.dir"             value="${local.webContent.dir}/mycommon" />
+	<property name="local.swf.dir"             		value="${local.webContent.dir}/swf" />
+	<property name="local.applet.dir"               value="${local.webContent.dir}/applet" />
+	<property name="local.jsp.dir"                  value="${local.webContent.dir}/jsp" />
+	
+	<!-- CARTELLE DI DESTINAZIONE DI TOLOMEO -->
+	<property name="tolomeo.dest.host"		   value="${dest.host}\usr1_test\vh\tolomeo"/>				
+	<property name="tolomeo.dest.tomcat.dir"   value="${tolomeo.dest.host}\binj" />
+	<property name="tolomeo.dest.web-inf.dir"  value="${tolomeo.dest.host}\binj\WEB-INF" />
+	<property name="tolomeo.dest.apache.dir"   value="${tolomeo.dest.host}" />
+	<property name="tolomeo.dest.html.dir"     value="${tolomeo.dest.apache.dir}/htdocs/html" />	
+	<property name="tolomeo.dest.js.dir"       value="${tolomeo.dest.apache.dir}/htdocs/js" />
+	<property name="tolomeo.dest.css.dir"      value="${tolomeo.dest.apache.dir}/htdocs/css" />
+	<property name="tolomeo.dest.img.dir"      value="${tolomeo.dest.apache.dir}/htdocs/img" />
+	<property name="tolomeo.dest.applet.dir"   value="${tolomeo.dest.apache.dir}/htdocs/applet" />
+	<property name="tolomeo.dest.mycommon.dir" value="${tolomeo.dest.apache.dir}/htdocs/mycommon" />
+	<property name="tolomeo.dest.swf.dir"      value="${tolomeo.dest.apache.dir}/htdocs/swf" />
+	<property name="tolomeo.dest.jsp.dir"      value="${tolomeo.dest.tomcat.dir}/jsp" />
+	
+	<!-- CARTELLE DI DESTINAZIONE DI PRATOMAPS -->
+	<property name="pratomaps.dest.host"	     value="${dest.host}\usr1_test\vh\pratomaps"/>
+	<property name="pratomaps.dest.tomcat.dir"   value="${pratomaps.dest.host}\binj" />
+	<property name="pratomaps.dest.web-inf.dir"  value="${pratomaps.dest.host}\binj\WEB-INF" />
+	<property name="pratomaps.dest.apache.dir"   value="${pratomaps.dest.host}" />
+	<property name="pratomaps.dest.html.dir"     value="${pratomaps.dest.apache.dir}/htdocs/html" />	
+	<property name="pratomaps.dest.js.dir"       value="${pratomaps.dest.apache.dir}/htdocs/js" />
+	<property name="pratomaps.dest.css.dir"      value="${pratomaps.dest.apache.dir}/htdocs/css" />
+	<property name="pratomaps.dest.img.dir"      value="${pratomaps.dest.apache.dir}/htdocs/img" />
+	<property name="pratomaps.dest.applet.dir"   value="${pratomaps.dest.apache.dir}/htdocs/applet" />
+	<property name="pratomaps.dest.mycommon.dir" value="${pratomaps.dest.apache.dir}/htdocs/mycommon" />
+	<property name="pratomaps.dest.swf.dir"      value="${pratomaps.dest.apache.dir}/htdocs/swf" />
+	<property name="pratomaps.dest.applet.dir"   value="${pratomaps.dest.apache.dir}/htdocs/applet" />
+	<property name="pratomaps.dest.jsp.dir"      value="${pratomaps.dest.tomcat.dir}/jsp" />	
+	
+	<target name="void">
+		<echo>Non faccio nulla</echo>
+	</target>			
+		
+	<!-- =================================  Build JavaScript : JSBUILDER2  ============================================ -->
+	<target name="build_toloExt-all.js" description="Crea il file toloExt-all.js usando lal libreria JSBuilder2">		
+		
+		<property name="file.jsb2" value="${local.js.dir}/toloExt-all.jsb2" />
+		<property name="jsbuilder2.home.dir" value="${tolomeovh.dir}" />
+		
+	    <java jar="${jars.ext.dir}/JSBuilder2.jar" fork="true">
+	    	<arg value="--projectFile" />
+	      	<arg value="${file.jsb2}" />
+	      	<arg value="--homeDir" />
+	      	<arg value="${jsbuilder2.home.dir}" />		      	
+	    	<arg value="-v" />		    	
+	    </java>	
+		
+	</target>
+	
+	<target name="build_cswExplorer.js" description="Crea il file cswExplorer.js (ESCUDE LA LIB EXT) usando lal libreria JSBuilder2">		
+			
+		<property name="file.jsb2" value="${local.js.dir}/cswExplorer.jsb2" />
+		<property name="jsbuilder2.home.dir" value="${tolomeovh.dir}" />
+		
+	    <java jar="${jars.ext.dir}/JSBuilder2.jar" fork="true">
+	    	<arg value="--projectFile" />
+	      	<arg value="${file.jsb2}" />
+	      	<arg value="--homeDir" />
+	      	<arg value="${jsbuilder2.home.dir}" />		      	
+	    	<arg value="-v" />		    	
+	    </java>	
+		
+	</target>
+	
+	<target name="generatePresetXSDDocumentation" description="Genera la documentazione dello Schema dei preset file in formato XHTML">		
+		
+	    <java classpath="${jars.ext.dir}/xalan.jar" classname="org.apache.xalan.xslt.Process" fork="true">
+	    	<arg value="-IN" />
+	      	<arg value="${local.webContent.dir}/tolomeoparametri.xsd" />
+	      	<arg value="-XSL" />
+	      	<arg value="${local.webContent.dir}/xs3p.xsl" />		      	
+	    	<arg value="-OUT" />		    	
+	    	<arg value="${local.html.dir}/documentation/tolomeoparametri.html" />
+	    </java>	
+		
+	</target>
+	
+	<!-- Per comprimere usando un file di progetto diverso fare come segue
+	<target name="JSBuiler2_toloExtAll" description="Crea il file toloExt-all.js usando lal libreria JSBuilder">
+	  	 <antcall target="JSBuilder2">
+	  	   <param name="file.jsb2" value="${tolomeovh.dir}/htdocs/js/mioJSB2.jsb2"/>
+	  	 </antcall>
+	</target>
+	-->
+	
+	<!-- =======================================  VAS-DVP : TOLOMEO  =========================================== -->
+	<!-- ==================== Copia le librerie in tolomeo, ma senza la WEb-INF/lib ==================== -->
+	<!--
+	<target name="copyLibTolomeo" description="copia del contesto di tolomeo su vas-dvp">
+		<echo>copyLibTolomeo NON FA ALCUNA OPERAZIONE! Rivedere la gestione delle libhrerie.</echo>
+		-->
+		<!-- NON PIU UTILIZZABILE PERCHE IL CLASSPATH E VUOTO
+		<eclipseCP produce="fileset" idcontainer="lib" verbose="true" recurse="false" pathLib="${eclipse.workspace}/jars" />
+		<copy todir="${tolomeo.dest.tomcat.dir}\WEB-INF\lib" flatten="yes" overwrite="true">
+			<fileset refid="lib" />
+		</copy>
+		<deleteIfOlder path="${tolomeo.dest.tomcat.dir}/WEB-INF/lib" />
+		--><!--				
+	</target>
+	-->
+	
+	<!-- ==================== Copia il contesto in tolomeo, ma senza la WEb-INF/lib ==================== -->
+	<target name="copyContextTolomeo" description="copia del contesto di tolomeo su vas-dvp">			
+		<delete includeemptydirs="true" quiet="true">		
+			<fileset dir="${tolomeo.dest.jsp.dir}" includes="**/*" />													
+		</delete>
+		<delete includeemptydirs="true" quiet="true">		
+			<fileset dir="${tolomeo.dest.tomcat.dir}/WEB-INF" >
+				<exclude name="lib*/**" />
+			</fileset>
+		</delete>
+		<copy todir="${tolomeo.dest.tomcat.dir}" verbose="true" overwrite="yes">
+			<!-- Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp -->	
+			<fileset dir="${local.webContent.dir}">				
+				<exclude name="*CVS*" />	
+				<exclude name="applet/**" />												
+				<exclude name="css/**" />				
+				<exclude name="html/**" />				
+				<exclude name="img/**" />
+				<exclude name="js/**" />				
+				<exclude name="jstest/**" />
+				<exclude name="mycommon/**" />
+				<exclude name="swf/**" />
+				<exclude name="META-INF/context.xml" />	
+				<exclude name="WEB-INF/config*/**" />
+			</fileset>
+		</copy>
+		<copy todir="${tolomeo.dest.web-inf.dir}" verbose="true" overwrite="yes">
+			<fileset dir="${local.build.dir}">
+				<include name="classes/**" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- ==================== copia immagini sull'apache di tolomeo =================================== -->
+	<target name="copyImgTolomeo" description="copia delle immagini tolomeo su macchina vas-dvp">
+		<delete dir="${tolomeo.dest.img.dir}" excludes="servizi/**" quiet="true"></delete>			
+		<copy todir="${tolomeo.dest.img.dir}" verbose="true" overwrite="yes" >
+			<!-- <fileset dir="./htdocs/img"> -->
+			<fileset dir="${local.img.dir}">
+				<exclude name="servizi/**" />
+			</fileset>
+		</copy>
+		<mkdir dir="${tolomeo.dest.img.dir}/legend"/>
+	</target>
+	
+	<!-- ==================== copia javascript sull'apache di tolomeo =================================== -->
+	<target name="copyJsTolomeo" description="copia dei javascript tolomeo su macchina vas-dvp" depends="build_toloExt-all.js">
+		<delete dir="${tolomeo.dest.js.dir}"></delete>			
+		<copy todir="${tolomeo.dest.js.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.js.dir}">
+				<exclude name="*.jsb2" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ==================== copia css sull'apache di tolomeo =================================== -->
+	<target name="copyCssTolomeo" description="copia dei css tolomeo su macchina vas-dvp">
+		<delete dir="${tolomeo.dest.css.dir}"></delete>			
+		<copy todir="${tolomeo.dest.css.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.css.dir}"></fileset>
+		</copy>
+	</target>
+
+	<!-- ==================== copia html sull'apache di tolomeo =================================== -->
+	<target name="copyHtmlTolomeo" description="copia dei css tolomeo su macchina vas-dvp">
+		<delete verbose="true" quiet="false">
+			<fileset dir="${tolomeo.dest.html.dir}" includes="**" excludes="servizi/**" />
+		</delete>				
+		<copy todir="${tolomeo.dest.html.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.html.dir}" includes="**" excludes="servizi/**" />				
+		</copy>			
+	</target>
+
+	<!-- ==================== copia mycommon sull'apache di tolomeo =================================== -->
+	<target name="copyMycommonTolomeo" description="copia della mycommon RC tolomeo su macchina vas-dvp">
+		<delete dir="${tolomeo.dest.mycommon.dir}"></delete>			
+		<copy todir="${tolomeo.dest.mycommon.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.mycommon.dir}"></fileset>
+		</copy>
+	</target>
+	
+	<!-- ==================== copia swf sull'apache di tolomeo =================================== -->
+		<target name="copySwfTolomeo" description="copia swf tolomeo su macchina vas-dvp">
+			<delete dir="${tolomeo.dest.swf.dir}"></delete>			
+			<copy todir="${tolomeo.dest.swf.dir}" verbose="true" overwrite="yes" >
+				<fileset dir="${local.swf.dir}"></fileset>
+			</copy>
+		</target>
+	
+	<!-- ==================== copia htdocs sull'apache di tolomeo =================================== -->
+	<target name="copyHtdocsTolomeo" description="copia della htdocs tolomeo su macchina vas-dvp" depends="copyImgTolomeo,copyJsTolomeo,copyCssTolomeo,copyHtmlTolomeo,copyMycommonTolomeo,copySwfTolomeo"></target>
+
+	<!-- ==================== esegue il deploy di tolomeo =================================== -->
+	<target name="deployTolomeo" description="copia tutta la htdocs e la WEB-INF (/lib compresa) di tolomeo su macchina vas-dvp" depends="copyHtdocsTolomeo,copyContextTolomeo,copyMvnDepToTolomeo"></target>
+	
+	
+	<!-- ========================================== VAS-DVP : PRATOMAPS ============================================ -->
+	<!-- ==================== Copia le librerie in pratomaps, ma senza la WEb-INF/lib ==================== -->
+	<!--
+	<target name="copyLibPratoMaps">
+		<echo>copyLibPratoMaps NON FA ALCUNA OPERAZIONE! Rivedere la gestione delle libhrerie.</echo>	
+		--><!-- NON PIU UTILIZZABILE PERCHE IL CLASSPATH E VUOTO
+		<eclipseCP produce="fileset" idcontainer="lib" verbose="true" recurse="false" pathLib="${eclipse.workspace}/jars" />
+		<copy todir="${pratomaps.dest.tomcat.dir}\WEB-INF\lib" flatten="yes" overwrite="true">
+			<fileset refid="lib" />
+		</copy>
+		<deleteIfOlder path="${pratomaps.dest.tomcat.dir}\WEB-INF\lib" />
+		--><!--					
+	</target>
+	-->
+	
+		
+	<!-- ==================== Copia il contesto in pratomaps, ma senza la WEb-INF/lib ==================== -->
+	<target name="copyContextPratoMaps">			
+		<delete includeemptydirs="true">		
+			<fileset dir="${pratomaps.dest.jsp.dir}" includes="**/*" />													
+		</delete>
+		<delete includeemptydirs="true">		
+			<fileset dir="${pratomaps.dest.tomcat.dir}/WEB-INF" >
+				<exclude name="lib/**" />
+			</fileset>
+		</delete>
+		<copy todir="${pratomaps.dest.tomcat.dir}" verbose="true" overwrite="yes" >
+			<!--Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp-->
+			<fileset dir="${local.webContent.dir}">				
+				<exclude name="*CVS*" />									
+				<exclude name="applet/**" />												
+				<exclude name="css/**" />				
+				<exclude name="html/**" />				
+				<exclude name="img/**" />
+				<exclude name="js/**" />				
+				<exclude name="jstest/**" />
+				<exclude name="mycommon/**" />
+				<exclude name="swf/**" />
+				<exclude name="jsp/servizi/**" />
+				<exclude name="META-INF/context.xml" />	
+				<exclude name="WEB-INF/config*/**" />
+			</fileset>
+			<fileset dir="${local.webContent.dir}" defaultexcludes="true">
+				<include name="jsp/servizi/strumentiUrb/**"/>
+				<include name="jsp/servizi/wifi/**"/>
+			</fileset>
+		</copy>
+				
+		<copy todir="${pratomaps.dest.web-inf.dir}" verbose="true" overwrite="yes">
+			<fileset dir="${local.build.dir}">				
+				<exclude name="*CVS*" />									
+				<exclude name="classes/it/prato/comune/tolomeo/web/GeometryUpdateServlet.class" />
+				<exclude name="classes/it/prato/comune/tolomeo/web/MenuServlet.class" />
+				<exclude name="classes/it/prato/comune/tolomeo/servizi/**" />
+				<include name="classes/**" />
+			</fileset>
+			<fileset dir="${local.build.dir}">
+				<include name="classes/it/prato/comune/tolomeo/servizi/elettorale/ElettoraleApplicationProperties.class" />
+				<include name="classes/it/prato/comune/tolomeo/servizi/shared/SharedApplicationProperties.class" />
+				<include name="classes/it/prato/comune/tolomeo/servizi/ServicesFilter.class" />
+				<include name="classes/it/prato/comune/tolomeo/servizi/TolomeoServicesContext.class" />
+				<include name="classes/it/prato/comune/tolomeo/servizi/strumentiUrb/**" />
+				<include name="classes/it/prato/comune/tolomeo/servizi/wifi/**" />
+			</fileset>
+		</copy>
+		<!--  setto il giusto SESSION_TIMEOUT -->
+		<replace file="${pratomaps.dest.web-inf.dir}\web.xml" token="&lt;session-timeout&gt;30&lt;/session-timeout&gt;" value="&lt;session-timeout&gt;15&lt;/session-timeout&gt;"></replace>
+	</target>
+
+	<!-- ==================== copia immagini sull'apache di pratomaps =================================== -->
+	<target name="copyImgPratoMaps" description="copia delle immagini pratomaps su macchina vas-dvp">
+		<delete dir="${pratomaps.dest.img.dir}" excludes="servizi/**"></delete>			
+		<copy todir="${pratomaps.dest.img.dir}" verbose="true" overwrite="yes" >
+			<!--Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp-->
+			<fileset dir="${local.img.dir}">					
+				<exclude name="help/**" />
+				<exclude name="servizi/**" />						
+			</fileset>
+		</copy>
+		<mkdir dir="${pratomaps.dest.img.dir}/legend"/>
+	</target>
+
+	<!-- ==================== copia javascript sull'apache di pratomaps =================================== -->
+	<target name="copyJsPratoMaps" description="copia dei javascript pratomaps su macchina vas-dvp" depends="build_toloExt-all.js">
+		<delete dir="${pratomaps.dest.js.dir}"></delete>			
+		<copy todir="${pratomaps.dest.js.dir}" verbose="true" overwrite="yes" >
+			<!--Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp-->
+			<fileset dir="${local.js.dir}"></fileset>
+		</copy>
+	</target>
+
+	<!-- ==================== copia css sull'apache di pratomaps =================================== -->
+	<target name="copyCssPratoMaps" description="copia dei css pratomaps su macchina vas-dvp">
+		<delete dir="${pratomaps.dest.css.dir}"></delete>			
+		<copy todir="${pratomaps.dest.css.dir}" verbose="true" overwrite="yes" >
+			<!--Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp-->
+			<fileset dir="${local.css.dir}">
+				<exclude name="jQuery/**" />
+				<!-- <exclude name="servizi/**" />  -->
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- ==================== copia html sull'apache di pratomaps =================================== -->
+	<target name="copyHtmlPratoMaps" description="copia dei file html pratomaps su macchina vas-dvp">
+		<delete verbose="true">
+			<fileset dir="${pratomaps.dest.html.dir}" includes="**" excludes="servizi/**" />
+		</delete>			
+		<copy todir="${pratomaps.dest.html.dir}" verbose="true" overwrite="yes" >
+			<!--Escludo le cartelle che in deploy non vanno e i config fatti dal target configdvp-->
+			<fileset dir="${local.html.dir}" includes="**" excludes="servizi/**" />					
+		</copy>
+		<replace token="tolomeohtdocs/" value="" dir="${pratomaps.dest.apache.dir}/htdocs" includes="*.html">
+		</replace>
+		<replace token="/tolomeobinj" value="/pratomapsbinj" dir="${pratomaps.dest.apache.dir}/htdocs" includes="*.html">
+		</replace>
+	</target>
+	
+	<!-- ==================== copia mycommon sull'apache di pratomaps =================================== -->
+	<target name="copyMycommonPratoMaps" description="copia della mycommon RC pratomaps su macchina vas-dvp">
+		<delete dir="${pratomaps.dest.mycommon.dir}"></delete>			
+		<copy todir="${pratomaps.dest.mycommon.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.mycommon.dir}"></fileset>
+		</copy>
+	</target>
+	
+	<!-- ==================== copia applet sull'apache di pratomaps =================================== -->
+	<target name="copyAppletPratoMaps" description="copia delle applet pratomaps su macchina vas-dvp">
+		<delete dir="${pratomaps.dest.applet.dir}"></delete>			
+		<copy todir="${pratomaps.dest.applet.dir}" verbose="true" overwrite="yes" >
+			<fileset dir="${local.applet.dir}"></fileset>
+		</copy>
+	</target>
+	
+	<!-- ==================== copia swf sull'apache di pratomaps =================================== -->
+			<target name="copySwfPratomaps" description="copia swf pratomaps su macchina vas-dvp">
+				<delete dir="${pratomaps.dest.swf.dir}"></delete>			
+				<copy todir="${pratomaps.dest.swf.dir}" verbose="true" overwrite="yes" >
+					<fileset dir="${local.swf.dir}"></fileset>
+				</copy>
+			</target>
+
+	<!-- ==================== copia htdocs sull'apache di pratomaps =================================== -->
+	<target name="copyHtdocsPratoMaps" description="copia della htdocs pratomaps su macchina vas-dvp" depends="copyImgPratoMaps,copyJsPratoMaps,copyCssPratoMaps,copyHtmlPratoMaps,copyMycommonPratoMaps,copyAppletPratoMaps,copySwfPratomaps">
+	</target>
+	
+	<target name="deployPratoMaps" description="copia tutta la htdocs e la WEB-INF (/lib compresa) di pratomaps su macchina vas-dvp" depends="copyHtdocsPratoMaps,copyContextPratoMaps,copyMvnDepToPratomaps">			
+	</target>
+	
+	
+	<!-- ==================== war per pratoMaps =================================== 
+    <target name="WarPratoMaps" description="Creazione WAR per sito pratomaps">
+            <delete file="${war.pratomaps.file.name}" />
+            <jar jarfile="${war.pratomaps.file.name}"
+                    basedir="."
+                    excludes="*CVS*,srj/**,.*,build.*,**/*.war, classes/**, documentation/**, copyserver.xml, htdocs/css/jQuery/**,htdocs/css/servizi/**,htdocs/img/servizi/**,htdocs/img/help/**,htdocs/mappe/**,jsp/servizi/**,WEB-INF/classes/it/prato/comune/tolomeo/web/GeometryUpdateServlet.class">
+                    <manifest>
+                            <attribute name="Built-By" value="${user.name}"/>
+                            <attribute name="Specification-Version" value="${app.version}"/>
+                    </manifest>
+            </jar>
+    </target>
+    ,copyHtdocsTolomeo,copyContextTolomeo,copyLibTolomeo
+	-->
+	
+	<!-- ==================== copia tutte le dipendenze maven del progetto nell cartella di destinazione =================================== -->
+	<target name="copyMvnDepToContext" description="Copia le librerie indicate dalle dipendenze Maven nella cartella di destinazione indicata" >
+		<property name="lib" value="c:/Temp/lib" /> <!-- lib.prova.maven/** -->
+		<delete includeemptydirs="false">		
+			<fileset dir="${lib}" />				
+		</delete>
+		<artifact:dependencies filesetId="dependency.fileset" useScope="runtime">		  	
+			<pom file="pom.xml"/>			
+		</artifact:dependencies>
+		<artifact:dependencies filesetId="added.fileset" useScope="runtime">
+		  	<!-- Mettere qui eventuali jar necessari nell lib del tomcat e non presenti nelle dipendenze -->		
+			<!-- <dependency groupId="commons-math3" artifactId="commons-math3" version="3.4.1" /> -->			
+		</artifact:dependencies>
+		<copy todir="${lib}">
+		  <fileset refid="dependency.fileset" />
+		  <fileset refid="added.fileset" />
+		  <!-- This mapper strips off all leading directory information -->
+		  <mapper type="flatten" />
+		</copy>
+	</target>
+	
+	<target name="copyMvnDepToTolomeo" description="Copia le librerie necessarie nella lib del contesto Tolomeo del Tomcat sulla dvp">
+		<echo>Lancia la copia delle dipendenze su Tolomeo</echo>
+	  	<antcall target="copyMvnDepToContext">
+	  	   <param name="lib" value="${tolomeo.dest.tomcat.dir}/WEB-INF/lib"/>
+	  	</antcall>
+	</target>
+	
+	<target name="copyMvnDepToPratomaps" description="Copia le librerie necessarie nella lib del contesto Pratomaps del Tomcat sulla dvp">
+		<echo>Lancia la copia delle dipendenze su Pratomaps</echo>
+	  	 <antcall target="copyMvnDepToContext">
+	  	   <param name="lib" value="${pratomaps.dest.tomcat.dir}/WEB-INF/lib"/>
+	  	 </antcall>
+	</target>
+		
+</project>

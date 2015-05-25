@@ -1,0 +1,326 @@
+/* Copyright Comune di Prato */
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+
+/* Messaggio di errore o informativo */
+div#tmpl_messaggio {
+	font-weight: bold;
+	margin: 0.2em 0 2em 1em;
+}
+div#tmpl_messaggio div {
+	background: no-repeat left center;
+	padding: 0.5% 0.5% 0 2%;
+}
+div.tmpl_messaggio_inf {
+	background-image: url('../img/information.gif') !important;
+	background-color: #fff;
+	color: #003366;
+}
+div.tmpl_messaggio_err {
+	background-image: url('../img/error.gif') !important;
+	background-color: #fff;
+	color: #660000;
+}
+label.tmpl_form_err {
+	background-color: #fff;
+	color: red;
+}
+div.tmpl_messaggio_war {
+	background-image: url('../img/warning.gif') !important;
+	background-color: #fff;
+	color: #666633;
+}
+
+form {
+	width: 96%;
+}
+fieldset {
+	border: none;
+	border-top: 0.06em solid #cccccc;
+	border-left: 0.06em solid #cccccc;
+	margin: 2% 0 2% 0;
+	padding-left: 0.8%;
+}
+fieldset fieldset {
+	font-size: smaller;
+}
+legend {
+	font: bold small-caps 140%/1.3 "Arial Narrow",arial,sans-serif;
+	background-color: #fff;
+	color: #990000;
+	margin: 0;
+}
+form div {
+	padding: 0.8% 0 0.8% 1%;
+	background-color: #fff;
+	color: #333;
+	clear: both;
+}
+
+input, textarea, select {
+	font-family: "Arial Narrow",arial,sans-serif;	
+	font-size: 120%;
+	display: block;
+	background-color: #fff;
+	border: 0.06em solid #AAB39B;
+	border-bottom: 0.06em solid #788465;
+	color: #444444;
+}
+
+span.tmpl_form_nota {
+	font-size: smaller;
+	background-color: #fff;
+	color: #990000;	
+}
+span.tmpl_form_etichetta {
+	background-color: #fff;
+	color: #0c4e37;
+}
+span.tmpl_form_fixtext {
+	background-color: #fff;
+	color: #003366;	
+	font: 120%/1.3 "Arial Narrow",arial,sans-serif;
+	font-style: oblique;
+}
+
+/* Crea documenti PDF / XLS */
+div.tmpl_stampa_doc {
+	font: 120%/1.3 "Arial Narrow",arial,sans-serif;
+	margin: 0 0 1% 1.2%;
+	padding: 0;
+}
+div.tmpl_stampa_doc * {
+	display: inline;
+}
+div.tmpl_stampa_doc input {
+	margin-right: 0.5%;
+	border: none;
+}
+div.tmpl_stampa_doc label {
+	padding: 0 1.9% 0 2.2%;
+	margin-right: 0.5%;
+	background: no-repeat center left;
+}
+div.tmpl_stampa_doc label#a3 {
+	background-image: url("../img/doc-a3.png");
+}
+div.tmpl_stampa_doc label#a4 {
+	background-image: url("../img/doc-a4.png");
+}
+div.tmpl_stampa_doc label#vrt {
+	background-image: url("../img/doc-vrt.png");
+}
+div.tmpl_stampa_doc label#rzt {
+	background-image: url("../img/doc-rzt.png");
+}
+div.tmpl_stampa_doc input#stampaPdf {
+	border: 0.06em solid #AAB39B;
+	border-bottom: 0.06em solid #788465;
+	padding: 0 0.2% 0 1.5%;
+	background: no-repeat center left;
+	background-image: url("../img/pdf-btn.png");
+}
+div.tmpl_stampa_doc input#stampaXls {
+	border: 0.06em solid #AAB39B;
+	border-bottom: 0.06em solid #788465;
+	padding: 0 0.2% 0 1.5%;
+	background: no-repeat center left;
+	background-image: url("../img/xls-btn.png");
+}
+
+/* Pulsantiera bottoni submit e reset */
+div.tmpl_bottoni {	
+	clear: both;
+	margin: 0 0 1% 1.2%;
+	padding: 0;
+}
+div.tmpl_bottoni input {
+	display: inline;
+	padding: 0 0.4% 0 1.9%;
+	background: no-repeat center left;
+}
+div.tmpl_bottoni input.cerca {
+	background-image: url("../img/cerca.png");
+}
+div.tmpl_bottoni input.pulisci {
+	background-image: url("../img/pulisci.png");
+}
+div.tmpl_bottoni input.inserisci {
+	background-image: url("../img/inserisci.png");
+}
+div.tmpl_bottoni input.elimina {
+	background-image: url("../img/elimina.png");
+}
+div.tmpl_bottoni input.termina {
+	background-image: url("../img/termina.png");
+}
+div.tmpl_bottoni input.statistiche {
+	background-image: url("../img/statistiche.png");
+}
+div.tmpl_bottoni input.conferma {
+	background-image: url("../img/conferma.png");
+}
+div.tmpl_bottoni input.modifica {
+	background-image: url("../img/modifica.png");
+}
+div.tmpl_bottoni input.generico {
+	background-image: url("../img/generico.png");
+}
+
+/* Hai cercato/Hai trovato  */
+div#tmpl_cercato {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: lighter;
+	background: #fff;
+	color: #000;
+	margin: 1% 2.5% 2% 0;
+}
+div#tmpl_cercato span.tmpl_campo {
+	font-weight: bold;
+}
+div#tmpl_cercato span.tmpl_valore { 
+	font-style: italic;
+}
+
+/* Paginazione */
+
+ul.paginazione {
+	margin: 1% 0;
+	padding: 0;
+	list-style: none;
+	text-align: left;
+}
+
+ul.paginazione li {
+	display: inline;
+	margin-right: 0.5%;
+}
+
+ul.paginazione a {
+	text-decoration: none;
+	border: 0.06em solid #9fa98f;
+	padding: 0 0.2em;
+	background: #E6F7A4;
+	color: #0c4e37;
+}
+
+ul.paginazione a:visited {
+	border: 0.06em solid #9fa98f;
+	background: #d3e2b6;
+	color: #004000;
+}
+
+ul.paginazione a:hover{
+	background: #fff;
+	color: #004000;
+}
+
+ul.paginazione li.currentpage a {
+	border: none;
+	background: #FFF;
+	color: #000;
+	cursor: default;
+}
+ul.paginazione li#prevpage a, ul.paginazione li#nextpage a {
+	border: none;
+	background: #FFF;
+	color: #444;
+}
+ul.paginazione li#prevpage a {
+	background: no-repeat left center;
+	padding: 0.5% 0.5% 0 2%;
+	background-image: url('../img/prevpage.png') !important;
+}
+ul.paginazione li#nextpage a {
+	background: no-repeat right center;
+	padding: 0.5% 2% 0 0;
+	background-image: url('../img/nextpage.png') !important;
+}
+
+
+/* Campi HIDDEN  */
+div.tmpl_form_hidden *, input.tmpl_form_hidden {
+    display: none;
+}
+
+/* Label affiancate nofloat  */
+div.tmpl_form_nofloat * {
+	display: inline;
+}
+
+/* Label affiancate float  */
+fieldset.tmpl_form_float label {
+	float: left;
+	width: 20%;
+	line-height: 23px;
+	padding-right: 2%;
+	text-align: left;
+}
+fieldset.tmpl_form_float input, fieldset.tmpl_form_float textarea {
+	display: inline;
+	width: 75%;
+}
+fieldset.tmpl_form_float select {
+	display: inline;
+}
+

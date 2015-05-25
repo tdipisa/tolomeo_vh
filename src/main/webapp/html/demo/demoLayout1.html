@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+
+
+<!-- CSS di Tolomeo -->
+<link rel="stylesheet" type="text/css" href="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/css/toloExt-intra.css" />
+
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/standard.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" charset="utf-8" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/js/ext/proj4js/proj4js-compressed.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>
+<!-- <script src="http://maps.google.com/maps/api/js?v=3.2&amp;sensor=false"></script> -->
+
+<!-- init CSS Regione Toscana -->
+  <!--  <link rel="stylesheet" type="text/css" href="http://www502.regione.toscana.it/geoscopio/rt-rendering/override-rt-toloExt-intra.css" />  -->
+  <!--  <link rel="icon" href="http://www502.regione.toscana.it/geoscopio/rt-rendering/favicon.ico" /> -->
+<!-- end CSS Regione Toscana -->
+
+
+<!--INIZIO Javascript compattato In produzione inserire solo questo al posto di tutti quelli seguenti -->
+<script type="text/JavaScript" src="http://www502.regione.toscana.it/geoscopio_support/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+
+<!--FINE Javascript di Tolomeo -->
+
+<!-- L'inclusione di questo script permette di scegliere la mappa in uso -->
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaFotogrammi&varName=paramsJS1" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca&varName=paramsJS2" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaFotogrammi&varName=paramsJS3" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaFotogrammi&varName=paramsJS4" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca&varName=paramsJS5" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca&varName=paramsJS6" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca&varName=paramsJS7" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaFotogrammi&varName=paramsJS8" charset="utf-8"></script>
+
+<!--  Questi javascript contengono le definizioni dei due diversi layout utilizzati in questa pagina -->
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/cartografia/geoscopio_support/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script>
+<!-- <script type="text/JavaScript" src="http://www502.regione.toscana.it/geoscopio_support/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script> -->
+
+<!-- ---------------------------- 
+
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/js/tolomeoExt/build/toloExt-all-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Esempio10"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Esempio01&varName=paramsJS1"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/js/tolomeoExt/layout/ToloPanelIntra.js"></script>
+
+-->
+
+<script type="text/JavaScript">
+//Ext.BLANK_IMAGE_URL= TolomeoExt.Vars.TOLOMEOServer + "/commonintra/img/pixel.gif";
+
+Ext.onReady(function(){
+
+	tolomeoPnl = new TolomeoExt.ToloPanelIntra ({
+											title: 'Semplice',
+											//width: 500,
+											//height: 500,
+											layout: 'fit',
+											region: 'center',
+											cls: 'clearCSS',
+											withDataPanel: false,
+											toolbarOpt: {
+												withSeleziona: false,
+												withAnnullaSeleziona: false,
+												withLayerList:  false,
+												withIdentify:  false,
+												withNuovo:  false,
+												withUpdateAlfa:  false,
+												withAdd:  false,
+												withSubtract:  false,
+												withAddSub:  false,
+												withVertexEdit:  false,
+												withDragDrop:  false,
+												withDelete:  false,
+												withAutoIdentify: false
+												}
+										});
+	
+	tolomeoPnl1 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Cartoteca',
+		//width: 500,
+		//height: 500,
+		withDataPanel: false,
+		layout: 'fit',
+		region: 'center',
+		cls: 'clearCSS',
+		paramsJS: paramsJS1,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+	
+	tolomeoPnl2 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Cartoteca',
+		withDataPanel: false,
+		layout: 'fit',
+		region: 'center',
+		cls: 'clearCSS',
+		paramsJS: paramsJS2,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			},
+		listeners: { 
+				afterrender: { fn: a }
+			}
+	});
+
+	tolomeoPnl3 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Fototeca e punti geodetici e di appoggio fotografico',
+		withDataPanel: false,
+		collapsible: true,
+		width: '50%',
+		split: true,
+		layout: 'fit',
+		region: 'west',
+		cls: 'clearCSS',
+		paramsJS: paramsJS3,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			},
+		listeners: { 
+				afterrender: { fn: a }
+			}
+	});
+	
+	var splitpanel = new Ext.Panel({
+							layout: 'border',
+							items: [
+								tolomeoPnl2,
+								tolomeoPnl3
+							]
+					});
+
+	tolomeoPnl4 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Fototeca e punti geodetici e di appoggio fotografico',
+		withDataPanel: false,
+		collapsible: true,
+		width: '50%',
+		split: true,
+		layout: 'fit',
+		region: 'west',
+		cls: 'clearCSS',
+		paramsJS: paramsJS4,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+
+	tolomeoPnl5 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Cartoteca',
+		withDataPanel: false,
+		collapsible: true,
+		width: '50%',
+		split: true,
+		layout: 'fit',
+		region: 'west',
+		cls: 'clearCSS',
+		paramsJS: paramsJS5,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+	
+	tolomeoPnl7 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Cartoteca',
+		withDataPanel: false,
+		maximizable: true,
+		minimizable: true,
+		layout: 'fit',
+		cls: 'clearCSS',
+		paramsJS: paramsJS7,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+	
+	win7 = new Ext.Window({
+		title: 'Cartoteca',
+		layout: 'fit',
+		height: 400,
+		width:  400,
+		items: [tolomeoPnl7], 
+		cls: 'clearCSS',
+		closeAction: 'hide'
+	});
+	
+	tolomeoPnl8 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Fototeca e punti geodetici e di appoggio fotografico',
+		withDataPanel: false,
+		layout: 'fit',
+		cls: 'clearCSS',
+		paramsJS: paramsJS8,
+		collapsedToolsPanel: true,
+		maximizable: true,
+		minimizable: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+	
+	win8 = new Ext.Window({
+		title: 'Fototeca',
+		layout: 'fit',
+		height: 400,
+		width:  400,
+		items: [tolomeoPnl8], 
+		cls: 'clearCSS',
+		closeAction: 'hide'
+	});
+	
+	
+
+	
+	var tabPanel = new Ext.TabPanel({
+		activeItem: 0,
+		items: [{
+		        	title: 'Fototeca',
+		        	layout: 'fit',
+		        	items: [tolomeoPnl]
+		        },{
+		        	title: 'Cartoteca',
+		        	layout: 'fit',
+		        	items: [tolomeoPnl1]
+		        },{
+		        	title: 'Mappe collegate',
+		        	layout: 'fit',
+		        	items: [splitpanel]
+					
+		        },{
+		        	title: 'Accordion',
+		        	layout: 'accordion',
+		        	items: [tolomeoPnl4, tolomeoPnl5]
+		        },{
+		        	title: 'Testo, mappe e finestre',
+		        	html: "<div id='ale'>lorem ipsum lkas<br />òlkdòklfòaskldfòakds<br /></div><br/><div id='btn' ></div><br/><div id='btn1'></div><br/><br/><div id='mappa' ></div>",		
+		        	listeners: {
+		        			afterrender: { fn: creaPnl6}
+		        	}
+		        }
+		        ]
+	});
+		
+	new Ext.Viewport({
+		layout: 'fit',
+		monitorResize: true,
+		items: [
+			tabPanel
+		]
+	});
+	
+});
+
+function creaPnl6() {
+	
+	tolomeoPnl6 = new TolomeoExt.ToloPanelIntra ({
+		title: 'Regione Toscana - SITA: Cartoteca',
+		withDataPanel: false,
+		width: 500,
+		height: 300,
+		renderTo: 'mappa',
+		layout: 'fit',
+		cls: 'clearCSS',
+		paramsJS: paramsJS6,
+		collapsedToolsPanel: true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+	
+	new Ext.Button({
+		renderTo: 'btn',
+		text: 'Apri cartoteca',
+		listeners: { click: { fn: function() { win7.show();} } }
+	})
+	new Ext.Button({
+		renderTo: 'btn1',
+		text: 'Apri fototeca',
+		listeners: { click: { fn: function() { win8.show();} } }
+	})
+	
+}
+
+function a() {
+	
+	if (tolomeoPnl3.api && tolomeoPnl2.api) 
+		tolomeoPnl3.api.viewer.on('onMapMoveEnd', function(obj) { moveEnd(tolomeoPnl3,tolomeoPnl2,obj); } ); 
+	
+	
+}
+
+
+function mappa1() {
+	pannello = new tolomeoPnl({
+		renderTo: 'sit_mappa'
+	});
+}
+function mappa2() {
+	pannello1 = new tolomeoPnl({
+		title: 'Con tools panel',
+		renderTo: 'sit_mappa1',
+		withToolsPanel:true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  true,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+}
+
+function mappa3() {
+	new tolomeoPnl({
+		title: 'Con preset esempio01 invece di esempio15',
+		renderTo: 'sit_mappa2',
+		paramsJS: paramsJS1
+	});
+}
+
+function mappa4() {
+	new Ext.Window ({
+		title : "Mappa in una finestra",
+		layout: 'fit',
+		collapsible:true,
+		maximizable:true,
+		width : 400,
+		height : 400,
+		cls: 'clearCSS',
+		closeAction: 'hide',
+		items: [new tolomeoPnl()]
+	}).show();
+}
+
+function mappa5() {
+	// tabs for the center
+    var tabs = new Ext.TabPanel({
+        region: 'center',
+        margins:'3 3 3 0', 
+        activeTab: 0,
+        defaults:{autoScroll:true},
+
+        items:[new tolomeoPnl({ title:'Esempio15' }),
+               new tolomeoPnl({ title:'Esempio01', paramsJS: paramsJS1 }),
+         	{
+            title: 'Closable Tab',
+            html: 'aasas',
+            closable:true
+        }]
+    });
+
+    // Panel for the west
+    var nav = new Ext.Panel({
+        title: 'Navigation',
+        region: 'west',
+        split: true,
+        width: 200,
+        collapsible: true,
+        margins:'3 0 3 3',
+        cmargins:'3 3 3 3'
+    });
+
+    var win = new Ext.Window({
+        title: 'Layout Window',
+        closable:true,
+        width:600,
+        height:350,
+        //border:false,
+        plain:true,
+        layout: 'border',
+
+        items: [nav, tabs]
+    }).show();
+}
+
+function mappa6() {
+    
+    m1 = new tolomeoPnl({ title:'Esempio15', region: 'west', width: '50%', split:true });
+    m2 = new tolomeoPnl({ title:'Esempio01', region:'center',  paramsJS: paramsJS1 });
+	
+    new Ext.Window({
+        title: 'Finestre linkate',
+        closable:true,
+        width:600,
+        height:350,
+        layout:'border',
+
+        items:[m1,m2]
+    }).show();
+
+    m1.api.viewer.on('onMapMoveEnd', function(obj) { moveEnd(m1,m2,obj); } );
+}
+
+function moveEnd(m1, m2, obj) {
+
+	if (m1.api.viewer.map && m2.api.viewer.map) {
+		var x = m1.api.viewer.pluginGetCurrentX();
+		var y = m1.api.viewer.pluginGetCurrentY();
+		var z = m1.api.viewer.pluginGetCurrentZoom();
+	
+		m2.api.viewer.pluginGotoPosition(x,y,z);
+	}
+	
+}
+</script>
+</head>
+
+<body>
+
+<!-- 	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Tolomeo Ext</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div> -->
+	<!-- Fine Intestazione/header -->
+	
+	
+	<!-- Menu/Content -->
+<!-- 	<div id="tmpl_main">
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<h1>Pagina Demo</h1>
+				<a href="javascript:mappa1();">Mappa1</a><br/>
+				<a href="javascript:mappa2();">Mappa2</a><br/>
+				<a href="javascript:mappa3();">Mappa3</a><br/>
+				<a href="javascript:mappa4();">Mappa4</a><br/>
+				<a href="javascript:mappa5();">Mappa5</a><br/>
+				<a href="javascript:mappa6();">Mappa6</a><br/>
+				
+				<br/>
+				<div id="sit_mappa" class="clearCSS"></div>
+				<br/>
+				<div id="sit_mappa1" class="clearCSS"></div>
+				<br/>
+				<div id="sit_mappa2" class="clearCSS"></div>
+			</div>
+		</div>
+	</div>
+	 -->
+	<!-- Copyright -->
+<!-- 	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>  -->
+	<!-- Fine Copyright -->
+</body>
+</html>

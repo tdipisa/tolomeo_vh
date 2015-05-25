@@ -1,0 +1,83 @@
+span.GeoServerOpenLS.hard_left {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/hard_left.png);
+}
+
+span.GeoServerOpenLS.left {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/left.png);
+}
+
+span.GeoServerOpenLS.slightly_left {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/slightly_left.png);
+}
+
+span.GeoServerOpenLS.continue {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/continue.png);
+}
+
+span.GeoServerOpenLS.slightly_right {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/slightly_right.png);
+}
+
+span.GeoServerOpenLS.right {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/right.png);
+}
+
+span.GeoServerOpenLS.hard_right {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/hard_right.png);
+}
+
+span.GeoServerOpenLS.circle_clockwise {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/circle_clockwise.png);
+}
+
+span.GeoServerOpenLS.circle_counterclockwise {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/circle_counterclockwise.png);
+}
+
+span.GeoServerOpenLS.elevator {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/elevator.png);
+}
+
+span.GeoServerOpenLS.uturn_left {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/uturn_left.png);
+}
+
+span.GeoServerOpenLS.uturn_right {
+display: inline-block;
+width: 20px;
+height: 20px;
+background-image: url(../img/ols/navigation/uturn_right.png);
+}

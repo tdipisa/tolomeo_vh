@@ -1,0 +1,119 @@
+/* Copyright Comune di Prato */
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+table {
+	border-collapse: collapse;
+	margin-bottom: 2em;
+	width: 95%;
+	border-top: 0.2em solid #B5DD13;
+	border-bottom: 0.2em solid #B5DD13;
+}
+
+caption {
+	font: bold small-caps 140%/1.3 "Arial Narrow",arial,sans-serif;
+	background-color: #fff;
+	color: #990000;
+	margin: 0;
+	padding: 0;
+}
+
+th, td {
+	padding: 0.3em;
+	border: 0.06em solid #B5DD13;
+}
+
+th {
+	background-color: #F3FFC4;
+	text-align: center;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #004000;	
+}
+td {
+	background-color: #f8ffdd;
+	color: #000;	
+}
+
+td.tmpl_col_dx {
+	text-align: right;
+}
+
+td.tmpl_col_sx {
+	text-align: left;
+}
+
+td.tmpl_col_cx {
+	text-align: center;
+}
+
+tr.tmpl_riga1 td {
+	border-bottom: 0.1em #228b22 solid !important;	
+	background-color: #f8ffdd;
+	color: #114141;
+}
+
+tr.tmpl_riga2 td {
+	border-bottom: 0.1em #FCBD0D solid !important;	
+	background-color: #fff;
+	color: #000;
+}

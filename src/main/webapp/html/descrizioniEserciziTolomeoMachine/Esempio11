@@ -1,0 +1,6 @@
+Come la precedente ma con aggiunta di geoprocessing avanzato.<br/>
+Sull'identify di un poligono elettorale vengono visualizzate le seguenti informazioni<br />
+- Elenco delle strade che lo intersecano, con la superficie di effettiva intersezione<br/>
+- Elenco delle circoscrizioni che lo intersecano, con la superficie di effettiva intersezione<br/>
+- Distanza dal civico ci via cairoli 16<br/>
+Utilizza esempiobase.map<br />

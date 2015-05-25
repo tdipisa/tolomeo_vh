@@ -1,0 +1,145 @@
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<project name="tolomeo_vh" default="init_local" basedir=".">
+	<description>
+		Build per tolomeo
+    </description>
+	<!--DEFINIZIONE TASK CHE INCLUDE TUTTE LE LIBRERIRE DEL CLASSPATH NEL BUILD -->
+	<taskdef name="eclipseCP" classname="it.prato.comune.ant.tasks.DipendenzeTask" />
+	<!--DEFINIZIONE TASK CHE INCLUDE TUTTE LE RISORSE CAMBIATE RISPETTOA  CVS IN UN FILESET -->
+	<taskdef name="cvsChange" classname="it.prato.comune.ant.tasks.CVSEntriesTask" />
+	<!--DEFINIZIONE TASK CHE CANCELLA TUTTI I JARS VECCHI NELLA LIB -->
+	<taskdef name="deleteIfOlder" classname="it.prato.comune.ant.tasks.DeleteIfOlder" />
+	
+	<tstamp>
+	    <format property="OGGI_IT" pattern="yyyyMMdd" locale="ITALY"/>
+	</tstamp>
+  	
+	<property name="war.pratomaps.file.name" value="it.prato.comune.pratomaps_vh_${OGGI_IT}.war"/>
+	<property name="comune.user.name"	value="w3manager"/>
+	<property name="host.comune"		value="dvp.comune.prato.it"/>
+	
+	<property name="dest_dir_tomcat" value="\\dvp.comune.prato.it\context_tmp\tolomeo" />
+	<property name="dest_dir_apache" value="\\dvp.comune.prato.it\web_tmp\vh\tolomeo" />
+	<property name="dest.config.dir" value="/usr2/config_tmp" />
+	<property name="dest.configvh.dir" value="/usr2/configvh_tmp" />
+	<property name="dest.env.config.dir" value="/usr2/config_tmp/env" />
+	<property name="dest_dir_tomcat_pratomaps" value="\\dvp.comune.prato.it\context_tmp\pratomaps" />
+	<property name="dest_dir_apache_pratomaps" value="\\dvp.comune.prato.it\web_tmp\vh\pratomaps" />
+	
+	<property name="workspace.tolomeo.configvh.dir" value="${eclipse.workspace}/configvh/dvp/tolomeo" />
+	<property name="tolomeovh.dir" value="${eclipse.workspace}/tolomeo_vh" />
+	<property name="jars.dir" value="${eclipse.workspace}/jars" />
+	<property name="jars.ext.dir" value="${jars.dir}/ext" />
+
+	<!-- =============================== INIZIALIZZAZIONE AMBIENBTE LOCALE =============================== -->
+	<target name="init_local" description="inizializza l'ambiente locale">
+		
+		<!-- 
+			controllo se la proprietà local.config.baseDir (la directory di base delle cartelle e files si configurazione)
+			 è stata definita fra le proprietà ANT, se non è così imposto per default c:/web 
+		-->
+		<condition property="local.config.baseDir" value="c:/web">	  
+	    	<equals arg1="${local.config.baseDir}" arg2="$${local.config.baseDir}" />
+		</condition>
+		
+		<!-- definisco le directory dei files di configurazione locali -->
+		<property name="local.config.dir" value="${local.config.baseDir}/config"/>
+		<property name="local.configvh.dir" value="${local.config.baseDir}/configvh"/>
+		<property name="local.tolomeo.config.dir" value="${local.config.dir}/tolomeo"/>
+		<property name="local.tolomeo.configvh.dir" value="${local.configvh.dir}/tolomeo"/>
+		<property name="local.env.config.dir" value="${local.config.dir}/env"/>
+		<property name="local.tolomeo.maps.dir" value="${local.tolomeo.configvh.dir}/map"/>
+		
+		<!-- creo le directory se non esistono -->
+		<mkdir dir="${local.config.dir}"/>
+		<mkdir dir="${local.configvh.dir}"/>
+		<mkdir dir="${local.tolomeo.config.dir}"/>
+		<mkdir dir="${local.tolomeo.configvh.dir}"/>
+		<mkdir dir="${local.tolomeo.maps.dir}"/>
+		
+		<echo>${local.config.baseDir}</echo>		
+		<echo>${local.tolomeo.config.dir}</echo>
+		<echo>${local.tolomeo.configvh.dir}</echo>	
+		<echo>${local.tolomeo.maps.dir}</echo>
+		
+		<!-- sposto i file di configurazione dal workspace alla cartella locale -->		
+		<copy todir="${local.tolomeo.configvh.dir}" overwrite="true">
+			<fileset dir="${workspace.tolomeo.configvh.dir}"></fileset>
+		</copy>
+		 
+		<!-- cambio un po di path
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/elettorali.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/elettorali.map"  file="${local.tolomeo.configvh.dir}/presetElettorale.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/prociv.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/prociv.map"  file="${local.tolomeo.configvh.dir}/presetProciv.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/asm.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/asm.map"  file="${local.tolomeo.configvh.dir}/presetASM.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/poliziaMunicipale.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/poliziaMunicipale.map"  file="${local.tolomeo.configvh.dir}/presetPoliziaMunicipale.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/pubblicaIstruzione.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/pubblicaIstruzione.map"  file="${local.tolomeo.configvh.dir}/presetPubblicaIstruzione.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/istanzeEdilizie.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/istanzeEdilizie.map"  file="${local.tolomeo.configvh.dir}/presetIstanzeEdilizie.xml" />
+		<replace token="http://opensit.comune.prato.it:81/cgi-bin/mapserv?map=/usr1/web_tmp/vh/opensit/htdocs/config/tolomeoMaps/pubblicita.map" value="http://localhost/cgi-bin/mapserv.exe?map=${local.tolomeo.maps.dir}/pubblicita.map"  file="${local.tolomeo.configvh.dir}/presetPubblicita.xml" />
+		<replace token="${dest.config.dir}" value="${local.config.dir}"  dir="${local.tolomeo.configvh.dir}" />
+		<replace token="${dest.configvh.dir}" value="${local.configvh.dir}"  dir="${local.tolomeo.configvh.dir}" />
+		<replace token="${dest.env.config.dir}" value="${local.env.config.dir}"  dir="${local.tolomeo.configvh.dir}" />
+		-->
+		
+	</target>
+</project>

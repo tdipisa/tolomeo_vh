@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/css/toloExt-intra.css" />
+
+<!--
+<link rel="stylesheet" href="/commonintra2-0/css/main.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/commonintra2-0/css/menu.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="/commonintra2-0/css/form.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="/commonintra2-0/css/tabelle.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/commonintra2-0/css/print.css" type="text/css" media="print"/>
+-->
+
+<!-- 
+<script type="text/javascript" src="/tolomeohtdocs/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+<script type="text/javascript" src="/tolomeohtdocs/js/ext/extJS/ext-all-debug.js"></script>
+<script type="text/javascript" src="/tolomeohtdocs/js/ext/extJS/ext-lang-it.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/ext/openlayers/OpenLayers.js" ></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/tolomGeometry.js" ></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/ExtFix.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloVars.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloCrossAjax.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloMeasurePanelExt.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloScalePanelExt.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloViewerOLExt.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloAPIOpCodes.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloTOCDataProvider.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloTOCPanelExt.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloTreeTOCPanelExt.js"></script> 
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloQueryPanelExt.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloButtonPanel.js"></script>	
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloMapAPIExt.js"></script>
+-->
+
+<!-- js build (solo per sviluppo) -->
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloPointFromRefPanelExt.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/toloCADPanelExt.js"></script>
+<script type="text/JavaScript" src="/tolomeohtdocs/js/tolomeoExt/layout/ToloPanelIntraCAD.js" charset="utf-8"></script>
+
+<style type="text/css">
+body{
+cursor: crosshair;
+}
+</style>
+
+<script src="/tolomeohtdocs/js/ext/openlayers/PointFromRef.js"  type="text/JavaScript"></script>
+<script src="/tolomeohtdocs/js/ext/openlayers/ConstrainedPath.js"  type="text/JavaScript"></script>
+<script src="/tolomeohtdocs/js/ext/openlayers/ConstrainedPolygon.js"  type="text/JavaScript"></script>
+<script src="/tolomeohtdocs/js/ext/openlayers/ConstrainedPoint.js"  type="text/JavaScript"></script>
+
+<script type="text/JavaScript">
+Ext.onReady(function(){
+	
+	tolomeo = new TolomeoExt.ToloPanelIntraCAD({
+		withDataPanel: false,
+		withToolsPanel: false,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  false,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+		}
+	});
+	
+	var pointFromRefPanel = new TolomeoExt.ToloPointFromRefPanelExt({style: 'z-index:1;', x: 10, y: 40});
+	tolomeo.mapPanel.add(pointFromRefPanel);	
+	
+	cadPanel = new TolomeoExt.ToloCADPanelExt({style: 'z-index:1;', x: 10, y: 40});
+	tolomeo.mapPanel.add(cadPanel);
+	tolomeo.mapPanel.doLayout();
+		
+	pointFromRefPanel.on('pressSetDistance', pluginSetDistanceFromPoint, this);
+	tolomeo.mapPanel.addEvents('onDrawFirstPointFromRef');
+	tolomeo.mapPanel.addEvents('onDigitizePointFromRefEnd');
+	
+	//pointFromRefPanel.on('setDistance', pluginSetDistanceFromPoint, this);
+	tolomeo.mapPanel.addEvents('onDigitizeStart');
+	tolomeo.mapPanel.addEvents('onDigitizeStop');		
+	
+	pointFromRefPanel.bindToViewerPanel(tolomeo.mapPanel);
+	cadPanel.bindToViewerPanel(tolomeo.mapPanel);
+
+	var pannello = new Ext.Panel({
+		title: 'Stradario di Prato',
+		width: 800,
+		height: 600,
+		layout: 'fit',
+		items: [tolomeo],
+		renderTo: 'sit_mappa'
+	});
+	viewer = tolomeo.mapPanel;
+	map = viewer.map;	
+
+	var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
+    var pointFromLayer = new OpenLayers.Layer.Vector("PointFromRef Layer");
+    var constrainedLineLayer = new OpenLayers.Layer.Vector("ConstrainedLine Layer");
+    var lineLayer = new OpenLayers.Layer.Vector("Line Layer");
+    var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
+    var constrainedPolygonLayer = new OpenLayers.Layer.Vector("ConstrainedPolygon Layer");
+
+    map.addLayers([pointLayer,pointFromLayer,lineLayer,constrainedLineLayer,polygonLayer,constrainedPolygonLayer]);
+                    
+	// Opzioni pointFromRef                                			    
+    var pointFromRefOptions = {callbacks : {
+    	'refPoint' : function(point){
+						showDistanceControl();																																	
+				   },
+	    'distance' : function(distance){													
+						onDrawDistance(distance);
+				   }				   
+    }};
+    
+    // Opzioni constrained line 
+    var constrainedLineOptions = {callbacks : {
+    	'firstPoint' : function(point){
+						showNextPointControl();																																	
+				   },
+	    'distance' : function(distance){													
+						onDrawLine(distance);
+				   }				   
+    }, handlerOptions:{ring: false}};
+    
+    // Opzioni constrained polygon
+    var constrainedPolygonOptions = {callbacks : {
+    	'firstPoint' : function(point){
+						showNextPointPolygonControl();																																	
+				   },
+	    'distance' : function(distance){													
+						onDrawLinePolygon(distance);
+				   },
+		'modify' : function(point,sketch){	
+						var area = sketch.geometry.getArea();
+					
+						//Arrotondamento a 2 decimali
+						area = Math.round(area*100)/100;										
+						onModifyPolygon(area);
+				   }		   				   
+    }};
+
+    drawControls = {
+        point: new OpenLayers.Control.DrawFeature(pointLayer,
+                    OpenLayers.Handler.Point),
+        pointFromRef : new OpenLayers.Control.DrawFeature(pointFromLayer,
+					OpenLayers.Handler.PointFromRef,pointFromRefOptions),        			
+        line: new OpenLayers.Control.DrawFeature(lineLayer,
+                    OpenLayers.Handler.Path),
+        constrainedLine : new OpenLayers.Control.DrawFeature(constrainedLineLayer,
+                    OpenLayers.Handler.ConstrainedPath,constrainedLineOptions),
+        polygon: new OpenLayers.Control.DrawFeature(polygonLayer,
+                    OpenLayers.Handler.Polygon),
+        constrainedPolygon : new OpenLayers.Control.DrawFeature(constrainedPolygonLayer,
+                    OpenLayers.Handler.ConstrainedPolygon,constrainedPolygonOptions),
+        selectControl : new OpenLayers.Control.SelectFeature([constrainedPolygonLayer])
+    };
+                    
+    drawControls['pointFromRef'].featureAdded = function(geom) { hideDistanceControl();}; 
+    drawControls['constrainedLine'].featureAdded = function(geom) { hideNextPointControl();};
+    drawControls['constrainedPolygon'].featureAdded = function(geom) { hideNextPointPolygonControl();};
+    
+    viewer.mapControls['pointFromRef'] = drawControls['pointFromRef']; 
+
+    for(var key in drawControls) {
+        map.addControl(drawControls[key]);
+    }
+    
+   // map.addControl(new OpenLayers.Control.KeyboardDefaults());
+
+    //map.setCenter(new OpenLayers.LonLat(0, 0), 3);
+
+    document.getElementById('noneToggle').checked = true;
+});
+
+
+function toggleControl(element) {
+    for(key in drawControls) {
+        var control = drawControls[key];
+        if(element.value == key && element.checked) {
+            control.activate();
+        } else {
+            control.deactivate();
+        }
+    }
+}
+
+/* INIZIO FUNZIONI PER IL POINT-FROM-REF */
+function pluginSetDistanceFromPoint(distance){
+	drawControls['pointFromRef'].handler.setDistance(distance);
+}
+function showDistanceControl(){
+	tolomeo.mapPanel.fireEvent('onDrawFirstPointFromRef');
+}
+
+function onDrawDistance(distance){
+	Ext.fly("distanceFromRefTmp").dom.innerHTML=Math.round(distance*100)/100;
+}
+
+function hideDistanceControl(){
+	tolomeo.mapPanel.fireEvent('onDigitizePointFromRefEnd');
+}
+/* FINE FUNZIONI PER IL POINT-FROM-REF */
+
+/* INIZIO FUNZIONI PER IL NEXT-POINT */
+function pluginSetNextPoint(command){
+	drawControls['constrainedLine'].handler.runCommand(command);	
+}
+
+function showNextPointControl(){
+	cadPanel.on('pressSetCommand',pluginSetNextPoint, this)
+	cadPanel.on('changeAngleSetting',setRelativeAngle, this);
+	cadPanel.on('pressDeleteFirstLine',delFirstLine, this);
+	tolomeo.mapPanel.fireEvent('onDrawFirstPointByCAD');	
+}
+
+function onDrawLine(distance){
+	//Ext.fly("distanceFromPrevPointTmp").dom.innerHTML=Math.round(distance*100)/100;
+}
+
+function hideNextPointControl(){
+	cadPanel.un('pressSetCommand',pluginSetNextPoint, this);
+	cadPanel.un('changeAngleSetting',setRelativeAngle, this);
+	cadPanel.un('pressDeleteFirstLine',delFirstLine, this);
+	tolomeo.mapPanel.fireEvent('onDigitizeLineByCADEnd');
+}
+
+function setRelativeAngle(value){			
+	drawControls['constrainedLine'].handler.setRelativeAngle(Number(value));
+}
+
+function delFirstLine(){
+	drawControls['constrainedLine'].handler.clearFirstPoint();
+}
+
+/* FINE FUNZIONI PER IL NEXT-POINT */
+
+/* INIZIO FUNZIONI PER IL NEXT-POINT-POLYGON */
+function pluginSetNextPointPolygon(command){
+	drawControls['constrainedPolygon'].handler.runCommand(command);
+}
+
+function showNextPointPolygonControl(){
+	cadPanel.on('pressSetCommand',pluginSetNextPointPolygon, this)
+	cadPanel.on('changeAngleSetting',setRelativeAnglePolygon, this);
+	cadPanel.on('pressDeleteFirstLine',delFirstPolygonLine, this);
+	tolomeo.mapPanel.fireEvent('onDrawFirstPointByCAD');			
+}
+
+
+function onDrawLinePolygon(distance){
+	//Ext.fly("distanceFromPrevPointPolygonTmp").dom.innerHTML=Math.round(distance*100)/100;
+}
+
+function onModifyPolygon(area){
+	//Ext.fly("areaPolygonTmp").dom.innerHTML=area;
+}
+
+function hideNextPointPolygonControl(){
+	cadPanel.un('pressSetCommand',pluginSetNextPointPolygon, this);
+	cadPanel.un('changeAngleSetting',setRelativeAnglePolygon, this);
+	cadPanel.un('pressDeleteFirstLine',delFirstPolygonLine, this);
+	tolomeo.mapPanel.fireEvent('onDigitizePolygonByCADEnd');
+}
+
+function setRelativeAnglePolygon(value){			
+	drawControls['constrainedPolygon'].handler.setRelativeAngle(Number(value));
+}
+
+function delFirstPolygonLine(){
+	drawControls['constrainedPolygon'].handler.clearFirstPoint();
+}
+
+</script>
+</head>
+
+<body>
+	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Tolomeo Ext</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div>
+	<!-- Fine Intestazione/header -->
+	
+	<!-- Logout/Percorso -->
+	<div id="tmpl_barra">
+		<div id="tmpl_barrawrap"> 
+			<div id="tmpl_percorso">
+				<ol title="Percorso di navigazione dalla home page">
+					<li><a href="#">home</a></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<div id="tmpl_logout"><a href="javascript:window.close();">logout</a></div>
+	</div>
+	<!-- Fine Logout/Percorso -->
+	
+	<!-- Menu/Content -->
+	<div id="tmpl_main">
+		<!-- Content -->
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<h1>Demo CAD</h1>
+				
+				<div id="sit_mappa" class="clearCSS"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="divDistanceFromRef" style="display:none;">
+			<form action="" id="formDistanceFromRef" method="post" onsubmit="pluginSetDistanceFromPoint(this.distanceFromRef.value); return false;">							
+				<fieldset>					
+					<legend>Distanza dal punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="distanceFromRef" id="lblDistanceFromRef"></label>
+						<input name="distanceFromRef" id="distanceFromRef" value="" type="text" />												
+						<label><input class="submit" name="distanceConfirm" value="Imposta" title="conferma distanza" type="submit" /></label>
+					</div>	
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label for="distanceFromRefTmp" id="lblDistanceFromRefTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromRefTmp">0</label>
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>
+			</form>
+		</div>
+		
+		<div id="divNextPoint" style="display:none;">
+			<form action="" id="formNextPoint" method="post" onsubmit="pluginSetNextPoint(this.nextPoint.value); return false;">							
+				<fieldset>					
+					<legend>Prossimo punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="nextPoint" id="lblNextPoint">@</label>
+						<input name="nextPoint" id="nextPoint" value="" type="text" />												
+						<label><input class="submit" name="nextPointConfirm" value="Imposta" title="imposta punto successivo" type="button" onclick="pluginSetNextPoint(this.form.nextPoint.value);"/></label>
+						<label><input class="submit" name="cancelFirstPoint" value="Cancella la prima linea" title="Cancella la prima linea" type="button" onclick="drawControls['constrainedLine'].handler.clearFirstPoint();this.form.nextPoint.focus();"/></label>											
+					</div>	
+					
+				</fieldset>
+				<fieldset>
+					<legend>Angolo relativo a :</legend>					
+					<div>						
+						<label for="relativeAngle1" id="lblNextPoint"><input type="radio" name="relativeAngle" id="relativeAngle1"  value="1" checked="checked" onclick="setRelativeAngle(this.value);" /> lato precedente</label>
+						<label for="relativeAngle2" id="lblNextPoint"><input type="radio" name="relativeAngle" id="relativeAngle2"  value="0" onclick="setRelativeAngle(this.value);" /> orizzontale</label>
+					</div>
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label id="lblDistanceFromPrevTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromPrevPointTmp">0</label>
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>				
+			</form>
+		</div>
+		
+		<div id="divNextPointPolygon" style="display:none;">
+			<form action="" id="formNextPointPolygon" method="post" onsubmit="pluginSetNextPointPolygon(this.nextPointPolygon.value); return false;">							
+				<fieldset>					
+					<legend>Prossimo punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="nextPointPolygon" id="lblNextPointPolygon">@</label>
+						<input name="nextPointPolygon" id="nextPointPolygon" value="" type="text" />												
+						<label><input class="submit" name="nextPointPolygonConfirm" value="Imposta" title="imposta punto successivo" type="button" onclick="pluginSetNextPointPolygon(this.form.nextPointPolygon.value);"/></label>
+						<label><input class="submit" name="cancelFirstPointPolygon" value="Cancella la prima linea" title="Cancella la prima linea" type="button" onclick="drawControls['constrainedPolygon'].handler.clearFirstPoint();this.form.nextPointPolygon.focus();"/></label>											
+					</div>	
+					
+				</fieldset>
+				<fieldset>
+					<legend>Angolo relativo a :</legend>					
+					<div>						
+						<label for="relativeAnglePolygon1" id="lblNextPointPolygon1"><input type="radio" name="relativeAnglePolygon" id="relativeAnglePolygon1"  value="1" checked="checked" onclick="setRelativeAnglePolygon(this.value);" /> lato precedente</label>
+						<label for="relativeAnglePolygon2" id="lblNextPointPolygon2"><input type="radio" name="relativeAnglePolygon" id="relativeAnglePolygon2"  value="0" onclick="setRelativeAnglePolygon(this.value);" /> orizzontale</label>
+					</div>
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label id="lblDistanceFromPrevPolygonTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromPrevPointPolygonTmp">0</label>m
+					<br />
+					<label id="lblAreaPolygonTmp" style="font-weight: bold;">Area attuale : </label>
+					<label id="areaPolygonTmp">0</label>mq
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>				
+			</form>
+		</div>
+
+        
+        <form>
+		<div style="width:600px;">
+	        <ul id="controlToggle">
+	            <li>
+	            	
+	                <input type="radio" name="type" value="none" id="noneToggle"
+	                       onclick="toggleControl(this);" checked="checked" />
+	                <label for="noneToggle">navigate</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="point" id="pointToggle" onclick="toggleControl(this);" />
+	                <label for="pointToggle">draw point</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="pointFromRef" id="pointFromRefToggle" onclick="toggleControl(this);" />
+	                <label for="pointFromRefToggle">draw pointFromRef</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);" />
+	                <label for="lineToggle">draw line</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="constrainedLine" id="lineConstrainedToggle" onclick="toggleControl(this);" />
+	                <label for="lineConstrainedToggle">draw constrained line</label>
+	            </li>            
+	            <li>
+	                <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+	                <label for="polygonToggle">draw polygon</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="constrainedPolygon" id="constrainedPolygon" onclick="toggleControl(this);" />
+	                <label for="constrainedPolygon">draw constrained polygon</label>
+	            </li>
+	            <li>
+	                <input type="radio" name="type" value="selectControl" id="selectControl" onclick="toggleControl(this);" />
+	                <label for="selectControl">Seleziona una features</label>
+	            </li>
+	        </ul>
+		</div>
+		</form>
+		<div id="tags" style="margin-top: 100px;"></div>
+	<!-- Copyright -->
+	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>
+	<!-- Fine Copyright -->
+</body>
+</html>

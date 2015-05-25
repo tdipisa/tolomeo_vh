@@ -1,0 +1,128 @@
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+@CHARSET "utf-8";
+
+/* importo css base tolomeo */
+@IMPORT url("toloExt.css");
+
+/* icone */
+.iconPannelloInfo { background-image: url("../img/icone/16-default/info.gif"); padding: 0 5px 2px 0; }
+.iconToc          { background-image: url("../img/icone/16-default/legenda.gif"); padding: 0 5px 2px 0; }
+
+/*** sovrascrittura css common (creano conflitto con css di ext) ***/
+/*gener100*/
+body {
+    font-family: Arial,Verdana,Helvetica,sans-serif !important;
+    font-size: 80% !important;
+}
+.x-panel-body-default {
+    font-family: Arial,Verdana,Helvetica,sans-serif !important;
+    font-size: inherit;
+}
+.x-tree a:hover {
+	background-color: #eee !important;
+	color: inherit !important;
+}
+/*link*/
+div.clearCSS a:visited, div.clearCSS a:active, div.clearCSS a:link, div.clearCSS a:hover {
+	background-color: transparent !important;
+	color: #222 !important;
+}
+div.clearCSS a:hover {
+	background-color: transparent;
+	color: #222 !important;
+}
+/*form*/
+div.clearCSS fieldset div {
+	padding:0;
+}
+div.clearCSS fieldset  {
+	background-image:none;
+}
+div.clearCSS legend {
+	background: transparent;
+}
+/*tabelle*/
+div.clearCSS td {
+	background-color: transparent;
+	color: inherit;
+}
+div.clearCSS table {
+	margin-top:0
+}
+/*liste*/
+div.clearCSS ul {
+	margin-top:0;
+	padding-left:0;
+}
+div.clearCSS li {
+	margin-left:0;
+}
+div.clearCSS a:link {
+	background-color: transparent;
+	color: inherit !important;
+}
+
+div.clearCSS iframe {
+    background-color: white;
+}

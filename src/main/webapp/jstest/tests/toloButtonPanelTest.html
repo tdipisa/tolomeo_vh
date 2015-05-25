@@ -1,0 +1,306 @@
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html> 
+	 <head>
+		  <title>Test Page for Tolomeo Ext</title>
+		  
+		  <script language="javascript" src="../jsunit/app/jsUnitCore.js"></script>  
+		  <link rel="stylesheet" type="text/css" href="../jsunit/app/css/jsUnitStyle.css">
+		  
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/resources/css/ext-all.css"/>
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/css/tolomeoExt.css" />
+
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/ext-all-debug.js"></script>
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/ext-lang-it.js"></script>
+		  
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/openlayers/OpenLayers.js" ></script>	
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/tolomGeometry.js" ></script>
+		  
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=EsempioBase"></script>
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/build/toloExt-all.js"></script>
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/layout/ToloPanelIntra.js"></script>
+		  
+		  <script language="javascript">
+
+		        var tolomeo = null;
+	
+		        function setUp() {
+				    // ///////////////////////////////
+				    // Building ToloPanelIntra Test
+				    // ///////////////////////////////
+		        	tolomeo = new TolomeoExt.ToloPanelIntra({region: 'center', 
+			        	titoloMappa: 'Map',
+			    		withDataPanel: false,
+			    		toolbarOpt: {
+			    			withSeleziona: true,
+			    			withLayerList: true,
+			    			withIdentify: false,
+			    			withNuovo: true,
+			    			withUpdateAlfa: true,
+			    			withAdd: false,
+			    			withSubtract: false,
+			    			withAddSub: false,
+			    			withVertexEdit: false,
+			    			withDragDrop: true,
+			    			withDelete: true,
+			    			withMeasure: false,
+			    		    withPrint: false,
+			    		    withPan: true,
+			    		    withPanArrows: false,
+			    		    withZoomIn: true,
+			    		    withZoomOut: true,
+			    		    withZoomAll: true,
+			    		    withLegenda: true,
+			    		    withQuery: true,
+			    		    withAnnullaSeleziona: true,
+			    		    withAutoIdentify: true
+			    	}});
+		        }
+
+		        function tearDown() {
+		            tolomeo = null;
+		        }
+		        
+			    function testVarsParameters() {
+			        assertNotNull("testing js params", TolomeoExt.Vars.paramsJS);
+			        assertNotNull("testing tolomeoserver param", TolomeoExt.Vars.TOLOMEOServer);
+			        assertNotNull("testing tolomeo context param", TolomeoExt.Vars.TOLOMEOContext);
+			        inform("paramsJS setted correctly!");
+			    }
+
+			    function testToloButtonPanel(){
+			    	assertNotNull("testing tolo panel intra", tolomeo);
+			    	assertNotUndefined("testing tolo panel intra", tolomeo);
+			    	inform("tolomeo panel is available");
+
+					var window = new Ext.Window ({
+						title: 'Window',
+						layout: 'fit',
+						width: 1000,
+						height: 800,
+						items: tolomeo
+					}).show();
+					assertTrue("testing visualization", window.isVisible());
+					inform("windows visibility " + window.isVisible());
+			    	
+			    	var toolbar = tolomeo.toolbar;
+			    	assertNotNull("testing toolbar initialization", toolbar);
+			    	assertNotUndefined("testing toolbar initialization", toolbar);
+			    	assertTrue("testing toolbar rendering", toolbar.isVisible());
+			    	inform("toolbar is available");
+
+			    	// //////////////////////////////
+			    	// Button Presence Test
+			    	// //////////////////////////////
+			    	
+			    	assertTrue("testing withSeleziona", toolbar.withSeleziona);
+			    	debug("withSeleziona button " + toolbar.withSeleziona);
+			    	
+			    	assertTrue("testing withLayerList", toolbar.withLayerList);
+			    	debug("withLayerList button " + toolbar.withLayerList);
+			    	
+			    	assertFalse("testing withIdentify", toolbar.withIdentify);
+			    	debug("withIdentify button " + toolbar.withIdentify);
+			    	
+			    	assertTrue("testing withNuovo", toolbar.withNuovo);
+			    	debug("withNuovo button " + toolbar.withNuovo);
+			    	
+			    	assertTrue("testing withUpdateAlfa", toolbar.withUpdateAlfa);
+			    	debug("withUpdateAlfa button " + toolbar.withUpdateAlfa);
+			    	
+			    	assertFalse("testing withAdd", toolbar.withAdd);
+			    	debug("withAdd button " + toolbar.withAdd);
+			    	
+			    	assertFalse("testing withSubtract", toolbar.withSubtract);
+			    	debug("withSubtract button " + toolbar.withSubtract);
+			    	
+			    	assertFalse("testing withAddSub", toolbar.withAddSub);
+			    	debug("withAddSub button " + toolbar.withAddSub);
+			    	
+			    	assertFalse("testing withVertexEdit", toolbar.withVertexEdit);
+			    	debug("withVertexEdit button " + toolbar.withVertexEdit);
+			    	
+			    	assertTrue("testing withDragDrop", toolbar.withDragDrop);
+			    	debug("withDragDrop button " + toolbar.withDragDrop);
+			    	
+			    	assertTrue("testing withDelete", toolbar.withDelete);
+			    	debug("withDelete button " + toolbar.withDelete);
+			    	
+			    	assertFalse("testing withMeasure", toolbar.withMeasure);
+			    	debug("withMeasure button " + toolbar.withMeasure);
+			    	
+			    	assertFalse("testing withPrint", toolbar.withPrint);
+			    	debug("withPrint button " + toolbar.withPrint);
+			    	
+			    	assertTrue("testing withPan", toolbar.withPan);
+			    	debug("withPan button " + toolbar.withPan);
+
+			    	assertFalse("testing withPanArrows", toolbar.withPanArrows);
+			    	debug("withPanArrows button " + toolbar.withPanArrows);
+
+			    	assertTrue("testing withZoomIn", toolbar.withZoomIn);
+			    	debug("withZoomIn button " + toolbar.withZoomIn);
+
+			    	assertTrue("testing withZoomOut", toolbar.withZoomOut);
+			    	debug("withZoomOut button " + toolbar.withZoomOut);
+
+			    	assertTrue("testing withZoomAll", toolbar.withZoomAll);
+			    	debug("withZoomAll button " + toolbar.withZoomAll);
+
+			    	assertTrue("testing withLegenda", toolbar.withLegenda);
+			    	debug("withLegenda button " + toolbar.withLegenda);
+
+			    	assertTrue("testing withQuery", toolbar.withQuery);
+			    	debug("withQuery button " + toolbar.withQuery);
+
+			    	assertTrue("testing withAnnullaSeleziona", toolbar.withAnnullaSeleziona);
+			    	debug("withAnnullaSeleziona button " + toolbar.withAnnullaSeleziona);
+
+			    	assertTrue("testing withAutoIdentify", toolbar.withAutoIdentify);		
+			    	debug("withAutoIdentify button " + toolbar.withAutoIdentify);
+			    	
+			    	// //////////////////////////////
+			    	// Button Enabling Test
+			    	// //////////////////////////////	   
+			    	assertNotNull("testing buttons", toolbar.buttons);
+			    	inform("toolbar buttons are available");
+					assertEquals("testing number of button", 13, toolbar.buttons.length);
+					inform("toolbar button number " + toolbar.buttons.length);
+					
+			    	for(var i=0; i<toolbar.buttons.length; i++){
+			    		var buttonName = toolbar.buttons[i].handlerBaseName;
+
+			    		assertNotEquals("testing button not setted", buttonName, "PanNord");
+			    		assertNotEquals("testing button not setted", buttonName, "PanSud");
+			    		assertNotEquals("testing button not setted", buttonName, "PanOvest");
+			    		assertNotEquals("testing button not setted", buttonName, "PanEst");
+			    		assertNotEquals("testing button not setted", buttonName, "Measure");
+			    		assertNotEquals("testing button not setted", buttonName, "Print");
+			    		assertNotEquals("testing button not setted", buttonName, "Add");
+			    		assertNotEquals("testing button not setted", buttonName, "Subtract");
+			    		assertNotEquals("testing button not setted", buttonName, "AddSub");
+			    		assertNotEquals("testing button not setted", buttonName, "VertexEdit");
+			    		assertNotEquals("testing button not setted", buttonName, "Identify");
+			    		
+						if (buttonName == "Pan"){
+							assertFalse("testing Pan button", toolbar.buttons[i].disabled);
+							debug("Pan button is enabled");
+			    		}else if (buttonName == "ZoomIn"){
+							assertFalse("testing ZoomIn button", toolbar.buttons[i].disabled);
+							debug("ZoomIn button is enabled");
+			    		}else if (buttonName == "ZoomOut"){
+							assertFalse("testing ZoomOut button", toolbar.buttons[i].disabled);
+							debug("ZoomOut button is enabled");
+			    		}else if (buttonName == "ZoomAll"){
+							assertFalse("testing ZoomAll button", toolbar.buttons[i].disabled);
+							debug("ZoomAll button is enabled");
+			    		}else if (buttonName == "Legend"){
+							assertFalse("testing Legend button", toolbar.buttons[i].disabled);
+							debug("Legend button is enabled");
+			    		}else if (buttonName == "Query"){
+							assertFalse("testing Query button", toolbar.buttons[i].disabled);
+							debug("Query button is enabled");
+			    		}else if (buttonName == "Select"){
+							assertFalse("testing Select button", toolbar.buttons[i].disabled);
+							debug("Select button is enabled");
+			    		}else if (buttonName == "AnnullaSelezioni"){
+							assertFalse("testing AnnullaSelezioni button", toolbar.buttons[i].disabled);
+							debug("AnnullaSelezioni button is enabled");
+			    		}else if (buttonName == "Nuovo"){
+							assertFalse("testing Nuovo button", toolbar.buttons[i].disabled);
+							debug("Nuovo button is enabled");
+			    		}else if (buttonName == "UpdateAlfa"){
+							assertTrue("testing UpdateAlfa button", toolbar.buttons[i].disabled);
+							debug("UpdateAlfa button is disabled");
+			    		}else if (buttonName == "DragDrop"){
+							assertTrue("testing DragDrop button", toolbar.buttons[i].disabled);
+							debug("DragDrop button is disabled");
+			    		}else if (buttonName == "Delete"){
+							assertTrue("testing Delete button", toolbar.buttons[i].disabled);
+							debug("Delete button is disabled");
+			    		}else if (buttonName == "AutoIdentify"){
+							assertTrue("testing AutoIdentify button", toolbar.buttons[i].disabled);
+							debug("AutoIdentify button is disabled");
+			    		}
+					}	
+					
+		    		debug("PanNord button not setted");
+		    		debug("PanSud button not setted");
+		    		debug("PanOvest button not setted");
+		    		debug("PanEst button not setted");
+		    		debug("Measure button not setted");
+		    		debug("Print button not setted");
+		    		debug("Add button not setted");
+		    		debug("Subtract button not setted");
+		    		debug("AddSub button not setted");
+		    		debug("VertexEdit button not setted");
+		    		debug("Identify button not setted");
+			    }
+		  </script>
+	 </head>
+	 <body>
+
+	 </body>
+</html>

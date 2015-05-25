@@ -1,0 +1,13 @@
+.CodeMirror {
+	border-top: 1px solid black; 
+	border-bottom: 1px solid black;
+}
+
+.CodeMirror-gutter {
+	min-width: 3em; cursor: pointer;
+}
+
+.searched {
+	background: yellow;
+}
+

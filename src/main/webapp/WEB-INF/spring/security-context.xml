@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	
+	
+	<bean id="preAuthenticatedUserDetailsService" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedGrantedAuthoritiesUserDetailsService"/>
+	
+	<bean id="applicationsManager" class="it.prato.comune.tolomeo.security.ApplicationsManager"/>
+	
+	<bean id="rolesManager" class="it.prato.comune.tolomeo.security.RolesManager">
+		<constructor-arg name="rolesMappingFilePath" value="/rolesMapping.xml"/>
+		<property name="applicationsManager" ref="applicationsManager"/>
+	</bean>
+	
+	<bean id="authorizationManager" class="it.prato.comune.tolomeo.security.AuthorizationManager">
+		<property name="applicationsManager" ref="applicationsManager"/>
+		<property name="services">
+			<list>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="AjaxGeometryValidationServlet"/>
+					<property name="urlPattern" value="/AjaxGeometryValidationServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="AjaxQueryByIDServlet"/>
+					<property name="urlPattern" value="/AjaxQueryByIDServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="AjaxSpatialQueryServlet"/>
+					<property name="urlPattern" value="/AjaxSpatialQueryServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="AjaxSuggestServlet"/>
+					<property name="urlPattern" value="/AjaxSuggestServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="AjaxTOCServletExt"/>
+					<property name="urlPattern" value="/AjaxTOCServletExt"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="VisualizzaIntersectAnagrafeServlet"/>
+					<property name="urlPattern" value="/shared/VisualizzaIntersectAnagrafeServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">POST</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Service">
+					<property name="servletName" value="GeometryUpdateServlet"/>
+					<property name="urlPattern" value="/GeometryUpdateServlet"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="resources">
+			<list>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/css"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/html"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/js"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/jsp"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/img"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+				<bean class="it.prato.comune.tolomeo.security.Resource">
+					<property name="urlPattern" value="/theme"/>
+					<property name="httpMethod">
+						<value type="org.springframework.http.HttpMethod">GET</value>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider"> -->
+<!-- 		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/> -->
+<!-- 	</bean> -->
+
+	<bean id="preAuthenticatedAuthenticationProvider" class="it.prato.comune.tolomeo.security.CustomPreAuthenticatedAuthenticationProvider">
+		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
+		<property name="rolesManager" ref="rolesManager"/>
+		<property name="authorizationManager" ref="authorizationManager"/>
+	</bean>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref='preAuthenticatedAuthenticationProvider'/>
+	</security:authentication-manager>
+	
+	
+	
+	<!-- channelProcessingFilter -->
+	
+	<bean id="secureChannelProcessor" class="org.springframework.security.web.access.channel.SecureChannelProcessor"/>
+	
+	<bean id="insecureChannelProcessor" class="org.springframework.security.web.access.channel.InsecureChannelProcessor"/>
+	
+	<bean id="channelDecisionManager" class="org.springframework.security.web.access.channel.ChannelDecisionManagerImpl">
+		<property name="channelProcessors">
+			<list>
+				<ref bean="secureChannelProcessor"/>
+				<ref bean="insecureChannelProcessor"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="channelProcessingFilter" class="org.springframework.security.web.access.channel.ChannelProcessingFilter">
+		<property name="channelDecisionManager" ref="channelDecisionManager"/>
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source>
+<!-- 				<security:intercept-url pattern="/**" access="ANY_CHANNEL"/> -->
+				<security:intercept-url pattern="/**" access="REQUIRES_SECURE_CHANNEL"/>
+			</security:filter-security-metadata-source>
+		</property>
+	</bean>
+	
+	<!-- channelProcessingFilter -->
+	
+	
+	
+	<!-- securityContextPersistenceFilter -->
+	
+	<bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
+	
+<!-- 	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/> -->
+	
+<!-- 	<bean id="securityContextPersistenceFilter" class="it.prato.comune.tolomeo.security.CustomSecurityContextPersistenceFilter"> -->
+<!-- 		<constructor-arg name="securityContextRepository" ref="securityContextRepository"/> -->
+<!-- 	</bean> -->
+	
+	<!-- securityContextPersistenceFilter -->
+	
+	
+	
+	<!-- preAuthenticatedProcessingFilter -->
+	
+<!-- 	<bean id="preAuthenticatedProcessingFilter" class="org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter"> -->
+<!-- 		<property name="authenticationManager" ref="authenticationManager"/> -->
+<!-- 		<property name="authenticationDetailsSource"> -->
+<!-- 			<bean class="org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource"> -->
+<!-- 				<property name="mappableRolesRetriever"> -->
+<!-- 					<bean class="org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever" /> -->
+<!-- 				</property> -->
+<!-- 				<property name="userRoles2GrantedAuthoritiesMapper"> -->
+<!-- 					<bean class="org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper"> -->
+<!-- 						<property name="convertAttributeToUpperCase" value="true"/> -->
+<!-- 					</bean> -->
+<!-- 				</property> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	<bean id="preAuthenticatedProcessingFilter" class="org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter">
+<!-- 	<bean id="preAuthenticatedProcessingFilter" class="it.prato.comune.tolomeo.security.CustomJ2eePreAuthenticatedProcessingFilter"> -->
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="authenticationDetailsSource">
+			<bean class="org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource">
+				<property name="mappableRolesRetriever">
+					<bean class="org.springframework.security.core.authority.mapping.SimpleMappableAttributesRetriever">
+						<property name="mappableAttributes">
+							<set>
+								<value>ADMIN</value>
+								<value>USER</value>
+								<value>VIEWER</value>
+								<value>ALE</value>
+							</set>
+						</property>
+					</bean>
+				</property>
+				<property name="userRoles2GrantedAuthoritiesMapper">
+					<bean class="org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper">
+						<property name="attributePrefix" value=""/>
+						<property name="convertAttributeToUpperCase" value="true"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- preAuthenticatedProcessingFilter -->
+	
+	
+	
+	<!-- postAuthenticatedProcessingFilter -->
+	
+<!-- 	<bean id="postAuthenticatedProcessingFilter" class="it.prato.comune.tolomeo.security.PostAuthenticatedProcessingFilter"/> -->
+	
+	<!-- postAuthenticatedProcessingFilter -->
+	
+	
+	
+	<!-- logoutFilter -->
+	
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg value="/"/>
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<!-- logoutFilter -->
+	
+	
+	
+	<!-- exceptionTranslationFilter -->
+	
+	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
+	
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
+		<property name="accessDeniedHandler">
+			<bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/html/accessDenied.html"/>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- exceptionTranslationFilter -->
+	
+	
+	
+	<!-- filterSecurityInterceptor -->
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter"/>
+	
+	<bean id="webExpressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="allowIfAllAbstainDecisions" value="false"/>
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+				<ref bean="webExpressionVoter"/>
+			</list>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor"> -->
+<!-- 		<property name="authenticationManager" ref="authenticationManager"/> -->
+<!-- 		<property name="accessDecisionManager" ref="accessDecisionManager"/> -->
+<!-- 		<property name="securityMetadataSource"> -->
+<!-- 			<security:filter-security-metadata-source use-expressions="true"> -->
+<!-- 				<security:intercept-url pattern="/html/accessDenied.html" access="permitAll"/> -->
+<!-- 				<security:intercept-url pattern="/**" access="denyAll"/> -->
+<!-- 			</security:filter-security-metadata-source> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	<bean id="filterSecurityInterceptor" class="it.prato.comune.tolomeo.security.CustomFilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager" ref="accessDecisionManager"/>
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source use-expressions="true">
+				<security:intercept-url pattern="/html/accessDenied.html" access="permitAll"/>
+				<security:intercept-url pattern="/**" access="denyAll"/>
+			</security:filter-security-metadata-source>
+		</property>
+		<property name="authorizationManager" ref="authorizationManager"/>
+	</bean>
+	
+	<!-- filterSecurityInterceptor -->
+	
+	
+	
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map path-type="ant">
+<!-- 			<security:filter-chain pattern="/**" filters="channelProcessingFilter, securityContextPersistenceFilter, preAuthenticatedProcessingFilter, postAuthenticatedProcessingFilter, logoutFilter, exceptionTranslationFilter, filterSecurityInterceptor"/> -->
+			<security:filter-chain pattern="/**" filters="securityContextPersistenceFilter, preAuthenticatedProcessingFilter, logoutFilter, exceptionTranslationFilter, filterSecurityInterceptor"/>
+		</security:filter-chain-map>
+	</bean>
+	
+	
+	
+	<bean id="servletContext" class="org.springframework.web.context.support.ServletContextFactoryBean"/>
+	
+	
+	
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter"/>
+	
+	
+	
+</beans>

@@ -1,0 +1,7 @@
+Come la precedente ma l'identify sul layer delle circoscrizioni visualizza le seguenti informazioni<br />
+-Nome<br />
+-Codice<br />
+-Coordinate centroide<br />
+-Area<br />
+Utilizza esempiobase.map<br />
+Inoltre è possibile inserire, cancellare e modificare poligoni di simulazione elettorale; tali operazioni sono precedute dalla visualizzazione dei parametri di chiamata dell'azione 

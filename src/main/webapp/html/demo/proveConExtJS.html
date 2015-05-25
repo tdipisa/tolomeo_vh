@@ -1,0 +1,1410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="/js/ext/extJS/resources/css/ext-all.css" />
+
+<!-- js build (solo per sviluppo) -->
+<script type="text/JavaScript" src="/js/ext/extJS/adapter/ext/ext-base.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="/js/ext/extJS/ext-all.js" charset="utf-8"></script>
+<!-- Utile ad esempio per i messaggi standard di validazione delle form (Es. "Campo obbligatorio" invece di "The field is required") -->
+<script type="text/JavaScript" src="/js/ext/extJS/ext-lang-it.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/build/toloExt-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloPanelToponomastica.js" charset="utf-8"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloWindowToponomastica.js" charset="utf-8"></script>
+
+
+<style type="text/css">
+.myDiv {
+	border : 1px solid #AAAAAA;
+	width : 200px;
+	height : 35px;
+	cursor : pointer;
+	padding : 2px 2px 2px 2px;
+	margin : 2px 2px 2px 2px;
+}
+</style>
+
+<script type="text/JavaScript">
+Ext.BLANK_IMAGE_URL="/img/pixel.gif"; 
+
+function createWindow(){
+	var win = new Ext.Window({
+		id: 'myWindow',
+		title: 'Finestra di prova',
+		width: 300,
+		height: 150,
+		layout: 'fit',		
+		autoLoad: {
+			url: 'sayHI.html',
+			scripts: true
+		}	
+	});
+	win.show();
+}
+	
+Ext.onReady(function(){
+/*
+	createWindow();
+	var myDiv1 = Ext.get('div1');
+	myDiv1.setHeight.defer(1000,myDiv1,[200]);
+	myDiv1.setSize.defer(3000,myDiv1,[350, 350, {duration: 1, easing:'bounceOut'}]);
+	// imposta l'altezza a 200
+	myDiv1.createChild('Child from a string');
+	myDiv1.createChild('<div>Element from a string</div>');
+	myDiv1.createChild({
+		tag : 'div',
+		html : 'Child from a config object'
+	});
+	myDiv1.createChild({
+		tag : 'div',
+		id : 'nestedDiv',
+		style : 'border: 1px dashed; padding: 5px;',
+		children : {
+			tag : 'div',
+			html : '...a nested div',
+			style : 'color: #EE0000; border: 1px solid'
+		}
+	});
+	myDiv1.insertFirst({
+		tag : 'div',
+		html : 'Child inserted as node 0 of myDiv1'
+	});
+	myDiv1.createChild({
+		tag : 'div',
+		id : 'removeMeLater',
+		html : 'Child inserted as node 2 of myDiv1'
+	}, myDiv1.dom.childNodes[3]);
+
+	return;
+*/
+
+// explicitly create a Container
+/*
+var embeddedColumns = new Ext.Container({
+    autoEl: 'div',  // This is the default
+    layout: 'column',
+    monitorResize: true,
+    defaults: {
+        // implicitly create Container by specifying xtype
+        xtype: 'container',
+        autoEl: 'div', // This is the default.
+        layout: 'form',
+        columnWidth: 0.5,
+        style: {
+            padding: '10px',
+            border : 'solid 1px black'
+        }
+    },
+//  The two items below will be Ext.Containers, each encapsulated by a <DIV> element.
+    items: [{
+        items: {
+            xtype: 'datefield',
+            name: 'startDate',
+            fieldLabel: 'Start date'
+        }
+    }, {
+        items: {
+            xtype: 'datefield',
+            name: 'endDate',
+            fieldLabel: 'End date'
+        }
+    }]
+});
+
+embeddedColumns.render(document.body);
+*/
+/*
+var win = new Ext.Window({
+	height : 150,
+	width : 200,
+	modal : true, // 1
+	title : 'This is one rigid window',
+	html : 'Try to move or resize me. I dare you.',
+	plain : false,
+	border : true,
+	resizable : false, // 2
+	draggable : false, // 3
+	closable : false, // 4
+	buttonAlign : 'center',
+	buttons : [
+		{
+			text : 'I give up!',
+			handler : function() {
+				win.close();
+			}
+		}
+	]
+})
+win.show();
+*/
+
+// CONTAINER LAYOUT Start
+/*
+var childPnl1 = { // 1
+	frame : true,
+	height : 50,
+	html : 'My First Child Panel',
+	title : 'First children are fun'
+}
+
+var childPnl2 = { // 2
+	width : 150,
+	html : 'Second child',
+	title : 'Second children have all the fun!'
+}
+
+var myWin = new Ext.Window({ // 3
+	height : 300,
+	width : 300,
+	title : 'A window with a container layout',
+	autoScroll : true, // 4
+	items : [ // 5
+		childPnl1,
+		childPnl2
+	],
+	tbar : [ // 6
+		{
+			text : 'Add child',
+			handler : function() {
+				var numItems = myWin.items.getCount() + 1;
+				myWin.add({
+					title : 'Child number ' + numItems,
+					height : 60,
+					frame : true,
+					collapsible : true,
+					collapsed : true,
+					html : 'Yay, another child!'
+				});
+				myWin.doLayout();
+			}
+		}
+	]
+});
+myWin.show();
+*/
+// CONTAINER LAYOUT End
+
+/*
+// ANCHOR LAYOUT Start
+var myWin = new Ext.Window({ // 1
+	height : 300,
+	width : 300,
+	layout : 'anchor', // 2
+	border : false,
+	anchorSize : '400',
+	autoScroll:true,
+	items : [
+		{
+			title : 'Panel1',
+			anchor : '-50, -150',
+			frame : true
+		},
+		{
+			title : 'Panel2',
+			height : '150px',
+			anchor : '-10',
+			frame : false,
+			html: 'prova'
+		}
+	]
+});
+myWin.show();
+// ANCHOR LAYOUT Stop
+*/
+
+
+// FORM LAYOUT Start
+/*
+var myWin = new Ext.Window({
+	height : 180,
+	width : 200,
+	bodyStyle : 'padding: 5px',
+	layout : 'form', // 1
+	labelWidth : 50, // 2
+	defaultType : 'field', // 3
+	items : [
+		{
+			fieldLabel : 'Name',
+			anchor : '-4' // 1
+		},
+		{
+			fieldLabel : 'Age',
+			width : 25
+		},
+		{
+			xtype : 'combo',
+			fieldLabel : 'Location',
+			anchor : '-4',
+			store : [ 'Here', 'There', 'Anywhere' ]
+		},
+		{
+			xtype : 'textarea',
+			fieldLabel : 'Bio',
+			anchor : '-4, -134' // 2
+		},
+		{
+			xtype : 'panel',
+			fieldLabel : ' ',
+			labelSeparator : '',
+			frame : true,
+			title : 'Instructions',
+			html : 'Please fill in the form',
+			anchor : '-4'
+		}
+	]
+});
+myWin.show();
+*/
+// FORM LAYOUT End
+
+// ABSOLUTE LAYOUT Start
+/*
+var myWin = new Ext.Window({
+	height : 300,
+	width : 300,
+	layout : 'absolute', // 1
+	autoScroll : true,
+	border : false,
+	items : [
+		{
+			title : 'Panel1',
+			x : 50, // 2
+			y : 50,
+			height : 100,
+			width : 100,
+			html : 'x: 50, y:50',
+			frame : true
+		},
+		{
+			title : 'Panel2',
+			x : 90, // 3
+			y : 120,
+			height : 75,
+			width : 77,
+			html : 'x: 90, y: 120',
+			frame : true
+		}
+	]
+});
+myWin.show();
+*/
+// ABSOLUTE LAYOUT End
+
+// FIT LAYOUT Start
+/*
+var myWin = new Ext.Window({
+	height : 200,
+	width : 200,
+	layout : 'fit', // 1
+	border : false,
+	items : [
+		{
+			title : 'Panel1', // 2
+			html : 'I fit in my parent!',
+			frame : true
+		}
+	]
+});
+myWin.show();
+*/
+// FIT LAYOUT End
+/*
+// ACCORDION LAYOUT Start
+var myWin = new Ext.Window({ // 1
+	height : 200,
+	width : 300,
+	border : false,
+	title : 'A Window with an accordion layout',
+	layout : 'accordion', // 2
+	layoutConfig : { // 3
+		animate : true
+		// ,activeOnTop: true
+	},
+items : [
+	{ // 4
+		xtype : 'form',
+		title : 'General info',
+		bodyStyle : 'padding: 5px',
+		defaultType : 'field',
+		labelWidth : 50,
+		items : [
+			{
+				fieldLabel : 'Name',
+				anchor : '-10',
+			},
+			{
+				xtype : 'numberfield',
+				fieldLabel : 'Age',
+				width : 30
+			},
+			{
+				xtype : 'combo',
+				fieldLabel : 'Location',
+				anchor : '-10',
+				store : [ 'Here', 'There', 'Anywhere' ]
+			}
+		]
+	},
+	{ // 5
+		xtype : 'panel',
+		title : 'Bio',
+		layout : 'fit',
+		items : {
+		xtype : 'textarea',
+			value : 'Tell us about yourself'
+		}
+	},
+	{ // 6
+		title : 'Instructions',
+		html : 'Please enter information.',
+		tools : [ // 7
+			{id : 'gear'}, {id:'help'}, {id:'refresh'}, {id:'save'}, {id:'print'}, {id:'search'}
+		]
+	}			
+]
+});
+myWin.show();
+// ACCORDION LAYOUT end
+*/
+
+/*
+// CARD LAYOUT Start
+var handleNav = function(btn) {
+
+	var activeItem = myWin.layout.activeItem;
+	var index = myWin.items.indexOf(activeItem);
+	var numItems = myWin.items.getCount() - 1;
+	var indicatorEl = Ext.getCmp('indicator').el;
+	
+	if (btn.text == 'Forward' && index < numItems) {
+		myWin.layout.setActiveItem(++index);
+	}else if (btn.text == 'Back' && index > 0) {		
+		myWin.layout.setActiveItem(--index);
+	}
+	indicatorEl.update((index + 1) + ' of ' + (numItems + 1));
+}
+
+var myWin = new Ext.Window({
+	height : 200,
+	width : 300,
+	border : false,
+	title : 'A Window with a Card layout',
+	layout : 'card', //1
+	activeItem : 0, //2
+	items : [
+		{
+			xtype : 'form',
+			title : 'General info',
+			bodyStyle : 'padding: 5px',
+			defaultType : 'field',
+			labelWidth : 50,
+			items : [
+				{
+					fieldLabel : 'Name',
+					anchor : '-10',
+				},
+				{
+					xtype : 'numberfield',
+					fieldLabel : 'Age',
+					width : 30
+				},
+				{
+					xtype : 'combo',
+					fieldLabel : 'Location',
+					anchor : '-10',
+					store : [ 'Here', 'There', 'Anywhere' ]
+				}
+			]
+		},
+		{
+			xtype : 'panel',
+			autoEl : {},
+			title : 'Bio',
+			layout : 'fit',
+			items : {
+			xtype : 'textarea',
+			value : 'Tell us about yourself'
+		}
+		},
+		{
+			title : 'Congratulations',
+			html : 'Thank you for filling out our form!'
+		}
+	],
+	bbar : [
+		{
+			text : 'Back', //3
+			handler : handleNav
+		},'-',
+		{
+			text : 'Forward',
+			handler : handleNav
+		},'->',
+		{
+			xtype : 'box', //4
+			id : 'indicator',
+			style : 'margin-right: 5px',
+			autoEl : {
+				tag : 'div',
+				html : '1 of 3'
+			}
+		}
+	]
+});
+
+myWin.show();
+// CARD LAYOUT End
+*/
+/*
+// COLUMN LAYOUT Start
+var myWin = new Ext.Window({
+
+	height : 200,
+	width : 400,
+	autoScroll : true, // 1
+	id : 'myWin',
+	title : 'A Window with a Card layout',
+	layout : 'column', // 2
+	defaults : {
+		frame : true
+	},
+	items : [
+		{
+			title : 'Col 1',
+			id : 'col1',
+			columnWidth : .3 // 3
+		},
+		{
+			title : 'Col 2',
+			html : "20% relative width",
+			columnWidth : .2
+		},
+		{
+			title : 'Col 3',
+			html : "100px fixed width",
+			width : 100 // 4
+		},
+		{
+			title : 'Col 4',
+			frame : true,
+			html : "50% relative width",
+			columnWidth : .5 // 5
+		}
+	]
+});
+myWin.show();
+
+
+Ext.getCmp('col1').add({
+	height : 250,
+	title : 'New Panel',
+	frame : true
+});
+
+Ext.getCmp('col1').doLayout();
+Ext.getCmp('myWin').doLayout();
+// COLUMN LAYOUT End
+*/
+/*
+// HBOX LAYOUT Start
+new Ext.Window({
+	layout : 'hbox', // 1
+	height : 300,
+	width : 300,
+	title : 'A Container with an HBox layout',
+	layoutConfig : { // 2
+		//pack : 'end',
+		//align: 'stretchmax'
+	},
+	defaults : {
+		frame : true,
+	},
+	items : [
+		{
+			title : 'Panel 1',
+			height : 100,
+			flex: 1
+		},
+		{
+			title : 'Panel 2',
+			height : 75,
+			flex: 1
+			//width : 100
+		},
+		{
+			title : 'Panel 3',
+			height : 200,
+			flex: 2
+		}
+	]
+}).show();
+// HBOX LAYOUT End
+*/
+
+/*
+// TABLE LAYOUT Start
+var myWin = new Ext.Window({
+	height : 300,
+	width : 300,
+	border : false,
+	autoScroll : true,
+	title : 'A Window with a Table layout',
+	layout :'table', // 1
+	layoutConfig : {
+		columns : 3 // 2
+	},
+		defaults : { // 3
+		height : 50,
+		width : 50
+	},
+	items : [
+		{
+			html : '1'
+		},
+		{
+			html : '2'
+		},
+		{
+			html : '3'
+		},
+		{
+			html : '4'
+		},
+		{
+			html : '5'
+		},
+		{
+			html : '6'
+		},
+		{
+			html : '7'
+		},
+		{
+			html : '8'
+		},
+		{
+			html : '9'
+		}
+	]
+});
+
+myWin.show();
+// TABLE LAYOUT End
+*/
+
+/*
+// BORDER LAYOUT Start
+new Ext.Viewport({
+	layout : 'border',
+	defaults : { // 1
+	frame : true,
+	split : true
+	},
+	items : [
+		{
+			title : 'North Panel', // 2
+			region : 'north',
+			height : 100,
+			minHeight : 100,
+			maxHeight : 150,
+			collapsible : true
+		},
+		{
+			title : 'South Panel', // 3
+			region : 'south',
+			height : 75,
+			split : false,
+			margins : {
+				top : 5
+			}
+		},
+		{
+			title : 'East Panel', // 4
+			region : 'east',
+			width : 100,
+			minWidth : 75,
+			maxWidth : 150,
+			collapsible : true
+		},
+		{
+			title : 'West Panel', // 5
+			region : 'west',
+			collapsible : true,
+			collapseMode : 'mini'
+		},
+		{
+			xtype : 'container',
+			region : 'center',
+			layout : 'fit',
+			id : 'centerRegion',
+			autoEl : {},
+			items : {
+				title : 'Center Region',
+				id : 'centerPanel',
+				html : 'I am disposable',
+				frame : true
+			}
+		}
+	]
+});
+
+var centerPanel = Ext.getCmp('centerPanel');
+var centerRegion = Ext.getCmp('centerRegion');
+centerRegion.remove(centerPanel, true);
+centerRegion.add({
+	xtype : 'form',
+	frame : true,
+	bodyStyle : 'padding: 5px',
+	defaultType : 'field',
+	title : 'Please enter some information',
+	defaults : {
+	anchor : '-10'
+	},
+	items : [
+		{
+			fieldLabel : 'First Name'
+		},
+		{
+			fieldLabel : 'Last Name'
+		},
+		{
+			xtype : 'textarea',
+			fieldLabel : 'Bio'
+		}
+	]
+});
+centerRegion.doLayout();
+
+// BORDER LAYOUT End
+*/
+
+// FORM
+
+/*
+Ext.QuickTips.init();
+
+var myValidFn = function(v) {
+	var myRegex = /https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w/_\.]*(\?\S+)?)?)?/;
+	return myRegex.test(v);
+}
+
+Ext.apply(Ext.form.VTypes, {
+	urlOnly : myValidFn,
+	urlOnlyText : 'Must a valid web url'
+});
+
+var mySimpleStore = new Ext.data.ArrayStore({
+	data: [['Alessandro'],['Federico'],['Francesco'],['Mattia']],
+	fields:['name']
+});
+
+var remoteJsonStore = new Ext.data.JsonStore({
+	root : 'records', // 1
+	baseParams : { // 2
+		column : 'fullName'
+	},
+	fields : [ // 3
+			{
+			name : 'name',
+			mapping : 'fullName'
+		},
+		{
+			name : 'id',
+			mapping : 'id'
+		}
+	],
+	proxy : new Ext.data.ScriptTagProxy({ // 4
+		url : 'http://tdg-i.com/dataQuery.php'
+	})
+});
+var combo = {
+	xtype : 'combo',
+	fieldLabel : 'Search by name',
+	forceSelection : true, // 5
+	displayField : 'name', // 6
+	valueField : 'id', // 7
+	hiddenName : 'customerId', // 8
+	loadingText : 'Querying....', // 9
+	minChars : 1, // 10
+	triggerAction : 'name', // 11
+	store : remoteJsonStore
+};
+
+var fpItems =[
+	{
+		fieldLabel : 'Alpha only', // 1
+		allowBlank : false, // 2
+		emptyText : 'This field is empty!', // 3
+		maskRe : /[a-z]/i // 4
+	},
+	{
+		fieldLabel : 'Simple 3 to 7 Chars',
+		allowBlank : false,
+		minLength : 3, // 5
+		maxLength : 7
+	},
+	{
+		fieldLabel : 'Special Chars Only',
+		stripCharsRe : /[a-zA-Z0-9]/ig // 6
+	},
+	{
+		fieldLabel : 'Web Only with VType',
+		vtype : 'urlOnly' // 7
+	},
+	{
+		fieldLabel : 'Password',
+		allowBlank : false,
+		inputType : 'password'
+	},
+	{
+		fieldLabel : 'File',
+		allowBlank : false,
+		inputType : 'file'
+	},
+	{
+		xtype : 'textarea',
+		fieldLabel : 'My TextArea',
+		name : 'myTextArea',
+		anchor : '100%',
+		height : 100
+	},
+	{
+		xtype : 'numberfield',
+		fieldLabel : 'Numbers only',
+		allowBlank : false,
+		emptyText : 'This field is empty!',
+		decimalPrecision : 3,
+		minValue : 0.001,
+		maxValue : 2
+	},
+	{
+		xtype: 'combo',
+		fieldLabel: 'Scegli un nome',
+		store: mySimpleStore,
+		displayField: 'name',
+		mode: 'local',
+		typeAhead: true
+	},
+	combo
+];
+
+var fp = new Ext.form.FormPanel({
+	renderTo : Ext.getBody(),
+	width : 400,
+	height : 'auto',
+	title : 'Exercising textfields',
+	frame : true,
+	bodyStyle : 'padding: 6px',
+	labelWidth : 126,
+	defaultType : 'textfield', // 1
+	defaults : {
+		msgTarget : 'side', // 2
+		anchor : '-20'
+	},
+	items : fpItems
+});
+*/
+/*
+var fieldset1 = {	
+	xtype: 'fieldset',
+	title: 'Name Information',
+	defaultType: 'textfield',	
+	border: false,
+	flex: 1,	
+	labelWidth: 60,
+	defaults : {
+		anchor: '-20',
+		allowBlank: false,
+		msgTarget : 'title'
+	},
+	items: [
+		{
+			fieldLabel: 'First',
+			name: 'firstName'
+		},
+		{
+			fieldLabel: 'Middle',
+			name: 'middle',
+			allowBlank: true
+		},
+		{
+			fieldLabel: 'Last',
+			name: 'lastName'
+		}
+	]
+}
+
+var fieldset2 = Ext.apply({},{	
+	
+	title: 'Address Information',	
+	items: [
+		{
+			fieldLabel: 'Address',
+			name: 'address'
+		},
+		{
+			fieldLabel: 'City',
+			name: 'city'
+		},
+		{
+			xtype: 'container',
+			layout: 'column',		
+			anchor: '100%',	
+			border: false,
+			items: [
+				{
+					xtype: 'container',
+					layout: 'form',
+					labelWidth: 60,
+					width: 200,
+					defaultType: 'textfield',					
+					items : [
+						{
+							fieldLabel: 'State',
+							name: 'state',
+							anchor: '-20'
+						}
+					]
+				},
+				{
+					xtype: 'container',
+					layout: 'form',
+					labelWidth: 30,
+					columnWidth: 1,
+					defaultType: 'textfield',
+					items : [
+						{
+							fieldLabel: 'Zip',
+							name: 'zip',
+							anchor: '-20'
+						}
+					]
+				}
+			]
+		}
+	]
+},fieldset1);
+
+var fieldsetContainer = {
+	xtype: 'container',
+	layout: 'hbox',
+	layoutConfig:{
+		align: 'stretch'
+	},
+	height: 120,
+	items: [fieldset1,fieldset2]
+}
+
+var tabPanel = {
+	xtype: 'tabpanel',
+	activeTab: 0,
+	deferredRender: false,
+	layoutOnTabChange: true,
+	bodyStyle: 'padding: 6px 0 0 6px',
+	plain: true,
+	border: false,
+	flex: 1,
+	items: [
+		{
+			title: 'Phone Number',
+			xtype: 'container',
+			layout: 'form',
+			labelWidth: 60,			
+			defaultType: 'textfield',
+			defaults:{
+				width: 230
+			},
+			items: [
+				{
+					fieldLabel: 'Home',
+					name : 'home'
+				},{
+					fieldLabel: 'Business',
+					name : 'business'
+				},{
+					fieldLabel: 'Mobile',
+					name : 'mobile'
+				},{
+					fieldLabel: 'Fax',
+					name : 'fax'
+				}
+			]
+		},{
+			title: 'Resume',
+			name: 'resume',
+			xtype: 'htmleditor'
+		},{
+			title: 'Bio',
+			name: 'bio',
+			xtype: 'htmleditor'
+		}
+	]
+}
+
+
+onSuccessOrFail = function(form, action) {
+	var formPanel = Ext.getCmp('myFormPanel');
+	formPanel.el.unmask(); // 1
+	var result = action.result;
+	if (result.success) { // 2
+		Ext.MessageBox.alert('Success',action.result.msg);
+	} else {
+		Ext.MessageBox.alert('Failure',action.result.msg);
+	}
+}
+
+submitHandler = function() {
+	var formPanel = Ext.getCmp('myFormPanel');
+	formPanel.el.mask('Please wait', 'x-mask-loading');
+	formPanel.getForm().submit({ // 3
+		url : 'formSaveKO.html',
+		success : onSuccessOrFail,
+		failure : onSuccessOrFail
+	});
+}
+
+var formPanel = new Ext.form.FormPanel({
+	id : 'myFormPanel',
+	submitHandler: false,
+	renderTo: Ext.getBody(),	
+	layout: 'vbox',	
+	layoutConfig: {
+		align: 'stretch'
+	},
+	width: 700,
+	height: 360,
+	frame: true,
+	title: 'Our complex form',
+	buttonAlign : 'center',
+	items: [
+		fieldsetContainer,
+		tabPanel
+	],
+	buttons:[
+		{			
+			text: 'Invia',
+			handler: submitHandler
+		},{
+			type: 'reset',
+			text: 'Cancel'
+		}
+	]
+});
+*/
+/*
+var genericHandler = function(item,event) { // 1
+	Ext.MessageBox.alert('', 'Your choice is ' + item.text);
+}
+var genericMenuItem = { // 2
+	text : 'Generic Item',
+	icon: '/img/statusbar/accept.png',
+	handler : genericHandler
+}
+
+var genericWithSubMenu =  {
+	text : 'New Department',
+	icon: '/img/statusbar/saved.png',
+	menu : [ // 2
+		{
+			xtype : 'menutextitem', // 1
+			text : 'Choose One',
+			style : {
+				'border' : '1px solid #999999', // 2
+				'margin' : "0px 0px 1px 0px",
+				'display' : 'block',
+				'padding' : '3px',
+				'font-weight' : 'bold',
+				'font-size' : '12px',
+				'text-align' : 'center',
+				'background-color' : '#D6E3F2'
+			}
+		},
+		{
+			text : 'Management',
+			// iconCls : 'icon-user_suit_black',
+			icon: '/img/statusbar/exclamation.gif',
+			handler : genericHandler
+		},
+		{
+			text : 'Accounting',
+			//iconCls : 'icon-user_green',
+			icon: '/img/statusbar/saving.gif',
+			handler : genericHandler
+		},
+		{
+			text : 'Sales',
+			//iconCls : 'icon-user_brown',
+			icon: '/img/statusbar/loading.gif',
+			handler : genericHandler
+		}
+	]
+};
+
+var colorAndDateHandler = function(picker, choice) { // 1
+	Ext.MessageBox.alert('', 'Your choice is ' + choice);
+}
+
+var colorMenuItem = { // 2
+	text : 'Choose Color',
+	iconCls : 'icon-color_swatch',
+	menu : {
+		xtype : 'colormenu', // 3
+		//colors : ['FF0000', '00FF00', '0000FF'],
+		handler : colorAndDateHandler
+	}
+}
+
+var dateMenuItem = {
+	text : 'Choose Date',
+	iconCls : 'icon-calendar',
+	menu : {
+		xtype : 'datemenu', // 4
+		handler : colorAndDateHandler
+	}
+}
+
+var singleCheckItem = { // 1
+	text : 'Check me',
+	checked : false, // 2
+	checkHandler : colorAndDateHandler // 3
+}
+
+var setFlagColor = function(menuItem, checked) { // 1
+	if (checked === true) {
+		var color = menuItem.text.toLowerCase();
+		//var iconCls = 'icon-flag_' + color;
+		var icon = (color == 'Green'? 'accept.png' : 'exclamation.gif' );
+		//Ext.getCmp('colorMenu').setIconClass(iconCls);
+		colorCheckMenuItem.setIcon("/img/statusbar/" + icon);
+	}
+}
+
+var colorCheckMenuItem = { // 2
+	text : 'Favorite Flag',
+	id : 'colorMenu',
+	//iconCls : 'icon-help',
+	menu : { // 3
+		defaults : {
+			checked : false,
+			group : 'colorChkGroup',
+			checkHandler : setFlagColor
+		},
+		items : [
+			{ text : 'Red' },
+			{ text : 'Green' }
+		]
+	}
+}
+
+var menuItems = [
+	genericMenuItem,
+	'-',
+	genericWithSubMenu,
+	colorMenuItem, // 5
+	dateMenuItem,
+	'-',
+	singleCheckItem,
+	colorCheckMenuItem
+];
+
+var menu = new Ext.menu.Menu({ // 4
+	items : menuItems,	
+	listeners : {
+		'beforehide' : function() { // 5
+			return false;
+		}
+	}
+});
+menu.showAt([100,100]);
+*/
+
+// LOADING DATA
+/*
+var formPanel = Ext.getCmp('myFormPanel');
+
+formPanel.el.mask('Please wait', 'x-mask-loading');
+
+formPanel.getForm().load({
+	url : 'formData.html',
+	success : function() {
+		formPanel.el.unmask();
+	}
+});
+*/
+
+//creating an instance of textfield  
+var name = new Ext.form.TextField({  
+    fieldLabel:'Name',  
+    name:'txt-name',  
+    emptyText:'Your name...',  
+    id:"id-name"  
+}); 
+
+var checkboxes = new Ext.form.CheckboxGroup({  
+    fieldLabel:'Interests',  
+    columns:2,//showing two columns of checkboxes  
+    items:[  
+        {boxLabel: 'JavaScript', name: 'cb-js', checked: true}, //field checked from the beginning  
+        {boxLabel: 'HTML', name: 'cb-html'},  
+        {boxLabel: 'CSS', name: 'cb-css'},  
+        {boxLabel: 'Otros', name: 'cb-otros'}  
+    ]  
+});
+
+//creating a group of radiobuttons  
+var radios = new Ext.form.RadioGroup({  
+    fieldLabel: 'Favorite Framework',  
+     columns: 2, //display the radiobuttons in two columns  
+     items: [  
+          {boxLabel: 'Ext Js', name: 'framework', inputValue: 'Ext js', checked: true},  
+          {boxLabel: 'Dojo', name: 'framework', inputValue: 'Dojo'},  
+          {boxLabel: 'Mootools', name: 'framework', inputValue: 'Mootools'},  
+          {boxLabel: 'jQuery', name: 'framework', inputValue: 'jQUery'},  
+          {boxLabel: 'prototype', name: 'framework', inputValue: 'prototype'},  
+          {boxLabel: 'YIU', name: 'framework', inputValue: 'yui'}  
+     ]  
+});     
+//creating a form
+this.form= new Ext.FormPanel({  
+    border:false, 
+    defaults:{xtype:'textfield'},
+    items:[  
+        name, 
+        {  
+            fieldLabel:'Email', // creating a field  
+            name:'txt-email', // using a  
+            value:'', //configuration  
+            id:"id-email"  
+        },{  
+            xtype: 'checkbox', //defining the type of component  
+            fieldLabel: 'Active',//assigning a label  
+            name: 'chk-active',//and a "name" to retrieve it on the server...  
+            id: 'id-active'// ...when the form is sent  
+        },  
+        checkboxes, //group of checkboxes  
+        radios, // group of radios  
+        {  
+                xtype:'hidden',//hidden field(hidden)  
+                name:'h-type', //name of the field sent to the server  
+                value:'developer'//value of the field  
+        }  
+    ]  
+});   
+  
+//creating the window that will contain the form  
+var win = new Ext.Window({  
+    title: 'New Developer',  
+    width:300,  
+    height:300,  
+    bodyStyle:'background-color:#fff;padding: 10px',  
+    items:this.form, 
+    buttonAlign: 'center', 
+    buttons:[{text:'Save'},{text:'Cancel'}]  
+});   
+  
+win.show();  
+
+return;
+
+	console = {log: function(msg){Ext.Msg.alert('Console',msg)}};
+ 
+	var myObservable = new Ext.util.Observable();
+	myObservable.addEvents('chip','chop');
+	myObservable.addEvents({
+		'chip' : true,
+		'chop' : true
+	});
+	myObservable.on('chip',function(){console.log('CHIP!')});
+	myObservable.on('chop',function(){console.log('CHOP!')});
+	Ext.get('myHref').on('contextmenu', function(eventObj, elRef) {
+		eventObj.stopEvent();
+		console.log('myHref contextmenu Handler, source elment ID: ' + elRef.id);
+		if (!this.ctxMenu) {
+			this.ctxMenu = new Ext.menu.Menu({
+				items : [{
+					text : "This is"
+				},{
+					text : "our custom"
+				},{
+					text : "context menu"
+				}]
+			});
+		}
+		this.ctxMenu.show(elRef);
+	});
+		
+	/*
+	new Ext.Window({
+		width : 200,
+		height : 150,
+		title : 'Accordion window',
+		layout : 'accordion',
+		border : false,
+		layoutConfig : {
+		animate : true
+		},
+		items : [
+		{
+		xtype : 'panel',
+		title : 'Plain Panel',
+		html : 'Panel with an xtype specified'
+		},
+		{
+		title : 'Plain Panel 2',
+		html : 'Panel with <b>no</b> xtype specified'
+		}
+		]
+	}).show();
+	*/
+	/*
+	var panel1 = { //1
+			html : 'I am Panel1',
+			id : 'panel1',
+			frame : true,
+			height : 100
+		}
+		var panel2 = {
+			html : '<b>I am Panel2</b>',
+			id : 'panel2',
+			frame : true
+		}
+		var myWin = new Ext.Window({ // 2
+			id : 'myWin',
+			height : 400,
+			width : 400,
+			items : [
+			panel1,
+			panel2
+		]
+	});
+	myWin.show();
+	*/
+	
+var myPanel = new Ext.Panel({
+	height : 50,
+	width : 150,
+	title : 'Lazy rendered Panel',
+	frame : true
+});
+
+//... some business logic…
+myPanel.render(document.body);
+
+myPanel.render('someDivId');
+	
+	var myBtnHandler = function(btn) { // 1
+		Ext.MessageBox.alert('You Clicked', btn.text);
+	}
+	
+	var fileBtn = new Ext.Button({ // 2
+		text : 'File',
+		handler : myBtnHandler
+	});
+	
+	var editBtn = new Ext.Button({ // 3
+		text : 'Edit',
+		handler : myBtnHandler
+	});
+	
+	var tbFill = new Ext.Toolbar.Fill(); // 4
+	
+	var myTopToolbar = new Ext.Toolbar({ // 5
+		items : [
+			fileBtn,
+			tbFill,
+			editBtn
+		]
+	});
+	
+	var myBottomToolbar = [ // 6
+	{
+		text : 'Save',
+		handler : myBtnHandler
+	},
+	'-',
+	{
+		text : 'Cancel',
+		handler : myBtnHandler
+	},
+	'->',
+	'<b>Items open: 1</b>',
+	];
+	
+	var myPanel = new Ext.Panel({
+		width : 200,
+		height : 150,
+		title : 'Ext Panels rock!',
+		collapsible : true,
+		renderTo : Ext.getBody(),
+		tbar : myTopToolbar,
+		bbar : myBottomToolbar,
+		html : 'My first Toolbar Panel!',
+		buttons : [ // 2
+		{
+			text : 'Press me!', // 3
+			handler : myBtnHandler
+		}
+		],
+		tools : [{ // 4
+			id : 'gear', // 5
+			handler : function(evt, toolEl, panel) {
+				var toolClassNames = toolEl.dom.className.split(' ');
+				var toolClass = toolClassNames[1];
+				var toolId = toolClass.split('-')[2];
+				Ext.MessageBox.alert('You Clicked', 'Tool ' + toolId);
+			}
+		},{
+			id : 'help', // 6
+			handler : function() {
+				Ext.MessageBox.alert('You Clicked', 'The help tool');
+			}
+		}]
+	});
+		
+});	
+
+function addPanel(){
+	Ext.getCmp('myWin').add({
+		title : 'Appended Panel',
+		id : 'addedPanel',
+		html : 'Hello there!'
+	});
+	Ext.getCmp('myWin').doLayout();
+}
+
+function insertPanelAt1(){
+	Ext.getCmp('myWin').insert(1, {
+		title : 'Inserted Panel',
+		id : 'insertedPanel',
+		html : 'It is cool here!'
+	});
+	Ext.getCmp('myWin').doLayout();
+}
+
+// {#} rappresenta l'indice + 1 
+
+
+
+
+</script>
+</head>
+<body>
+<div id='div1' class='myDiv'> </div>
+<div>
+<ul>
+	<li><a href="javascript:myObservable.fireEvent('chip'); void(0);">chip</a></li>
+	<li><a href="javascript:myObservable.fireEvent('chop'); void(0);">chop</a></li>
+	<li><a href="javascript:addPanel(); void(0);">addPanel</a></li>
+	<li><a href="javascript:insertPanelAt1(); void(0);">insertPanelAt1</a></li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		
+		<title>Styler 4.2</title>
+		
+		<link rel="shortcut icon" href="theme/img/favicon.ico"/>
+		
+		<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/4.2.1/examples/shared/example.css"/>
+		<link rel="stylesheet" type="text/css" href="../shared/example.css"/>
+		<link rel="stylesheet" type="text/css" href="theme/css/styler.css"/>
+		
+		<script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/examples/shared/include-ext.js"></script>
+		<script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/examples/shared/options-toolbar.js"></script>
+		<script src="../shared/theme.js"></script>
+		<script src="http://openlayers.org/api/2.13.1/OpenLayers.js"></script>
+		<script type="text/javascript" src="script/geoext2.js"></script>
+		<script type="text/javascript" src="script/utility.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/Renderer/DefaultSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/FeatureRenderer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/slider/Tip.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/form/ColorField.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/form/FontComboBox.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/form/ComparisonComboBox.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/form/FilterField.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/StrokeSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/FillSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/TextSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/ScaleLimitPanel.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/PointSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/LineSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/PolygonSymbolizer.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/FilterBuilder.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/RulePanel.js"></script>
+		<script type="text/javascript" src="script/TolomeoExt/Styler/StylePanel.js"></script>
+		<script type="text/javascript" src="script/SldManager.js"></script>
+		<script type="text/javascript" src="script/Styler.js"></script>
+		<script>
+			Ext.application({
+				name: "Styler",
+				launch: function() {
+					var styler = Ext.create("Styler", {
+						proxy: "/WARProject/ProxyService"
+					});
+					styler.createLayout();
+					styler.setup();
+				}
+			});
+		</script>
+		
+	</head>
+	
+	<body>
+		
+		<div id="desc">
+			<h1>GeoExt.tree Components</h1>
+			<p>This example shows how to work with a layer tree.  The basic
+			component for building layer trees is the LayerNode, and there are
+			different types of containers for automatically adding a map's
+			layers to the tree. The tree configuration of this example is pure
+			JSON and can be edited live by clicking on the "Show/Edit Tree Config"
+			button below the layers panel.<p>
+			<p>The js is not minified so it is readable. See
+			<a href="tree.js">tree.js</a>.</p>
+			<p>Also see the <a href="layercontainer.html">Layer Container</a>
+			example for drag-n-drop support.</p>
+		</div>
+		
+	</body>
+	
+</html>

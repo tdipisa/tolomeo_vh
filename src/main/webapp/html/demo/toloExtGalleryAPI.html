@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xml:lang="it" 
+	lang="it">
+	
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	
+	<link href="/tolomeohtdocs/css/04tolomeo.css" type="text/css" rel="stylesheet"/>
+	<link href="/tolomeohtdocs/css/mapdiv.css" type="text/css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="/tolomeohtdocs/js/ext/extJS/resources/css/ext-all.css" />	
+	<link rel="stylesheet" type="text/css" href="/tolomeohtdocs/js/ext/extJS/resources/extTheme/green/css/xtheme-green.css" />
+	<link rel="stylesheet" type="text/css" href="http://www.extjs.com/deploy/dev/examples/grid/grid-examples.css" />
+	
+	
+	
+	<style type="text/css">
+		.msg .x-box-mc {
+	    	font-size:14px;
+		}
+		#msg-div {
+		    position:absolute;
+		    left:35%;
+		    top:10px;
+		    width:250px;
+		    z-index:20000;
+		}
+		
+		
+		/*.x-list-over {background-color: orange; font-weight: bold;}*/
+		
+		
+        /* style rows on mouseover */
+        /*.x-grid3-row-over .x-grid3-cell-inner {
+            font-weight: bold;
+        }*/
+		
+		body {
+			font-family:'lucida grande',tahoma,arial,sans-serif;
+			font-size:11px;
+			}
+			
+		#header h1 {
+			text-align: center;	
+			font-size:16px;
+			font-weight:normal;
+			padding:5px 10px;
+		}
+	</style>
+
+	
+	<script type="text/javascript" src="/tolomeohtdocs/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+	<script type="text/javascript" src="/tolomeohtdocs/js/ext/extJS/ext-all-debug.js"></script>
+	<script src="/tolomeohtdocs/js/ext/openlayers/OpenLayers.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/tolomGeometry.js" type="text/JavaScript"></script>  
+	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloVars.js" type="text/JavaScript"></script>
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloCrossAjax.js" type="text/JavaScript"></script>
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloMeasurePanelExt.js" type="text/JavaScript"></script>
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloScalePanelExt.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloViewerOLExt.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloAPIOpCodes.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloTOCDataProvider.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloTOCPanelExt.js" type="text/JavaScript"></script>
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloTreeTOCPanelExt.js" type="text/JavaScript"></script> 
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloQueryPanelExt.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloButtonPanel.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/toloMapAPIExt.js" type="text/JavaScript"></script>	
+		
+	<script src="/tolomeohtdocs/js/tolomeoExt/layout/ToloPanelFull.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/tolomeoExt/layout/ToloPanelViewerOnly.js" type="text/JavaScript"></script>		
+	<script src="/tolomeohtdocs/js/tolomeoExt/layout/utils.js" type="text/JavaScript"></script>	
+	<script src="/tolomeohtdocs/js/toloGallery.js" type="text/JavaScript"></script>	
+	
+	<script src="/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" type="text/JavaScript"></script>
+
+</head>
+
+
+<body onload="">
+
+   <!--  <div id="header"><h1>Mappa di Prato</h1></div> --> 
+	<h1 style="font-size: large; text-align: center"><strong>Galleria layout</strong></h1>
+	<br/><br/>
+	
+	<a href="javascript:toloLayout.api1.zoomToObj(-500, 1698, false);">Zoom a via</a>
+	<a href="javascript:toloLayout.api1.viewer.on('scalechange', function(zoom) { Ext.example.msg('', 'Nuova scala: ' + Math.floor(zoom));} ); ">Registra evento</a>
+	
+	 <div id="sit_mappa" style="width:50%;height:500px;" >   
+	
+
+</div> 
+
+</body>
+</html>

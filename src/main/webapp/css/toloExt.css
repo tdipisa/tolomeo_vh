@@ -1,0 +1,231 @@
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+@CHARSET "utf-8";
+
+/* importo css openlayers ed eventuali estensioni */
+@IMPORT url("../js/ext/openlayers/theme/default/style.css");
+@IMPORT url("../css/statusbar.css");
+@IMPORT url("../css/carousel.css");
+@IMPORT url("../css/querybuilder.css");
+@IMPORT url("../css/toloExtOLS.css");
+@IMPORT url("../js/ext/cesium/Build/Cesium/Widgets/widgets.css");
+
+/*** css tolomeo ***/
+.bold { font-weight: bold; }
+
+/* highlight row --> geometry */
+.relToHighlightGeom td { background-color: #ff0; color: #000 }
+
+/* scala */
+.scaleFormCss { padding: 5px 0px 2px 0px; background: transparent url("../img/trasparente.gif") repeat !important;}
+
+/* icone */
+.iconPannello { background-image: url("../img/icone/16-default/admin.gif");   padding: 0 5px 2px 0; }
+.iconToc      { background-image: url("../img/icone/16-default/legenda.gif"); padding: 0 5px 2px 0; }
+.iconQuery    { background-image: url("../img/icone/16-default/ricerca.gif"); padding: 0 5px 2px 0; }
+.iconMappa    { background-image: url("../img/icone/16-default/cartografia.png"); }
+.iconClassToc { width: 23px !important; height: 15px !important; vertical-align: baseline !important; }
+.iconPrint    { background-image: url("../img/icone/16-default/print.gif"); padding: 0 5px 2px 0;   }
+.iconConferma { background-image: url("../img/icone/16-default/conferma.gif"); }
+.iconCsw      { background-image: url("../img/icone/16-default/csw.png"); }
+.iconPermalink{ background-image: url("../img/icone/16-default/permalink.png"); }
+.iconQgis     { background-image: url("../img/icone/16-default/qgis.png"); }
+.iconConnected2QGis { background-image: url("../img/icone/16-default/connected2QGis.png"); }
+.iconAddLayerToQGis { background-image: url("../img/icone/16-default/j2qAddLayer.png"); }
+.iconExportForQGis  { background-image: url("../img/icone/16-default/exportForQGis.png"); }
+.iconOpenInNewWin{ background-image: url("../img/icone/16-default/external.png"); }
+.iconRegenerateWithoutCache{ background-image: url("../img/icone/16-default/update.png"); }
+.iconMailToAdmin{ background-image: url("../img/icone/16-default/email_to_friend.png"); }
+.iconPolygonalMeasure{ background-image: url("../img/icone/16-default/misurapoligono.gif") !important; }
+.iconCircularMeasure{ background-image: url("../img/icone/16-default/misuracerchio.gif") !important; }
+.iconLinearMeasure{ background-image: url("../img/icone/16-default/misuralinea.gif") !important; }
+.iconInsertNote{ background-image: url("../img/icone/16-default/note.gif") !important; }
+.iconEditNote{ background-image: url("../img/icone/16-default/note.gif") !important; }
+.iconAddLocation{ background-image: url("../img/icone/16-default/rilasciaxy.gif") !important; }
+.iconGotoPosition{ background-image: url("../img/icone/16-default/target.gif") !important; }
+
+.iconVisConBing   { background-image: url("../img/icone/16-default/bing_16x16.png"); }
+.iconVisConGoogle { background-image: url("../img/icone/16-default/google_map_16x16.png"); }
+.iconVisConOSM    { background-image: url("../img/icone/16-default/openstreetmap_16x16.png"); }
+.iconVisConHere   { background-image: url("../img/icone/16-default/here_16x16.png"); }
+.iconVisCon    { background-image: url("../img/icone/16-default/slideshow.png"); }
+
+/* legenda */
+.tocitemnotvisible span.layerLabel {
+	color: gray !important;
+}
+
+.tocitemfiltered  {
+	display: none !important;
+}
+
+.tocitemhidden  {
+	display: none !important;
+}
+
+
+/* voci legenda disabilitate */
+.tree-node-disabled .x-grid-cell {
+   -moz-opacity: 0.5;
+   opacity:.5;
+   filter: alpha(opacity=50);
+}
+
+.treenode-no-icon {
+    display : none !important;
+}
+
+/* Icona utilizzata se il layer è vettoriale */
+.iconLegendaLayerVector   	{ background-image: url("../img/icone/legendalayervector.gif") !important; background-repeat: no-repeat;  }
+/* Icona utilizzata se il layer è raster */
+.iconLegendaLayerRaster   	{ background-image: url("../img/icone/legendalayerraster.gif") !important; background-repeat: no-repeat;  }
+/* Icona utilizzata se il layer non è visibile alla scala corrente */
+.iconLegendaLayerNotVisibleAtScale	{ background-image: url("../img/icone/legendalayerscale.gif") !important; background-repeat: no-repeat;  }
+/* Icona utilizzata se il layer è in errore */
+.iconLegendaWarning     { background-image: url("../img/icone/legendawarning.png") !important; background-repeat: no-repeat;  }
+
+/* Icona utilizzata per categorie  */
+.x-tree-icon-parent.iconLegendaCategoria	{ background-image: url("../img/icone/legendacateg-chiusa.gif") !important; background-repeat: no-repeat;  }
+.x-grid-tree-node-expanded   	.iconLegendaCategoria	{ background-image: url("../img/icone/legendacateg-aperta.gif") !important; background-repeat: no-repeat;  }
+
+/* Stili utilizzati per il tooltip delle categorie della legenda */
+.legendaCatTooltip 		{ list-style-type: none; padding: 0; margin: 0 }   /* classe del tag ul */
+.legendaCatTooltipCat 	{ vertical-align: baseline; background-image: url("../img/icone/legendacateg-chiusa.gif") !important; background-repeat: no-repeat; padding-left: 18px; padding-top: 2px } 	/* classe del tag <li> realativo a categorie */
+.legendaCatTooltipLayRast 	{ vertical-align: middle; background-image: url("../img/icone/legendalayervector.gif") !important; background-repeat: no-repeat; padding-left: 18px; padding-top: 2px} 	/* classe del tag <li> realativo a layer raster */
+.legendaCatTooltipLayVect 	{ vertical-align: middle; background-image: url("../img/icone/legendalayerraster.gif") !important; background-repeat: no-repeat; padding-left: 18px; padding-top: 2px} 	/* classe del tag <li> realativo a layer vettoriale */
+
+/* Stile per pulsante di collapse legenda */
+.legendaBtnCollapse 	{ background-image: url("../img/icone/legendachiudicategorie.png") !important; background-repeat: no-repeat; }
+
+/* Stile per pulsante di expand legenda */
+.legendaBtnExpand	 	{ background-image: url("../img/icone/legendaapricategorie.png") !important; background-repeat: no-repeat; }
+
+.legendaSeparatorRow {
+	height:4px !important;
+}
+
+.legendaSeparator {
+	display: inline-block;
+	height:2px;
+	background:#717171;
+	border-bottom:1px solid #313030; 
+	width: 150px;
+	
+}
+
+/* finestra ad-hoc errore */
+.finestraIcona {
+	background: none no-repeat scroll left top transparent;
+    float: left;
+    height: 32px;
+    width: 47px;
+}
+.finestraIconaErrore {
+    background-image: url("../js/ext/extJS/resources/images/default/window/icon-error.gif"); /* icona errore extjs */
+}
+.finestraIconaTesto {
+    margin-left: 47px;
+    /*text-align: justify;*/
+    font-size: 105%;
+}
+
+/* classe della nota editabile */
+div.editableNote:hover{
+	cursor: pointer;
+}
+
+/* Controllo per visualizzazione attribuzioni multiple */
+.olControlAttributionMulti {
+    font-size: smaller;
+    right: 3px;
+    bottom: 4.5em;
+    position: absolute;
+    display: block;
+}
+
+
+/*** sovrascritture ***/
+.x-tree-node-anchor span {
+	padding: 1px 0 1px 2px !important;
+}
+
+.olControlOverviewMapContainer {
+    bottom: 40px !important;
+}
+
+/* cursori */
+.cursorProgress {
+	cursor: progress;
+}
+
+
+/*
+.olControlOverviewMapMinimizeButton,
+.olControlOverviewMapMaximizeButton {
+    height: 18px;
+    width: 18px;
+    right: 0;
+    bottom: 80px;
+    cursor: pointer;
+}
+*/

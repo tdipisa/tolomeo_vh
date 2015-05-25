@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://pratomaps.comune.prato.it/pratomapsbinj/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://pratomaps.comune.prato.it/tolomeobinj/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+<link rel="stylesheet" type="text/css" href="http://pratomaps.comune.prato.it/pratomapsbinj/css/toloExt-intra.css" />
+
+<link rel="stylesheet" href="http://www.comune.prato.it/css/main.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://www.comune.prato.it/css/menu.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="http://www.comune.prato.it/css/form.css" type="text/css" media="all" /> 
+<link rel="stylesheet" href="http://www.comune.prato.it/css/tabelle.css" type="text/css" media="all" />
+<link rel="stylesheet" href="http://www.comune.prato.it/css/print.css" type="text/css" media="print"/>
+<link rel="stylesheet" href="http://www.comune.prato.it/css/sit.css" type="text/css" media="all"/>
+
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/js/tolomeoExt/build/toloExt-all-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Esempio10"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Esempio01&varName=paramsJS1"></script>
+<script type="text/JavaScript" src="http://pratomaps.comune.prato.it/pratomapsbinj/js/tolomeoExt/layout/ToloPanelIntra.js"></script>
+
+<script type="text/JavaScript">
+Ext.BLANK_IMAGE_URL= TolomeoExt.Vars.TOLOMEOServer + "/commonintra/img/pixel.gif";
+
+Ext.onReady(function(){
+
+	tolomeoPnl = Ext.extend(TolomeoExt.ToloPanelIntra, {
+															title: 'Semplice',
+															width: 500,
+															height: 500,
+															layout: 'fit',
+															cls: 'clearCSS',
+															//Settaggi specifici
+															withDataPanel: false,
+															withToolsPanel: false,
+															toolbarOpt: {
+																withSeleziona: false,
+																withAnnullaSeleziona: false,
+																withLayerList:  false,
+																withIdentify:  false,
+																withNuovo:  false,
+																withUpdateAlfa:  false,
+																withAdd:  false,
+																withSubtract:  false,
+																withAddSub:  false,
+																withVertexEdit:  false,
+																withDragDrop:  false,
+																withDelete:  false,
+																withAutoIdentify: false
+																}
+														});
+});
+
+function mappa1() {
+	pannello = new tolomeoPnl({
+		renderTo: 'sit_mappa'
+	});
+}
+function mappa2() {
+	pannello1 = new tolomeoPnl({
+		title: 'Con tools panel',
+		renderTo: 'sit_mappa1',
+		withToolsPanel:true,
+		toolbarOpt: {
+			withSeleziona: false,
+			withAnnullaSeleziona: false,
+			withLayerList:  true,
+			withIdentify:  false,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: false
+			}
+	});
+}
+
+function mappa3() {
+	new tolomeoPnl({
+		title: 'Con preset esempio01 invece di esempio15',
+		renderTo: 'sit_mappa2',
+		paramsJS: paramsJS1
+	});
+}
+
+function mappa4() {
+	new Ext.Window ({
+		title : "Mappa in una finestra",
+		layout: 'fit',
+		collapsible:true,
+		maximizable:true,
+		width : 400,
+		height : 400,
+		cls: 'clearCSS',
+		closeAction: 'hide',
+		items: [new tolomeoPnl()]
+	}).show();
+}
+
+function mappa5() {
+	// tabs for the center
+    var tabs = new Ext.TabPanel({
+        region: 'center',
+        margins:'3 3 3 0', 
+        activeTab: 0,
+        defaults:{autoScroll:true},
+
+        items:[new tolomeoPnl({ title:'Esempio15' }),
+               new tolomeoPnl({ title:'Esempio01', paramsJS: paramsJS1 }),
+         	{
+            title: 'Closable Tab',
+            html: 'aasas',
+            closable:true
+        }]
+    });
+
+    // Panel for the west
+    var nav = new Ext.Panel({
+        title: 'Navigation',
+        region: 'west',
+        split: true,
+        width: 200,
+        collapsible: true,
+        margins:'3 0 3 3',
+        cmargins:'3 3 3 3'
+    });
+
+    var win = new Ext.Window({
+        title: 'Layout Window',
+        closable:true,
+        width:600,
+        height:350,
+        //border:false,
+        plain:true,
+        layout: 'border',
+
+        items: [nav, tabs]
+    }).show();
+}
+
+function mappa6() {
+    
+    m1 = new tolomeoPnl({ title:'Esempio15', region: 'west', width: '50%', split:true });
+    m2 = new tolomeoPnl({ title:'Esempio01', region:'center',  paramsJS: paramsJS1 });
+	
+    new Ext.Window({
+        title: 'Finestre linkate',
+        closable:true,
+        width:600,
+        height:350,
+        layout:'border',
+
+        items:[m1,m2]
+    }).show();
+
+    m1.api.viewer.on('onMapMoveEnd', moveEnd);
+}
+
+function moveEnd(obj) {
+
+	var x = m1.api.viewer.pluginGetCurrentX();
+	var y = m1.api.viewer.pluginGetCurrentY();
+	var z = m1.api.viewer.pluginGetCurrentZoom();
+
+	m2.api.viewer.pluginGotoPosition(x,y,z);
+	
+	
+}
+</script>
+</head>
+
+<body>
+	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Tolomeo Ext</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div>
+	<!-- Fine Intestazione/header -->
+	
+	<!-- Logout/Percorso -->
+	<div id="tmpl_barra">
+		<div id="tmpl_barrawrap"> 
+			<div id="tmpl_percorso">
+				<ol title="Percorso di navigazione dalla home page">
+					<li><a href="#">home</a></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<div id="tmpl_logout"><a href="javascript:window.close();">logout</a></div>
+	</div>
+	<!-- Fine Logout/Percorso -->
+	
+	<!-- Menu/Content -->
+	<div id="tmpl_main">
+		<!-- Content -->
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<h1>Pagina Demo</h1>
+				<a href="javascript:mappa1();">Mappa1</a><br/>
+				<a href="javascript:mappa2();">Mappa2</a><br/>
+				<a href="javascript:mappa3();">Mappa3</a><br/>
+				<a href="javascript:mappa4();">Mappa4</a><br/>
+				<a href="javascript:mappa5();">Mappa5</a><br/>
+				<a href="javascript:mappa6();">Mappa6</a><br/>
+				
+				<br/>
+				<div id="sit_mappa" class="clearCSS"></div>
+				<br/>
+				<div id="sit_mappa1" class="clearCSS"></div>
+				<br/>
+				<div id="sit_mappa2" class="clearCSS"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Copyright -->
+	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>
+	<!-- Fine Copyright -->
+</body>
+</html>

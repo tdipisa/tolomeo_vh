@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rolesMapping>
+	<incomingRole>
+		<name>ADMIN</name>
+		<applications>
+			<application>
+				<name>Stradario</name>
+				<assignedRoles>
+					<assignedRole>
+						<name>ROLE0</name>
+					</assignedRole>
+					<assignedRole>
+						<name>ROLE1</name>
+					</assignedRole>
+					<assignedRole>
+						<name>ROLE2</name>
+					</assignedRole>
+				</assignedRoles>
+			</application>
+		</applications>
+	</incomingRole>
+	<incomingRole>
+		<name>USER</name>
+		<applications>
+			<application>
+				<name>Stradario</name>
+				<assignedRoles>
+					<assignedRole>
+						<name>ROLE1</name>
+					</assignedRole>
+					<assignedRole>
+						<name>ROLE2</name>
+					</assignedRole>
+				</assignedRoles>
+			</application>
+			<application>
+				<name>Scuole</name>
+				<assignedRoles>
+					<assignedRole>
+						<name>ROLE2</name>
+					</assignedRole>
+				</assignedRoles>
+			</application>
+		</applications>
+	</incomingRole>
+<!-- 	<incomingRole> -->
+<!-- 		<name>VIEWER</name> -->
+<!-- 		<applications> -->
+<!-- 			<application> -->
+<!-- 				<name>Scuole</name> -->
+<!-- 				<assignedRoles> -->
+<!-- 					<assignedRole> -->
+<!-- 						<name>ROLE2</name> -->
+<!-- 					</assignedRole> -->
+<!-- 				</assignedRoles> -->
+<!-- 			</application> -->
+<!-- 		</applications> -->
+<!-- 	</incomingRole> -->
+</rolesMapping>

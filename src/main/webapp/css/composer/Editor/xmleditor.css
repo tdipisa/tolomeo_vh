@@ -1,0 +1,23 @@
+.icon-button-undo {
+	background-image:url(../../../img/composer/Editor/button-undo.png) ! important;
+}
+
+.icon-button-redo {
+	background-image:url(../../../img/composer/Editor/button-redo.png) ! important;
+}
+
+.icon-button-search {
+	background-image:url(../../../img/composer/Editor/button-search.png) ! important;
+}
+
+.icon-button-save {
+	background-image:url(../../../img/composer/Editor/button-save.png) ! important;
+}
+
+.icon-button-load {
+	background-image:url(../../../img/composer/Editor/button-load.png) ! important;
+}
+
+.icon-button-validation {
+	background-image:url(../../../img/composer/Editor/button-validation.png) ! important;
+}

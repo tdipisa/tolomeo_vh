@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<bean id="preAuthenticatedUserDetailsService" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedGrantedAuthoritiesUserDetailsService"/>
+	
+<!-- 	<bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider"> -->
+<!-- 		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/> -->
+<!-- 	</bean> -->
+	<bean id="preAuthenticatedAuthenticationProvider" class="it.prato.comune.tolomeo.security.CustomPreAuthenticatedAuthenticationProvider">
+		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
+		<property name="securityContextPersistenceFilter" ref="securityContextPersistenceFilter"/>
+		<property name="filterSecurityInterceptor" ref="filterSecurityInterceptor"/>
+	</bean>
+	
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref='preAuthenticatedAuthenticationProvider'/>
+	</security:authentication-manager>
+	
+	
+	
+	<!-- channelProcessingFilter -->
+	
+	<bean id="secureChannelProcessor" class="org.springframework.security.web.access.channel.SecureChannelProcessor"/>
+	
+	<bean id="insecureChannelProcessor" class="org.springframework.security.web.access.channel.InsecureChannelProcessor"/>
+	
+	<bean id="channelDecisionManager" class="org.springframework.security.web.access.channel.ChannelDecisionManagerImpl">
+		<property name="channelProcessors">
+			<list>
+				<ref bean="secureChannelProcessor"/>
+				<ref bean="insecureChannelProcessor"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="channelProcessingFilter" class="org.springframework.security.web.access.channel.ChannelProcessingFilter">
+		<property name="channelDecisionManager" ref="channelDecisionManager"/>
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source>
+<!-- 				<security:intercept-url pattern="/**" access="ANY_CHANNEL"/> -->
+				<security:intercept-url pattern="/**" access="REQUIRES_SECURE_CHANNEL"/>
+			</security:filter-security-metadata-source>
+		</property>
+	</bean>
+	
+	<!-- channelProcessingFilter -->
+	
+	
+	
+	<!-- securityContextPersistenceFilter -->
+	
+	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
+	
+<!-- 	<bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/> -->
+	<bean id="securityContextPersistenceFilter" class="it.prato.comune.tolomeo.security.CustomSecurityContextPersistenceFilter">
+		<constructor-arg name="securityContextRepository" ref="securityContextRepository"/>
+	</bean>
+	
+	<!-- securityContextPersistenceFilter -->
+	
+	
+	
+	<!-- preAuthenticatedProcessingFilter -->
+	
+<!-- 	<bean id="preAuthenticatedProcessingFilter" class="org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter"> -->
+<!-- 		<property name="authenticationManager" ref="authenticationManager"/> -->
+<!-- 		<property name="authenticationDetailsSource"> -->
+<!-- 			<bean class="org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource"> -->
+<!-- 				<property name="mappableRolesRetriever"> -->
+<!-- 					<bean class="org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever" /> -->
+<!-- 				</property> -->
+<!-- 				<property name="userRoles2GrantedAuthoritiesMapper"> -->
+<!-- 					<bean class="org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper"> -->
+<!-- 						<property name="convertAttributeToUpperCase" value="true"/> -->
+<!-- 					</bean> -->
+<!-- 				</property> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	<bean id="preAuthenticatedProcessingFilter" class="it.prato.comune.tolomeo.security.CustomJ2eePreAuthenticatedProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="authenticationDetailsSource">
+			<bean class="org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource">
+				<property name="mappableRolesRetriever">
+					<bean class="org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever" />
+				</property>
+				<property name="userRoles2GrantedAuthoritiesMapper">
+					<bean class="org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper">
+						<property name="convertAttributeToUpperCase" value="true"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="securityContextPersistenceFilter" ref="securityContextPersistenceFilter"/>
+	</bean>
+	
+	<!-- preAuthenticatedProcessingFilter -->
+	
+	
+	
+	<!-- postAuthenticatedProcessingFilter -->
+	
+	<bean id="postAuthenticatedProcessingFilter" class="it.prato.comune.tolomeo.security.PostAuthenticatedProcessingFilter">
+		<property name="securityContextPersistenceFilter" ref="securityContextPersistenceFilter"/>
+	</bean>
+	
+	<!-- postAuthenticatedProcessingFilter -->
+	
+	
+	
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg value="/"/>
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
+	
+	<bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
+	</bean>
+	
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter"/>
+	
+	<bean id="webExpressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+	
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<property name="allowIfAllAbstainDecisions" value="false"/>
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+				<ref bean="webExpressionVoter"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- filterSecurityInterceptor -->
+	
+<!-- 	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor"> -->
+<!-- 		<property name="authenticationManager" ref="authenticationManager"/> -->
+<!-- 		<property name="accessDecisionManager" ref="accessDecisionManager"/> -->
+<!-- 		<property name="securityMetadataSource"> -->
+<!-- 			<security:filter-security-metadata-source use-expressions="true"> -->
+<!-- 				<security:intercept-url pattern="/resources/**" access="permitAll"/> -->
+<!-- 				<security:intercept-url pattern="/**" access="denyAll"/> -->
+<!-- 			</security:filter-security-metadata-source> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	<bean id="filterSecurityInterceptor" class="it.prato.comune.tolomeo.security.CustomFilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager" ref="accessDecisionManager"/>
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source use-expressions="true">
+				<security:intercept-url pattern="/resources/**" access="permitAll"/>
+				<security:intercept-url pattern="/**" access="denyAll"/>
+			</security:filter-security-metadata-source>
+		</property>
+		<property name="securityContextPersistenceFilter" ref="securityContextPersistenceFilter"/>
+	</bean>
+	
+	<!-- filterSecurityInterceptor -->
+	
+	
+	
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map path-type="ant">
+			<security:filter-chain pattern="/**" filters="securityContextPersistenceFilter, preAuthenticatedProcessingFilter, postAuthenticatedProcessingFilter, logoutFilter, exceptionTranslationFilter, filterSecurityInterceptor"/>
+		</security:filter-chain-map>
+	</bean>
+	
+	<bean id="servletContext" class="org.springframework.web.context.support.ServletContextFactoryBean"/>
+	
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter"/>
+	
+</beans>

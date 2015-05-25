@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
+	
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+	<title>Demo Tolomeo Index</title>
+    <link rel="stylesheet" href="/commonintra2-0/css/main.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="/commonintra2-0/css/menu.css" type="text/css" media="all" /> 
+	<link rel="stylesheet" href="/commonintra2-0/css/form.css" type="text/css" media="all" /> 
+	<link rel="stylesheet" href="/commonintra2-0/css/tabelle.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="/commonintra2-0/css/print.css" type="text/css" media="print"/>
+	<link rel="stylesheet" href="/commonintra2-0/css/sit.css" type="text/css" media="all"/>
+</head>
+
+<body>
+	<!-- Intestazione/header -->
+	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Indice</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div>
+	<!-- Fine Intestazione/header -->
+
+	<!-- Logout/Percorso -->
+	<div id="tmpl_barra">
+		<div id="tmpl_barrawrap"> 
+			<div id="tmpl_percorso">
+				<ol title="Percorso di navigazione dalla home page">
+					<li><a href="#">home</a></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<div id="tmpl_logout"><a href="javascript:window.close();">logout</a></div>
+	</div>
+	<!-- Fine Logout/Percorso -->
+
+	<!-- Menu/Content -->
+	<div id="tmpl_main">
+		<!-- Content -->
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<!-- Pulsantiera -->
+				<div id="tmpl_naviga">
+					<span id="tmpl_bottone_indietro"><a href="javascript:history.back();" title="Torna alla pagina precedente">Indietro</a></span>
+					<span id="tmpl_bottone_stampa"><a href="javascript:window.print();" title="Stampa la pagina corrente">Stampa</a></span>
+					<span id="tmpl_bottone_help"><a href="" title="Si aprirà una nuova finestra con l'help della funzione">Help</a></span>
+				</div>
+				<!-- Fine Pulsantiera -->
+				
+				<h1 id="contenuto">Indice demo e pagine di sviluppo</h1>
+		
+				<div id="intro">
+					Indice dei vari esempi di layout e di utilizzo di Tolomeo/Pratomaps
+				</div>
+				
+				<ul>
+					<li><a href="testOpenLayers.html">Test OpenLayers (CAD)</a></li>
+					<li><a href="demoCAD.html">Test OpenLayers (CADExt)</a></li>
+					<li><a href="testPage.html">Pagina di Test di TolomeoExt</a></li>
+					<li><a href="demoZoomApertura.html">Zoom su apertura</a></li>
+					<li><a href="demoZoomObj.html">Zoom ad un oggetto</a></li>
+					<li><a href="demoButtonTOC.html">Legenda a pulsanti</a></li>
+					<li><a href="demoStreetView.html">StreetView Google</a></li>
+					<li><a href="demoTimeMachine.html">Time Machine</a></li>
+					<li><a href="demoMappingCommerciale.html">Servizi di mapping commerciale (Google, bing, Yahoo) e Openstreetmap</a></li>
+					<li><a href="demoDoppiaInfo.html">Esempio di DOPPIO pannello INFORMATIVO</a></li>
+					<li><a href="demoVisualizzatoreDisegni.html">Esempio di visualizzatore elaborati catastali</a></li>
+					<li><a href="themes/launcher/index.html">Esempio temi</a></li>
+					<li><a href="demoTolomeoInDiv.html">Esempio Tolomeo in un div (Regione Toscana)</a></li>
+					<li><a href="demoMappeCollegate.html">Esempio mappe collegate (Regione Toscana)</a></li>
+				</ul>
+				
+				<h2>Intranet</h2>
+				<ul>
+					<li><a href="http://tolomeo.comune.prato.it/tolomeobinj/MenuServlet?idfun=000000000000010&ext">Stradario</a></li>
+					<li><a href="demoCDU.html">Visura per CDU</a></li>
+					<li><a href="demoTpnVia.html">Ricerca via</a></li>
+					<li><a href="demoTpnCivico.html">Ricerca civico</a></li>
+					<li><a href="/tolomeobinj/TolomeoMainServlet?paramPreset=TimeMachine&ext">Time Machine su layout intranet</a></li>
+					<li><a href="/tolomeobinj/TolomeoMainServlet?paramPreset=MappingCommerciale&ext">Servizi di mapping commerciale (Google, bing, Yahoo) e Openstreetmap su layout intranet</a></li>
+				</ul>
+				<div style="padding-left:2em">
+					<h3>Integrazione cartografica in alcuni servizi</h3>
+					<ul>
+						<li><a href="demoOrdinanze.html">Ordinanze</a></li>
+						<li><a href="demoPermessiInvalidi.html">Permessi invalidi</a></li>
+						<li><a href="demoFarmacie.html">Farmacie</a></li>
+						<li><a href="demoDemografico.html">Demografico (integrazione anagrafe-cartografia)</a></li>
+						<li><a href="demoCIA.html">Certificati idoneità alloggiativa</a></li>
+						<li><a href="demoFidia.html">Fidia</a></li>
+					</ul>
+				</div>
+				<!-- 
+				<div style="padding-left:2em">
+					<h3>Layout (ToloPanelFull.js)</h3>
+					<ul>
+						<li><a href="toloExtIntranet.html?tipo=win">Window</a></li>
+						<li><a href="toloExtIntranet.html?tipo=div">Div</a></li>
+						<li><a href="toloExtIntranet.html?tipo=viewport">Vieport</a></li>
+						<li><a href="toloExtIntranet.html?tipo=win2">Window multiple</a></li>
+					</ul>
+				</div>
+				 -->
+				
+				<h2>Internet</h2>
+				<ul>
+					<li><a href="internet/demoEdiliziaLibera.html">Edilizia Libera</a></li>
+					<li><a href="internet/demoSegniTerritorio.php">I segni del Territorio</a></li>
+					<li><a href="internet/demoFarmacie.html">Farmacie</a></li>
+					<li><a href="internet/demoPianiAttuativi.html">Piani Attuativi</a></li>
+					<li><a href="internet/demoTserve.html">Tabaccherie T-Serve</a></li>
+					<li><a href="internet/demoSportelloAnimali.html">Il Riccio - Sportello animali</a></li>
+					<li><a href="http://dvppratomaps.comune.prato.it/pratomapsbinj/jsp/servizi/strumentiUrb/home.jsp">Strumenti Urbanistici on-line</a></li>
+				</ul>
+				
+				
+				<h2>API e PRESET</h2>
+				<ul>
+					<li><a href="/tolomeobinj/TolomeoMainServlet?paramPreset=WMSPrato3003">Utilizzo di WMS ed aggiunta WMS</a></li>
+					<li><a href="demoButtonTOC.html">Utilizzo in legenda di dataprovider alternativo</a></li>
+					<li><a href="/tolomeobinj/TolomeoMainServlet?paramPreset=DemoSnapping">Utilizzo snapping a layer WFS</a></li>
+					<li><a href="/tolomeobinj/TolomeoMainServlet?paramPreset=Csw&ext=">Utilizzo CSW explorer</a></li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+
+	<!-- Copyright -->
+	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>
+	<!-- Fine Copyright -->
+
+</body>
+</html>

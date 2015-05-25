@@ -1,0 +1,35 @@
+{
+	projectName: 'Tolomeo Ext',
+    deployDir: 'src/main/webapp/js/ext/csw/build/',
+    licenseText: "Tolomeo is a developing framework for visualization, editing,\ngeoprocessing and decisional support application based on cartography.\n\nTolomeo Copyright 2011 Comune di Prato;\n\nThis file is part of Tolomeo.\n\nTolomeo is free software; you can redistribute it and/or modify \nit under the terms of the GNU Lesser General Public License \nas published by the Free Software Foundation; either version 3 of the License,\n or (at your option) any later version.\n\nTolomeo is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.\n\nYou should have received a copy of the GNU Lesser General Public License along with Tolomeo;\n if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA\n\nDevelopers Information:\n\nTolomeo is developed by Comune di Prato\n\nAlessandro Radaelli\nFederico Nieri\nMattia Gennari\n\nsit@comune.prato.it\n \n\nVersione in Italiano LGPL\n\nTolomeo è un framework per lo sviluppo di applicazioni per\nvisualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.\n\nTolomeo Copyright 2011 Comune di Prato;\n\nQuesto file fa parte di Tolomeo.\n\nTolomeo è un software libero; è possibile redistribuirlo e / o\n modificarlo sotto i termini della GNU Lesser General Public License,\n come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.\n\nTolomeo è distribuito nella speranza che possa essere utile,\nma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o\nIDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.\n\nSi dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario,\n si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA\n\n\nInformazioni Sviluppatori:\n\nTolomeo è sviluppato dal Comune di Prato\n\nAlessandro Radaelli\nFederico Nieri\nMattia Gennari\n\nsit@comune.prato.it\n",
+    pkgs: [{
+		name: 'Csw Explorer',
+        file: 'cswExplorer.js',
+        isDebug: false,
+        fileIncludes: [{
+        	text: 'CSWRecord.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWRecordsReader.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWHttpProxy.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWGrid.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWCatalogChooser.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWSearchTool.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWPanel.js',
+			path: 'ext/csw/src/'
+		},{
+        	text: 'CSWPagingToolbar.js',
+			path: 'ext/csw/src/'
+		}]
+    }] 
+}

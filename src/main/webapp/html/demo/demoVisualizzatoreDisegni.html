@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Demo tolomeo - Visualizzatore disegni del catasto</title>
+
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+<link rel="stylesheet" type="text/css" href="http://tolomeo.comune.prato.it/css/toloExt-intra.css" />
+
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/ext/raphael/raphael-min.js" charset="utf-8"></script>	
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/build/toloExt-all-debug.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvptolomeo.comune.prato.it/js/tolomeoExt/toloDrawingViewer.js" charset="utf-8"></script>	
+
+<script type="text/JavaScript">
+Ext.onReady(function(){
+	
+	Ext.BLANK_IMAGE_URL = TolomeoExt.Vars.TOLOMEOStaticRoot + "img/pixel.gif";
+	
+	dw = new TolomeoExt.DrawingViewer ({
+           zoomStepFactor : 1.5,
+           maxZoom : 200,         
+           imageSrc: 'http://catastoweb.comune.prato.it/filerepository/get_image.php?namespace=catasto:raster&id=113660&format=gif',
+           cls: 'clearCSS',
+           drawingColor: 'green'
+         });
+            
+    w = new Ext.Window({
+    	cls: 'clearCSS',
+       	height: 500,
+        width: 600,
+        constrain: true,
+        title: 'Visualizzatore Tavole',
+        layout: 'fit',
+        collapsible: true,
+        maximizable: true,
+        closeAction: 'hide',
+        items:[dw]
+     }).show();
+		
+});
+</script>
+</head>
+
+<body>
+	<div><a href="javascript:dw.loadImage({src:'http://catastoweb.comune.prato.it/filerepository/get_image.php?namespace=catasto:raster&id=17030&format=gif',scale:200,format:'A3'});void(0);">Carica via Poli, 11 (scala 1:200, formato: 'A3')</a></div>
+</body>
+</html>

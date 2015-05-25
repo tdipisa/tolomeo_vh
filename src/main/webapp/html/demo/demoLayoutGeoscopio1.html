@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS di Tolomeo -->
+<link rel="stylesheet" type="text/css" href="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://192.168.100.216:8080/tolomeobinj/css/toloExt-intra.css" />
+
+<!-- <link href="http://code.google.com/apis/maps/documentation/javascript/examples/standard.css" rel="stylesheet" type="text/css" />  -->
+
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/proj4js/proj4js-compressed.js"></script>
+<!--  <script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>  -->
+
+
+<!--INIZIO Javascript compattato In produzione inserire solo questo al posto di tutti quelli seguenti
+<script type="text/JavaScript" src="http://www502.regione.toscana.it/geoscopio/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script> -->
+ 
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ext-all-debug.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ext-lang-it.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/OpenLayers-all.js"></script>  
+
+<!-- <script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/lib/OpenLayers.js"></script>  -->
+
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/PointFromRef.js"></script>	
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/ConstrainedPath.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/ConstrainedPoint.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/openlayers/ConstrainedPolygon.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/tolomGeometry.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/ExtFix.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/ToloParamsJS.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloVars.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloCrossAjax.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloMeasurePanelExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/ToloPanelBase.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloScalePanelExt.js"></script>	
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloViewerOLExt.js"></script>	
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloAPIOpCodes.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCAbstractDataProvider.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCMapServerDataProvider.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCGeoserverDataProvider.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCMultiServerDataProvider.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCNodeUI.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCPanelExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTreeTOCPanelExt.js"></script> 
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloStylePanel.js"></script> 
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloQueryPanelExt.js"></script>	
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloButtonPanel.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloLazyLoad.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloProjection.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloMapAPIExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloPointFromRefPanelExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloCADPanelExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloGotoLocationWindowExt.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloContextMenu.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/GroupingListView.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/StatusBar.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/carousel.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/CarouselPanel.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTimeMachinePanel.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTimeMachineMultiPanel.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/RowExpander.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/ext/extJS/ux/uxvismode.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloIFrame.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloTOCInfo.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloLayerViewerAggregation.js"></script>
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloServerMappe.js"></script>				
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloMapDefinition.js"></script>		
+
+
+
+<script type="text/javascript" charset="utf-8" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/toloStreetviewViewer.js"></script> 
+
+<!--FINE Javascript di Tolomeo -->
+
+<!-- L'inclusione di questo script permette di scegliere la mappa in uso -->   
+<script type="text/JavaScript" src="http://192.168.100.216:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=LegendaMultiServer&url1=http%3A//geoserver.comune.prato.it/geoserver/ows%3Fservice%3Dwms&lay1=comunepo:licEdilStoriche" charset="utf-8"></script>
+
+<!--  Questi javascript contengono le definizioni dei due diversi layout utilizzati in questa pagina -->
+<script type="text/JavaScript" src="http://192.168.100.216:8080/tolomeobinj/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script>
+
+<script type="text/JavaScript">
+
+function getQSParam(ParamName) {
+	// Memorizzo tutta la QueryString in una variabile
+  	QS=window.location.toString(); 
+  	// Posizione di inizio della variabile richiesta
+  	var indSta=QS.indexOf(ParamName+'='); 
+  	// Se la variabile passata non esiste o il parametro è vuoto, restituisco null
+  	if (indSta==-1 || ParamName=="") return null; 
+	// Posizione finale, determinata da una eventuale & che serve per concatenare più variabili
+  	var indEnd=QS.indexOf('&',indSta); 
+  	// Se non c'è una &amp;, il punto di fine è la fine della QueryString
+  	if (indEnd==-1) indEnd=QS.length; 
+  	// Ottengo il solore valore del parametro, ripulito dalle sequenze di escape
+  	var valore = unescape(QS.substring(indSta+ParamName.length+1,indEnd)); 
+  	// Restituisco il valore associato al parametro 'ParamName'
+  	return valore; 
+}
+
+Ext.onReady(function(){
+	
+	// Ricavo parametri del BBOX  e codTPN del layer da accendere (se ci sono)
+	var bbox = null;
+	var top 	= getQSParam('top');
+	
+	var left 	= getQSParam('left');
+	var right 	= getQSParam('right');
+	var bottom 	= getQSParam('bottom');
+	if (top!=null && left!=null && right!=null && bottom!=null) {
+		bbox = new BBox(left,bottom,right,top);	
+	}
+	var codtpn 	= getQSParam('codtpn');
+	var idtpn 	= getQSParam('idtpn');
+	
+	// Creo il pannello personalizzando i bottoni ed i tool che voglio visibili
+	tolomeoPnl = new TolomeoExt.ToloPanelIntra({
+		region: 'center',
+		cls: 'clearCSS',
+		title: 'Titolo',
+		// 
+		//urlLogo: 'http://www502.regione.toscana.it/geoscopio/rt-rendering/logo_rt_1.jpg' ,
+		withDataPanel: true,
+		withToolsPanel: true,
+		collapsedToolsPanel: true,
+		legendaPanelOpt: {
+			collapsed: false
+		},
+		ricercaPanelOpt: {
+			collapsed: true
+		},
+		collapsedToolsPanel: false,
+		toolbarOpt: {
+			withLegenda:true,
+			withQuery:false,
+			withSeleziona: true,
+			withAnnullaSeleziona: true,
+			withLayerList:  false,
+			withIdentify:  true,
+			withNuovo:  false,
+			withUpdateAlfa:  false,
+			withAdd:  false,
+			withSubtract:  false,
+			withAddSub:  false,
+			withVertexEdit:  false,
+			withDragDrop:  false,
+			withDelete:  false,
+			withAutoIdentify: true,
+			defaults: {scale:'medium'}//,
+			//iconBasePath: TolomeoExt.Vars.TOLOMEOServer + TolomeoExt.Vars.TOLOMEOContext + '/mycommon/img/icone24-default/'
+		},
+		// Inizializza Tolomeo perchè venga fatto lo zoom all'oggetto se definiti codtpn e idtpn o al box
+		APIConfig: {
+			//autoCloseChoiceWindow:false,
+	        openActionsJS: function() {
+             	if (codtpn!=null && idtpn!=null) {
+             			/**
+             			 * Method: zoomToObj
+             			 * Esegue uno zoom all'oggetto dopo aver interrogato il server per recuperare la geometria
+             			 * per mezzo di codTPN e IDTPN.
+             			 * Se il parametro selectIt è impostato a true l'oggetto viene selezionato, se = false viene evidenziato 
+             			 * Se bMulti == true e selectIt==false viene abilitata l'evidenziazione multipla (l'oggetto viene evidenziato insieme agli altri eventualmente già evidenziati) 
+             			 *
+             			 * Parameters:
+             			 * codTPN - {String} codice del layer
+             			 * IDTPN - {String o Array} id della feature
+             			 * selectIt - {Boolean} se true viene selezionato
+             			 * scale - {Integer} scala, se valorizzato viene fatto lo zoom alla data scala
+             			 * buffer - {Integer} buffer, se valorizzato viene fatto lo zoom aggiungendo il buffer passato
+             			 */
+                        this.zoomToObj(codtpn, idtpn, true ); 
+             	} else {
+             		if (bbox!=null) {
+             	    	// Posizionamento mappa su bbox
+             	    	tolomeoPnl.api.zoomToExtent(bbox, 0); // il primo parametro può essere anche una stringa WKT, il secondo parametro è un buffer eventuale
+             	   	} else {
+             	   		tolomeoPnl.api.viewer.pluginToolSelectZoomAll();
+             	   		//tolomeoPnl.api.viewer.bOnOpenDrawMap=true;		
+             	   	}
+         		}
+             }
+      	}
+	});
+	
+	new Ext.Viewport({
+		layout: 'border',
+		monitorResize: true,
+		items: [
+			tolomeoPnl
+		]
+	});
+	
+	//TERRAFLYER - INIZIO
+	tolomeoPnl.api.contextMenu.add({
+		text: 'Terraflyer',
+		//icon: this.iconBasePath + 'eye-arrow.png',
+		listeners: {click: {fn: apritf}}
+	});
+	//TERRAFLYER - FINE
+	
+	//Modifica contenuto "Aiuto e Informazioni"
+	var finestraAiutoEInfo = tolomeoPnl.api.viewer.infoTolomeoWin;
+	var tabPanel = finestraAiutoEInfo.items.get(0);
+	var primoTab =tabPanel.items.get(0);
+	var secondoTab =tabPanel.items.get(1);
+	
+	//Cambio titolo primo tab
+	primoTab.title = "nuovo titolo";
+	
+	//Cambio la scritta primo tab
+	primoTab.html = "pippo";
+	// Aggiungo un tab
+	tabPanel.add({ html: "lklklk", title: "nuovo tab" });
+	
+	//Cambio la scritta primo tab
+	secondoTab.html = "pippo1";
+		
+});
+
+//TERRAFLYER - INIZIO
+function apritf(){
+	
+	var ctxmenu = tolomeoPnl.api.contextMenu;
+	var posX = ctxmenu.getXEvtPos();
+	var posY = ctxmenu.getYEvtPos();
+	
+	var viewPos = tolomeoPnl.api.getViewerPosition(); 
+	var coordinate = tolomeoPnl.api.viewer.pluginGetCoordinateFromPixel({x:(posX-viewPos.x),y:(posY-viewPos.y)});
+		
+	var currPoint = new Point(coordinate.x,coordinate.y);	
+	// riproietto le coordinate
+	currPoint.transform(tolomeoPnl.api.viewer.pluginGetProjectionCode(),"EPSG:3003");        
+	var x = Math.round(currPoint.x);
+	var y = Math.round(currPoint.y);
+	
+	var url = "http://www.rete.toscana.it/sett/pta/cartografia_sit/sit/terraflyer2/test.html?";
+	var position = "position=" + x + "," + y + ",500";
+	var tftarget = "target=" + x + "," + (y+40000) + ",500";
+	
+	window.open(url+position+"&"+tftarget, "_blank");
+		
+}
+//TERRAFLYER - FINE
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

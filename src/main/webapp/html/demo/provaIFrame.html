@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>	
+	
+		<!-- ExtJS4 -->
+		<!--  <link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeobinj/js/ext/extJS4/resources/css/ext-all.css" />
+		<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/ext/extJS4/ext-all-debug-w-comments.js" charset="utf-8"></script> -->
+		
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeobinj/js/ext/extJS4/resources/css/ext-sandbox.css" />
+		<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/ext/extJS4/builds/ext-all-sandbox-debug-w-comments.js" charset="utf-8"></script> 
+		
+		<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/ToloIFrame4.js"></script>
+		
+	</head>
+	<body>
+	
+	<script>
+	
+	Ext4.application({
+	    name: 'TolomeoExt',
+	    appFolder: '/tolomeobinj/js/tolomeoExt',
+	    launch: function() {		    	
+	    		
+	    		//var iframe = Ext.create('TolomeoExt.ToloIFrame', { region: 'west', collapsible: true, src: 'http://www.microsoft.com' });
+	    		var iframe = Ext4.create('TolomeoExt.ToloIFrame', {
+	    			hideMode : 'visibility',
+	    			animCollapse: false,
+	    			//visibilityCls : Ext.baseCSSPrefix + 'hide-nosize1',
+	    			width: 300,
+	    			url: 'http://www.microsoft.com'});
+	    		
+	    		var aa =  Ext4.create('Ext4.Panel', {
+	    			title: 'frame',
+	    			layout: 'fit',
+	    			id: 'ale',
+	    			region: 'west',
+	    			split: true,  
+	    			collapsible: true,
+	    			hideMode : 'visibility',
+	    			animCollapse: false,
+	    			//visibilityCls : Ext.baseCSSPrefix + 'hide-nosize',
+	    			items: [iframe]
+	    		});
+	    		
+	    		var a = Ext4.create('Ext4.Panel', { 
+	    			region: 'center',
+	    			items: [
+	    			        {
+	    			        	xtype: 'button',
+	    			        	text: 'chiudi',
+	    			        	handler: function() {
+	    			                aa.hide();
+	    			            }
+	    			        },
+	    			        {
+	    			        	xtype: 'button',
+	    			        	text: 'apri',
+	    			        	handler: function() {
+	    			                aa.show();
+	    			            }
+	    			        },
+	    			        {
+	    			        	xtype: 'button',
+	    			        	text: 'collapse',
+	    			        	handler: function() {
+	    			                aa.collapse();
+	    			            }
+	    			        },
+	    			        {
+	    			        	xtype: 'button',
+	    			        	text: 'expand',
+	    			        	handler: function() {
+	    			                aa.expand();
+	    			            }
+	    			        }
+	    			        ]
+	    			});
+	    		
+				new Ext4.Viewport({
+					layout: 'border',
+					title: 'aòle',
+					//hideMode : 'offsets',
+	    			//visibilityCls : Ext.baseCSSPrefix + 'hide-nosize',
+					items: [aa,a]
+			    });
+				
+				
+	    }					
+	});
+	
+	
+	</script>
+	
+	
+	</body> 

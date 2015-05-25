@@ -1,0 +1,157 @@
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+
+.tolomeo-tolofilterbuilder .x-toolbar {
+    background: transparent;
+    border: none !important;
+}
+
+.x-btn .add {
+    background-image: url(../img/querybuilder/add.png);
+}
+
+.x-btn .delete {
+    background-image: url(../img/querybuilder/delete.png);
+}
+
+
+.filterviewupdate{
+	 background-image: url(../img/querybuilder/arrow_refresh.png);
+}
+
+.querybuilder-icon-cancel{
+	 background-image: url(../img/querybuilder/cancel.png);
+}
+
+.querybuilder-icon-find{
+	 background-image: url(../img/querybuilder/find.png);
+}
+
+/*****************
+ **BBOX FieldSet**
+ *****************/
+
+.spatial-cell{
+    text-align: center;
+}
+
+.aoi-fields{
+    margin-left: 0%;
+    margin-right: 5%;
+}
+
+.aoi-button{
+    background-image: url(../img/querybuilder/shape_square.png) !important;
+}
+
+.draw-polygon-button{
+    background-image: url(../img/querybuilder/draw_polyline.png) !important;
+}
+
+.draw-circle-button{
+    background-image: url(../img/querybuilder/draw_ellipse.png) !important;
+}
+
+.center-align{
+	margin: auto;
+}
+
+/*********************
+ ** Buffer Fieldset **
+ *********************/
+ 
+.gx-cursor{
+    background-image: url(../img/querybuilder/canvas.png);
+}
+
+.prova{
+	vertical-align: middle;
+}
+
+/*********************
+ **   FeatureGrid   **
+ *********************/
+
+.x-action-col-cell  .zoomaction{
+	background-image: url(../img/querybuilder/magnifier.png) !important;
+	width: 16px;
+	height: 16px;
+}
+
+.pageviewonmap{
+	background-image: url(../img/querybuilder/map_add.png) !important;
+	width: 16px;
+	height: 16px;
+}
+
+.pagezoomonmap{
+	background-image: url(../img/querybuilder/magnifier.png) !important;
+	width: 16px;
+	height: 16px;
+}
+
+.pageexport{
+	background-image: url(../img/querybuilder/page_white_put.png) !important;
+	width: 16px;
+	height: 16px;
+}

@@ -1,0 +1,43 @@
+.editor {
+	background-image: url(../../img/composer/editor.png) !important;
+}
+.composer {
+	background-image: url(../../img/composer/composer.png) !important;
+}
+.preview {
+	background-image: url(../../img/composer/preview.png) !important;
+}
+.new-project {
+	background-image: url(../../img/composer/new-project.png) !important;
+}
+.load-project {
+	background-image: url(../../img/composer/load-project.png) !important;
+}
+.save-project {
+	background-image: url(../../img/composer/save-project.png) !important;
+}
+.remove-container {
+	background-image: url(../../img/composer/remove-container.png) !important;
+}
+.extra-panel {
+	background-color: #ffeeee;
+}
+.selected-panel {
+	background-color: #eeeeff;
+}
+.status-bar {
+	background-color: #dfe8f6;
+}
+.information-panel {
+	font-size: 12px;
+	padding: 0px 5px 0px 5px;
+}
+.save-preview {
+	background-image: url(../../img/composer/save-preview.png) !important;
+}
+
+
+
+.contextMenuBold {
+	font-weight: bold;
+}

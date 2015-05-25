@@ -1,0 +1,337 @@
+{
+	projectName: 'Tolomeo Ext',
+    deployDir: 'src/main/webapp/js/tolomeoExt/build/',
+    licenseText: "Tolomeo is a developing framework for visualization, editing,\ngeoprocessing and decisional support application based on cartography.\n\nTolomeo Copyright 2011 Comune di Prato;\n\nThis file is part of Tolomeo.\n\nTolomeo is free software; you can redistribute it and/or modify \nit under the terms of the GNU Lesser General Public License \nas published by the Free Software Foundation; either version 3 of the License,\n or (at your option) any later version.\n\nTolomeo is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or\n FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.\n\nYou should have received a copy of the GNU Lesser General Public License along with Tolomeo;\n if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA\n\nDevelopers Information:\n\nTolomeo is developed by Comune di Prato\n\nAlessandro Radaelli\nFederico Nieri\nMattia Gennari\n\nsit@comune.prato.it\n \n\nVersione in Italiano LGPL\n\nTolomeo è un framework per lo sviluppo di applicazioni per\nvisualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.\n\nTolomeo Copyright 2011 Comune di Prato;\n\nQuesto file fa parte di Tolomeo.\n\nTolomeo è un software libero; è possibile redistribuirlo e / o\n modificarlo sotto i termini della GNU Lesser General Public License,\n come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.\n\nTolomeo è distribuito nella speranza che possa essere utile,\nma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o\nIDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.\n\nSi dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario,\n si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA\n\n\nInformazioni Sviluppatori:\n\nTolomeo è sviluppato dal Comune di Prato\n\nAlessandro Radaelli\nFederico Nieri\nMattia Gennari\n\nsit@comune.prato.it\n",
+    pkgs: [{
+		name: 'Tolomeo Ext',
+        file: 'toloExt-all.js',
+        isDebug: false,
+        fileIncludes: [
+        {	
+			text: 'ext-all.js',
+			path: 'ext/extJS/'
+        },{
+        	text: 'Property.js',
+			path: 'ext/i18n/reader/'
+        },{
+        	text: 'Json.js',
+			path: 'ext/i18n/reader/'
+        },{
+        	text: 'Bundle.js',
+			path: 'ext/i18n/'
+        },{
+        	text: 'ext-lang-it.js',
+			path: 'ext/extJS/locale/'
+        },{  
+        	text: 'OpenLayers-all.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'MapPatch.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'PointFromRef.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'ConstrainedPath.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'ConstrainedPoint.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'ConstrainedPolygon.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'AttributionMulti.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'tolomGeometry.js',
+			path: 'tolomeoExt/'
+        },{
+       		text: 'ExtFix.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloParamsJS.js',
+        	path: 'tolomeoExt/'
+        },{
+			text: 'toloVars.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloCrossAjax.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloMeasurePanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+       		text: 'ToloPanelBase.js',
+			path: 'tolomeoExt/'
+		},{
+       		text: 'ToloScalePanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloViewerOLExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'toloAPIOpCodes.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloStreetviewViewer.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloTOCAbstractDataProvider.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloTOCMultiServerDataProvider.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloTOCPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloTreeTOCPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloMenuTOCPanelExt.js',
+			path: 'tolomeoExt/'
+		},{
+        	text: 'ToloTOCInfo.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloStylePanel.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloQueryPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+       		text: 'ToloButtonPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloMapAPIExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloCADPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloPointFromRefPanelExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'toloLazyLoad.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloProjection.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloGotoLocationWindowExt.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloContextMenu.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'StatusBar.js',
+			path: 'ext/extJS/ux/statusbar/'
+        },{
+        	text: 'Carousel.js',
+			path: 'ext/extJS/ux/'
+        },{
+        	text: 'CarouselPanel.js',
+			path: 'ext/extJS/ux/'
+        },{
+        	text: 'ToloTimeMachinePanel.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloTimeMachineMultiPanel.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloIFrame.js',
+			path: 'tolomeoExt/'
+		},{
+        	text: 'ToloIIPPanel.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloLayerViewerAggregation.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'toloServerMappe.js',
+			path: 'tolomeoExt/'
+        },{
+        	text: 'ToloMapDefinition.js',
+			path: 'tolomeoExt/'
+        },{
+	       	text: 'ToloScaleComboExt.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloTOCNodeColumnExt.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloCesiumPanelExt.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'lz-string-1.3.3.js',
+			path: 'ext/lz-string/libs/'
+	    },{
+	       	text: 'ToloCommand.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloProcedure.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloFeatureGridPanel.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloFeatureManager.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloQueryBuilderExt.js',
+			path: 'tolomeoExt/'
+	    },{
+	    	text: 'ToloWMSExplorerPanel.js',
+			path: 'tolomeoExt/'
+	    },{
+	       	text: 'ToloAttributeFilter.js',
+			path: 'tolomeoExt/widgets/'
+	    },{
+	       	text: 'ToloFilterBuilder.js',
+			path: 'tolomeoExt/widgets/'
+	    },{
+	       	text: 'ToloFilterView.js',
+			path: 'tolomeoExt/widgets/'
+	    },{
+	       	text: 'ToloLayerSelector.js',
+			path: 'tolomeoExt/widgets/'
+	    },{
+	       	text: 'ToloBBOXFieldset.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloSpatialSelector.js',
+			path: 'tolomeoExt/widgets/'
+	    },{
+	       	text: 'ToloBufferFieldset.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloComparisonComboBox.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloCoordinatePicker.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloFilterField.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloUniqueValuesCombo.js',
+			path: 'tolomeoExt/widgets/form/'
+	    },{
+	       	text: 'ToloSpatialSelectorMethod.js',
+			path: 'tolomeoExt/widgets/form/spatialselector/'
+	    },{
+	       	text: 'ToloPolygonSpatialSelectorMethod.js',
+			path: 'tolomeoExt/widgets/form/spatialselector/'
+	    },{
+	       	text: 'ToloBBOXSpatialSelectorMethod.js',
+			path: 'tolomeoExt/widgets/form/spatialselector/'
+	    },{
+	       	text: 'ToloBufferSpatialSelectorMethod.js',
+			path: 'tolomeoExt/widgets/form/spatialselector/'
+	    },{
+	       	text: 'ToloCircleSpatialSelectorMethod.js',
+			path: 'tolomeoExt/widgets/form/spatialselector/'
+	    },{
+	       	text: 'ToloFeatureGrid.js',
+			path: 'tolomeoExt/widgets/grid/'
+	    },{
+	       	text: 'ToloQueryBuilderEvtManager.js',
+			path: 'tolomeoExt/events/'
+	    },{
+	       	text: 'ToloUniqueValuesStore.js',
+			path: 'tolomeoExt/data/'
+	    },{
+        	text: 'SetBox.js',
+			path: 'ext/openlayers/'
+        },{
+        	text: 'tolomOLS.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'BaseForm.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'GeocodingForm.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'GeocodingListPanel.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'NavigationSummaryPanel.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'NavigationListPanel.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'ReverseGeocodingForm.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'RoutingNavigationForm.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'ViaListPanel.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'ToloOLSPanelExt.js',
+			path: 'tolomeoExt/OLS/'
+        },{
+        	text: 'CTemplate.js',
+			path: 'js/ext/extJS/Skirtle/'
+        },{
+        	text: 'Component.js',
+			path: 'js/ext/extJS/Skirtle/grid/column/Component/'
+        },{
+        	text: 'DefaultSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/Renderer/'
+        },{
+        	text: 'Tip.js',
+			path: 'js/tolomeoExt/Styler/slider/'
+        },{
+        	text: 'ColorField.js',
+			path: 'js/tolomeoExt/Styler/form/'
+        },{
+        	text: 'FontComboBox.js',
+			path: 'js/tolomeoExt/Styler/form/'
+        },{
+        	text: 'ComparisonComboBox.js',
+			path: 'js/tolomeoExt/Styler/form/'
+        },{
+        	text: 'FilterField.js',
+			path: 'js/tolomeoExt/Styler/form/'
+        },{
+        	text: 'FeatureRenderer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'StylePanel.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'StrokeSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'FillSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'TextSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'ScaleLimitPanel.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'PointSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'LineSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'PolygonSymbolizer.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'FilterBuilder.js',
+			path: 'js/tolomeoExt/Styler/'
+        },{
+        	text: 'RulePanel.js',
+			path: 'js/tolomeoExt/Styler/'
+        }
+        ]
+    }] 
+}

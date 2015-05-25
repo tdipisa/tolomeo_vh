@@ -1,0 +1,273 @@
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+	<!-- 
+	 * Aggiungere un tag <rule> per ogni regola di deploy che si vuole applicare.
+	 * In caso che un file soddisfi piu' regole viene considerata la prima valida.
+	 * Ogni tag <rule> DEVE contenere i tag <activation-mask> e <target-dir>.
+	 *
+	 * <activation-mask> 
+	 *    Indica la maschera che attiva il deploy degli oggetti. 
+	 *    Rappresenta l'inizio del path dove si trovano i file, seguito da '**'
+	 *    per indicare una qualsiasi sequenza di sottocartelle o nomi di file, 
+	 *    e infine un eventuale suffisso o tipo file. 
+	 *    Il path e' relativo all'interno dello workspace e deve cominciare con
+	 *    /nome-progetto. Il carattere speciale '**' e' obbligatorio ed e' l'unico 
+	 *    ammesso.   ESEMPIO: /progetto/srj/**.java
+	 *    Per i file JAVA deve essere creata un activation-mask per i sorgenti (.java)  
+	 *    ma la copia verra' fatta degli equivalenti .class. Deve essere specificato 
+	 *    il path almeno fino alla cartella srj/.
+	 *
+	 * <target-dir>
+	 *    Indica la root directory di destinazione. Essa verra' sostituita alla
+	 *    parte di percorso che precede '**' nell'activation mask. Deve sempre 
+	 *    indicare una cartella. 
+	 *
+	 -->
+	 
+<!-- tolomeo -->
+<copyserver>
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/src/**.java     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\binj\WEB-INF\classes   
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/jsp/**.jsp     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\binj\jsp
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/html/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\htdocs\html   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/img/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\htdocs\img   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/css/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\htdocs\css   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/js/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\htdocs\js   
+		</target-dir>
+	</rule>	
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/mycommon/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\htdocs\mycommon   
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/config/dvp/**  
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\configvh\tolomeo
+		</target-dir>
+	</rule>		
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/WEB-INF/**web.xml     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\tolomeo\binj\WEB-INF
+		</target-dir>
+	</rule>	
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/WEB-INF/tld/**     
+		</activation-mask>
+		<target-dir>
+		  \\vas-dvp\usr1_test\vh\tolomeo\binj\WEB-INF\tld
+		</target-dir>
+	</rule>
+</copyserver>
+
+ 
+<!-- pratomaps
+<copyserver>
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/src/**.java     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\binj\WEB-INF\classes   
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/jsp/**.jsp     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\binj\jsp
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/html/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\htdocs\html   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/img/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\htdocs\img   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/css/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\htdocs\css   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/js/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\htdocs\js   
+		</target-dir>
+	</rule>
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/mycommon/**
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\htdocs\mycommon   
+		</target-dir>
+	</rule>
+
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/config/dvp/**  
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\configvh\pratomaps
+		</target-dir>
+	</rule>		
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/WEB-INF/**web.xml     
+		</activation-mask>
+		<target-dir>
+		   \\vas-dvp\usr1_test\vh\pratomaps\binj\WEB-INF
+		</target-dir>
+	</rule>	
+	
+	<rule>
+		<activation-mask>  
+		   /tolomeo_vh/WebContent/WEB-INF/tld/**     
+		</activation-mask>
+		<target-dir>
+		  \\vas-dvp\usr1_test\vh\pratomaps\binj\WEB-INF\tld
+		</target-dir>
+	</rule>
+</copyserver>
+-->

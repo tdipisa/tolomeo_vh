@@ -1,0 +1,420 @@
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Draw Feature Example</title>
+        
+        <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <style type="text/css">
+            #controlToggle li {
+                list-style: none;
+            }
+            p {
+                width: 512px;
+            }
+            .smallmap {
+			    width: 512px;
+			    height: 256px;			    
+			    border: 1px solid #ccc;
+			}
+			
+			/* INIZIO CLASS PER IL POINT-FROM-REF */						
+			#divDistanceFromRef,#divNextPoint,#divNextPointPolygon {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				padding: 0.5em;
+				background: #F3FFC4;
+				width: 25em;
+				border: 0.2em solid #B5DD13;
+				color: #000;
+				z-index: 999;
+			}
+			
+			#divDistanceFromRef div,#divNextPoint div,#divNextPointPolygon div {
+				background: #F3FFC4;
+			}
+			/* FINE CLASS PER IL POINT-FROM-REF */
+        
+        </style>
+        <script src="/tolomeohtdocs/js/ext/jquery/020jquery-1.2.6.pack.js" type="text/JavaScript"></script>	
+        <script src="/tolomeohtdocs/js/ext/openlayers/lib/OpenLayers.js" type="text/JavaScript"></script>
+        <script src="/tolomeohtdocs/js/ext/openlayers/PointFromRef.js"  type="text/JavaScript"></script>
+        <script src="/tolomeohtdocs/js/ext/openlayers/ConstrainedPath.js"  type="text/JavaScript"></script>
+        <script src="/tolomeohtdocs/js/ext/openlayers/ConstrainedPolygon.js"  type="text/JavaScript"></script>
+        <script type="text/javascript">
+            var map, drawControls;
+            OpenLayers.Util.onImageLoadErrorColor = "transparent";
+            function init(){
+                map = new OpenLayers.Map('map');
+
+                var wmsLayer = new OpenLayers.Layer.WMS( "OpenLayers WMS",
+                    "http://labs.metacarta.com/wms/vmap0?", {layers: 'basic'});
+					
+                var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
+                var pointFromLayer = new OpenLayers.Layer.Vector("PointFromRef Layer");
+                var constrainedLineLayer = new OpenLayers.Layer.Vector("ConstrainedLine Layer");
+                var lineLayer = new OpenLayers.Layer.Vector("Line Layer");
+                var polygonLayer = new OpenLayers.Layer.Vector("Polygon Layer");
+                var constrainedPolygonLayer = new OpenLayers.Layer.Vector("ConstrainedPolygon Layer");
+
+                map.addLayers([wmsLayer, pointLayer,pointFromLayer,lineLayer,constrainedLineLayer,polygonLayer,constrainedPolygonLayer]);
+                map.addControl(new OpenLayers.Control.LayerSwitcher());
+                map.addControl(new OpenLayers.Control.MousePosition());
+                                
+				// Opzioni pointFromRef                                			    
+			    var pointFromRefOptions = {callbacks : {
+			    	'refPoint' : function(point){
+									showDistanceControl();																																	
+							   },
+				    'distance' : function(distance){													
+									onDrawDistance(distance);
+							   }				   
+			    }};
+			    
+			    // Opzioni constrained line 
+			    var constrainedLineOptions = {callbacks : {
+			    	'firstPoint' : function(point){
+									showNextPointControl();																																	
+							   },
+				    'distance' : function(distance){													
+									onDrawLine(distance);
+							   }				   
+			    }, handlerOptions:{ring:false}};
+			    
+			    // Opzioni constrained polygon
+			    var constrainedPolygonOptions = {callbacks : {
+			    	'firstPoint' : function(point){
+									showNextPointPolygonControl();																																	
+							   },
+				    'distance' : function(distance){													
+									onDrawLinePolygon(distance);
+							   },
+					'modify' : function(point,sketch){	
+									var area = sketch.geometry.getArea();
+								
+									//Arrotondamento a 2 decimali
+									area = Math.round(area*100)/100;										
+									onModifyPolygon(area);
+							   }		   				   
+			    }};
+
+                drawControls = {
+                    point: new OpenLayers.Control.DrawFeature(pointLayer,
+                                OpenLayers.Handler.Point),
+                    pointFromRef : new OpenLayers.Control.DrawFeature(pointFromLayer,
+        						OpenLayers.Handler.PointFromRef,pointFromRefOptions),        			
+                    line: new OpenLayers.Control.DrawFeature(lineLayer,
+                                OpenLayers.Handler.Path),
+                    constrainedLine : new OpenLayers.Control.DrawFeature(constrainedLineLayer,
+                                OpenLayers.Handler.ConstrainedPath,constrainedLineOptions),
+                    polygon: new OpenLayers.Control.DrawFeature(polygonLayer,
+                                OpenLayers.Handler.Polygon),
+                    constrainedPolygon : new OpenLayers.Control.DrawFeature(constrainedPolygonLayer,
+                                OpenLayers.Handler.ConstrainedPolygon,constrainedPolygonOptions),
+                    selectControl : new OpenLayers.Control.SelectFeature([constrainedPolygonLayer])
+                };
+                                
+                drawControls['pointFromRef'].featureAdded = function(geom) { hideDistanceControl();}; 
+                drawControls['constrainedLine'].featureAdded = function(geom) { hideNextPointControl();};
+                drawControls['constrainedPolygon'].featureAdded = function(geom) { hideNextPointPolygonControl();};
+
+                for(var key in drawControls) {
+                    map.addControl(drawControls[key]);
+                }
+                
+                map.addControl(new OpenLayers.Control.KeyboardDefaults());
+
+                map.setCenter(new OpenLayers.LonLat(0, 0), 3);
+
+                document.getElementById('noneToggle').checked = true;
+            }
+
+            function toggleControl(element) {
+                for(key in drawControls) {
+                    var control = drawControls[key];
+                    if(element.value == key && element.checked) {
+                        control.activate();
+                    } else {
+                        control.deactivate();
+                    }
+                }
+            }
+            
+            /* INIZIO FUNZIONI PER IL POINT-FROM-REF */
+            function pluginSetDistanceFromPoint(distance){
+				distance = (""+distance).replace(",",".");
+				if (isNaN(distance)) {
+					alert("E' necessario inserire un numero");
+					return;
+				}
+				drawControls['pointFromRef'].handler.setDistance(distance);
+			}
+			function showDistanceControl(){
+				jQuery("#divDistanceFromRef").show();	
+				setTimeout('jQuery("#distanceFromRef").focus();jQuery("#distanceFromRef").select();',200);		
+			}
+			
+			function onDrawDistance(distance){
+				jQuery("#distanceFromRefTmp").html(Math.round(distance*100)/100);
+			}
+			
+			function hideDistanceControl(){
+				jQuery("#distanceFromRef").val("");
+				jQuery("#divDistanceFromRef").hide();
+			}
+			/* FINE FUNZIONI PER IL POINT-FROM-REF */
+			
+			/* INIZIO FUNZIONI PER IL NEXT-POINT */
+			function pluginSetNextPoint(command){
+				command = "@" + command;
+				drawControls['constrainedLine'].handler.runCommand(command);
+				jQuery("#nextPoint").val("");
+			}
+			
+			function showNextPointControl(){
+				jQuery("#divNextPoint").show();	
+				setTimeout('jQuery("#nextPoint").focus().select();',200);		
+			}
+			
+			function onDrawLine(distance){
+				jQuery("#distanceFromPrevPointTmp").html(Math.round(distance*100)/100);
+			}
+			
+			function hideNextPointControl(){
+				jQuery("#nextPoint").val("");
+				jQuery("#divNextPoint").hide();
+			}
+			
+			function setRelativeAngle(value){			
+				drawControls['constrainedLine'].handler.setRelativeAngle(Number(value));
+			}
+			/* FINE FUNZIONI PER IL NEXT-POINT */
+			
+			/* INIZIO FUNZIONI PER IL NEXT-POINT-POLYGON */
+			function pluginSetNextPointPolygon(command){
+				command = "@" + command;
+				drawControls['constrainedPolygon'].handler.runCommand(command);
+				jQuery("#nextPointPolygon").val("");
+			}
+			
+			function showNextPointPolygonControl(){
+				jQuery("#divNextPointPolygon").show();	
+				setTimeout('jQuery("#nextPointPolygon").focus().select();',200);		
+			}
+			
+			function onDrawLinePolygon(distance){
+				jQuery("#distanceFromPrevPointPolygonTmp").html(Math.round(distance*100)/100);
+			}
+			
+			function onModifyPolygon(area){
+				jQuery("#areaPolygonTmp").html(area);
+			}
+			
+			function hideNextPointPolygonControl(){
+				jQuery("#nextPointPolygon").val("");
+				jQuery("#divNextPointPolygon").hide();
+			}
+			
+			function setRelativeAnglePolygon(value){			
+				drawControls['constrainedPolygon'].handler.setRelativeAngle(Number(value));
+			}
+			/* FINE FUNZIONI PER IL NEXT-POINT-POLYGON */
+			
+        </script>
+    </head>
+    <body onload="init()">
+        <h1 id="title">OpenLayers Draw Feature Example</h1>
+        <label><input class="submit" name="drawFirstPoint" value="Draw First Point" title="Imposta il primo punto" type="button" onclick="drawControls['constrainedLine'].handler.drawFirstPoint(-0.88,1.76);"/></label>
+        <div id="divDistanceFromRef" style="display:none;">
+			<form action="" id="formDistanceFromRef" method="post" onsubmit="pluginSetDistanceFromPoint(this.distanceFromRef.value); return false;">					
+				<fieldset>					
+					<legend>Distanza dal punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="distanceFromRef" id="lblDistanceFromRef"></label>
+						<input name="distanceFromRef" id="distanceFromRef" value="" type="text" />												
+						<label><input class="submit" name="distanceConfirm" value="Imposta" title="conferma distanza" type="submit" /></label>
+					</div>	
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label for="distanceFromRefTmp" id="lblDistanceFromRefTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromRefTmp">0</label>
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>
+			</form>
+		</div>
+		
+		<div id="divNextPoint" style="display:none;">
+			<form action="" id="formNextPoint" method="post" onsubmit="pluginSetNextPoint(this.nextPoint.value); return false;">							
+				<fieldset>					
+					<legend>Prossimo punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="nextPoint" id="lblNextPoint">@</label>
+						<input name="nextPoint" id="nextPoint" value="" type="text" />												
+						<label><input class="submit" name="nextPointConfirm" value="Imposta" title="imposta punto successivo" type="button" onclick="pluginSetNextPoint(this.form.nextPoint.value);"/></label>
+						<label><input class="submit" name="cancelFirstPoint" value="Cancella la prima linea" title="Cancella la prima linea" type="button" onclick="drawControls['constrainedLine'].handler.clearFirstPoint();this.form.nextPoint.focus();"/></label>											
+					</div>	
+					
+				</fieldset>
+				<fieldset>
+					<legend>Angolo relativo a :</legend>					
+					<div>						
+						<label for="relativeAngle1" id="lblNextPoint"><input type="radio" name="relativeAngle" id="relativeAngle1"  value="1" checked="checked" onclick="setRelativeAngle(this.value);" /> lato precedente</label>
+						<label for="relativeAngle2" id="lblNextPoint"><input type="radio" name="relativeAngle" id="relativeAngle2"  value="0" onclick="setRelativeAngle(this.value);" /> orizzontale</label>
+					</div>
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label id="lblDistanceFromPrevTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromPrevPointTmp">0</label>
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>				
+			</form>
+		</div>
+		
+		<div id="divNextPointPolygon" style="display:none;">
+			<form action="" id="formNextPointPolygon" method="post" onsubmit="pluginSetNextPointPolygon(this.nextPointPolygon.value); return false;">							
+				<fieldset>					
+					<legend>Prossimo punto</legend>
+					<div class="tmpl_form_nofloat distanceFromRef">	
+						<label for="nextPointPolygon" id="lblNextPointPolygon">@</label>
+						<input name="nextPointPolygon" id="nextPointPolygon" value="" type="text" />												
+						<label><input class="submit" name="nextPointPolygonConfirm" value="Imposta" title="imposta punto successivo" type="button" onclick="pluginSetNextPointPolygon(this.form.nextPointPolygon.value);"/></label>
+						<label><input class="submit" name="cancelFirstPointPolygon" value="Cancella la prima linea" title="Cancella la prima linea" type="button" onclick="drawControls['constrainedPolygon'].handler.clearFirstPoint();this.form.nextPointPolygon.focus();"/></label>											
+					</div>	
+					
+				</fieldset>
+				<fieldset>
+					<legend>Angolo relativo a :</legend>					
+					<div>						
+						<label for="relativeAnglePolygon1" id="lblNextPointPolygon1"><input type="radio" name="relativeAnglePolygon" id="relativeAnglePolygon1"  value="1" checked="checked" onclick="setRelativeAnglePolygon(this.value);" /> lato precedente</label>
+						<label for="relativeAnglePolygon2" id="lblNextPointPolygon2"><input type="radio" name="relativeAnglePolygon" id="relativeAnglePolygon2"  value="0" onclick="setRelativeAnglePolygon(this.value);" /> orizzontale</label>
+					</div>
+				</fieldset>
+				<div class="tmpl_form_nofloat distanceFromRef">	
+					<label id="lblDistanceFromPrevPolygonTmp" style="font-weight: bold;">Distanza attuale : </label>
+					<label id="distanceFromPrevPointPolygonTmp">0</label>m
+					<br />
+					<label id="lblAreaPolygonTmp" style="font-weight: bold;">Area attuale : </label>
+					<label id="areaPolygonTmp">0</label>mq
+					<!--  input name="distanceFromRefTmp" id="distanceFromRefTmp" value="0.0" type="text" disabled="disabled" readonly="readonly"/-->																		
+				</div>				
+			</form>
+		</div>
+
+        <div id="tags" style="margin-top: 100px;"></div>
+
+        <p id="shortdesc">
+            Demonstrate on-screen digitizing tools for point, line, and polygon creation.
+        </p>
+
+        <div id="map" class="smallmap"></div>        
+    
+        <ul id="controlToggle">
+            <li>
+                <input type="radio" name="type" value="none" id="noneToggle"
+                       onclick="toggleControl(this);" checked="checked" />
+                <label for="noneToggle">navigate</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="point" id="pointToggle" onclick="toggleControl(this);" />
+                <label for="pointToggle">draw point</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="pointFromRef" id="pointFromRefToggle" onclick="toggleControl(this);" />
+                <label for="pointToggle">draw pointFromRef</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="line" id="lineToggle" onclick="toggleControl(this);" />
+                <label for="lineToggle">draw line</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="constrainedLine" id="lineConstrainedToggle" onclick="toggleControl(this);" />
+                <label for="lineToggle">draw constrained line</label>
+            </li>            
+            <li>
+                <input type="radio" name="type" value="polygon" id="polygonToggle" onclick="toggleControl(this);" />
+                <label for="polygonToggle">draw polygon</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="constrainedPolygon" id="constrainedPolygon" onclick="toggleControl(this);" />
+                <label for="constrainedPolygon">draw constrained polygon</label>
+            </li>
+            <li>
+                <input type="radio" name="type" value="selectControl" id="selectControl" onclick="toggleControl(this);" />
+                <label for="selectControl">Seleziona una features</label>
+            </li>
+        </ul>
+
+        <div id="docs">
+            <p>With the point drawing control active, click on the map to add a point.  You can drag the point
+            before letting the mouse up if you want to adjust the position.</p>
+            <p>With the line drawing control active, click on the map to add the points that make up your line.
+            Double-click to finish drawing.</p>
+            <p>With the polygon drawing control active, click on the map to add the points that make up your
+            polygon.  Double-click to finish drawing.</p>
+            <p>Hold down the shift key while drawing to activate freehand mode.  While drawing lines or polygons
+            in freehand mode, hold the mouse down and a point will be added with every mouse movement.<p>
+        </div>
+    </body>
+</html>

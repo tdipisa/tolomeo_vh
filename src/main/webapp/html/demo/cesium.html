@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Hello World!</title>
+    <script type="text/javascript" src="../../js/ext/cesium/Build/Cesium/Cesium.js"></script>
+    <style>
+      @import url(../../js/ext/cesium/Build/Cesium/Widgets/CesiumWidget/CesiumWidget.css);
+      body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+    
+    <!--  http://localhost:8080/tolomeobinj -->
+    
+    <!-- CSS di Tolomeo -->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeobinj/js/ext/extJS/resources/css/ext-all.css" />
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeobinj/css/toloExt-intra.css" />
+
+	<!-- ExtJS4 -->
+	<link rel="stylesheet" type="text/css" href="http://localhost:8080/tolomeobinj/js/ext/extJS4/resources/css/ext-sandbox.css" />
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/ext/extJS4/builds/ext-all-sandbox.js" charset="utf-8"></script> 
+
+	<script type="text/javascript" charset="utf-8" src="http://localhost:8080/tolomeobinj/js/ext/proj4js/proj4js-compressed.js"></script>
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script> 
+    
+    <!-- Messo per non dover fare build -->
+    <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/toloMapAPIExt.js" charset="utf-8"></script>
+    
+    <!--  <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=LegendaMultiServer" charset="utf-8"></script>  -->
+	<!-- <script type="text/JavaScript" src="http://mappe.provincia.fi.it/tolomeobinj/ToloExtParamsJSServlet?paramPreset=Anpil" charset="utf-8"></script> -->
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=UrbUsiSuolo" charset="utf-8"></script>  -->
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=UrbLicEdilStoriche" charset="utf-8"></script>  -->
+	
+	<!-- <script type="text/JavaScript" src="http://www502.regione.toscana.it:80/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaFotogrammi" charset="utf-8"></script> -->
+
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=ProvaANPIL3D" charset="utf-8"></script>  -->  
+
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=ProvaRET3D" charset="utf-8"></script>
+
+	<script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script>
+ 
+	<!-- <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/toloCesiumPanelExt.js" charset="utf-8"></script>  -->
+
+   <script type="text/JavaScript" src="http://localhost:8080/tolomeobinj/js/tolomeoExt/toloCesiumPanelExt4.js" charset="utf-8"></script>
+   
+   
+  </head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+  
+  Ext4.application({
+	    name: 'TolomeoExt',
+	    appFolder: '/tolomeobinj/js/tolomeoExt',
+	    requires: ['TolomeoExt.toloCesiumPanelExt4'],
+	    launch: function() {
+	        var a = Ext4.create('Ext4.Window', {
+	            layout: 'fit',
+	            title: 'Finestra ext4',
+	            height: 400,
+	            width: 400,
+	            resizable: true,
+	            items: [
+					Ext4.create('TolomeoExt.toloCesiumPanelExt4')
+	                    ]
+	        }).show();
+	        
+	      //  a.add(Ext4.create('TolomeoExt.toloCesiumPanelExt4', {}));
+	        
+	    }
+  
+  
+  
+  });
+  
+  Ext.onReady(function(){
+
+	cesiumWidget = null;
+
+	// Creo il pannello personalizzando i bottoni ed i tool che voglio visibili
+	tolomeoPnl = new TolomeoExt.ToloPanelIntra({
+		region: 'center',
+		cls: 'clearCSS',
+		title: 'Titolo',
+		
+		withDataPanel:  true,
+		withToolsPanel: true,
+		collapsedToolsPanel: true
+	});
+	/*
+	casiumWin = new Ext.Window({
+		width: 500,
+		height: 500,
+		listeners: {
+			resize: { fn: function() {
+							if (cesiumWidget!=null) cesiumWidget.resize();
+							}
+					}
+			}
+	}).show();
+	*/
+	
+	
+	new Ext.Viewport({
+			layout: 'border',
+			monitorResize: true,
+			items: [
+				tolomeoPnl
+			]
+	});
+	
+	tolomeoPnl.api.buttonsPanel.add(
+			{
+				xtype: 'button',
+				text: "3D",
+				//icon: this.iconBasePath + 'zoomin.gif',
+				enableToggle: false,
+				overflowText: "3D",
+				//tooltip: {text: 'Aumenta la scala della mappa', title:'Zoom in'},
+				listeners: {
+					click: { fn: function() { open3DWin(); } }
+				}
+			}
+	);
+
+
+	
+	
+	/*	  
+	var west = Cesium.Math.toRadians(11.3);
+  	var south = Cesium.Math.toRadians(43.8);
+  	var east = Cesium.Math.toRadians(11.0);
+  	var north = Cesium.Math.toRadians(44.0);
+
+  	var extent = new Cesium.Extent(west, south, east, north);  
+  */
+  
+  });
+  
+  
+  function open3DWin() {
+	  
+	  // {left: bounds.left, bottom: bounds.bottom, right: bounds.right, top: bounds.top} 
+	  var extent = tolomeoPnl.api.viewer.pluginGetMapExtent();
+	  
+	  var ul = new Point(extent.left, extent.top);
+	  var br = new Point(extent.right, extent.bottom);
+      
+      ul.transform(tolomeoPnl.api.viewer.pluginGetProjectionCode(),"EPSG:4326");    
+      br.transform(tolomeoPnl.api.viewer.pluginGetProjectionCode(),"EPSG:4326");
+      
+      /*
+	  var cspnl =	new TolomeoExt.ToloCesiumPanelExt({
+	  		startExtentWest: ul.x,
+	  		startExtentEast: br.x,
+	  		startExtentNorth: ul.y,
+	  		startExtentSouth: br.y,
+	  	});  
+		
+		
+		cesiumWin1 = new Ext.Window({
+			width: 500,
+			height: 500,
+			layout: 'fit',
+			title: 'Vista 3D',
+			items: [ cspnl  ]
+		}).show();
+
+		tolomeoPnl.api.setViewer3D(cspnl);
+		*/
+		
+		var cspnl1 =	new TolomeoExt.toloCesiumPanelExt4({
+	  		startExtentWest: ul.x,
+	  		startExtentEast: br.x,
+	  		startExtentNorth: ul.y,
+	  		startExtentSouth: br.y,
+	  	});  
+		
+		
+		cesiumWin2 = Ext4.create('Ext4.Window', {
+			width: 500,
+			height: 500,
+			layout: 'fit',
+			title: 'Vista 3D',
+			items: [ cspnl1  ]
+		}).show();
+
+		tolomeoPnl.api.setViewer3D(cspnl1);
+		
+		
+  }
+    
+  		
+	  
+  
+  
+  </script>
+</body>
+</html>

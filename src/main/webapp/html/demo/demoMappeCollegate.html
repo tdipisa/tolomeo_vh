@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://www502.regione.toscana.it/geoscopio_support/js/ext/extJS/resources/ext-theme-gray/ext-theme-gray-all.css" />
+<link rel="stylesheet" type="text/css" href="http://www502.regione.toscana.it:80/geoscopio_support/css/toloExt-intra.css" />
+<!-- CSS di Tolomeo -->
+
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/standard.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" charset="utf-8" src="http://www502.regione.toscana.it:80/geoscopio_support/js/ext/proj4js/proj4js-compressed.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.0&sensor=false"></script>
+
+
+<!--INIZIO Javascript compattato In produzione inserire solo questo al posto di tutti quelli seguenti -->
+<script type="text/JavaScript" src="http://www502.regione.toscana.it/geoscopio_support/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<!--FINE Javascript di Tolomeo -->
+
+<!-- L'inclusione di questo script permette di scegliere la mappa in uso -->
+
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaCartoteca&varName=paramsJS1" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/geoscopio_support/ToloExtParamsJSServlet?paramPreset=LegendaAreeProtette&varName=paramsJS2" charset="utf-8"></script> 
+
+
+<!--  Questi javascript contengono le definizioni dei due diversi layout utilizzati in questa pagina -->
+<script type="text/JavaScript" src="http://www502.regione.toscana.it:80/geoscopio_support/js/tolomeoExt/layout/ToloPanelIntra.js" charset="utf-8"></script>
+
+<script type="text/JavaScript">
+
+Ext.application({
+      name: 'TolomeoExt',
+      appFolder: '/geoscopio_support/js/tolomeoExt',
+      launch: function() {        
+            
+        var a1 = function() {
+        	if (tolomeoPnl3.api && tolomeoPnl2.api) {
+        		tolomeoPnl3.api.viewer.on('onMapMoveEnd', function(obj) { moveEnd(tolomeoPnl3,tolomeoPnl2,obj); } );
+            tolomeoPnl2.api.viewer.on('onMapMoveEnd', function(obj) { moveEnd(tolomeoPnl2,tolomeoPnl3,obj); } );
+          }          	        
+        };
+        
+        var moveEnd = function(m1, m2, obj) {
+
+        	if (m1.api.viewer.map && m2.api.viewer.map) {
+        		var x1 = m1.api.viewer.pluginGetCurrentX();
+        		var y1 = m1.api.viewer.pluginGetCurrentY();
+        		var z1 = m1.api.viewer.pluginGetCurrentZoom();
+            
+            var x2 = m2.api.viewer.pluginGetCurrentX();
+        		var y2 = m2.api.viewer.pluginGetCurrentY();
+        		var z2 = m2.api.viewer.pluginGetCurrentZoom();
+        	
+            if(x1!=x2 || y1!=y2 || z1!=z2){
+        		  m2.api.viewer.pluginGotoPosition(x1,y1,z1);
+            }
+        	}
+        	
+        };
+               
+        tolomeoPnl2 = new TolomeoExt.ToloPanelIntra ({
+      		title: 'Regione Toscana - SITA: Cartoteca',
+      		withDataPanel: false,
+      		layout: 'fit',
+      		region: 'center',
+      		cls: 'clearCSS',
+      		paramsJS: paramsJS1,
+      		collapsedToolsPanel: true,
+      		toolbarOpt: {
+      			withSeleziona: false,
+      			withAnnullaSeleziona: false,
+      			withLayerList:  false,
+      			withIdentify:  false,
+      			withNuovo:  false,
+      			withUpdateAlfa:  false,
+      			withAdd:  false,
+      			withSubtract:  false,
+      			withAddSub:  false,
+      			withVertexEdit:  false,
+      			withDragDrop:  false,
+      			withDelete:  false,
+      			withAutoIdentify: false
+      		},
+      		listeners: { 
+      				afterrender: { fn: a1 }
+      			}  
+      	});
+                                  
+      	tolomeoPnl3 = new TolomeoExt.ToloPanelIntra ({
+      		title: 'Regione Toscana - SITA: Aree protette',
+      		withDataPanel: false,
+      		collapsible: true,
+      		width: '50%',
+      		split: true,
+      		layout: 'fit',
+      		region: 'west',
+      		cls: 'clearCSS',
+      		paramsJS: paramsJS2,
+      		collapsedToolsPanel: true,        
+      		toolbarOpt: {
+      			withSeleziona: false,
+      			withAnnullaSeleziona: false,
+      			withLayerList:  false,
+      			withIdentify:  false,
+      			withNuovo:  false,
+      			withUpdateAlfa:  false,
+      			withAdd:  false,
+      			withSubtract:  false,
+      			withAddSub:  false,
+      			withVertexEdit:  false,
+      			withDragDrop:  false,
+      			withDelete:  false,
+      			withAutoIdentify: false
+    			},
+    		  listeners: { 
+    				afterrender: { fn: a1 }
+    			}                      
+      	}); 
+      	    
+      	var splitpanel = new Ext.Panel({
+            height: 600,
+          	width:  800,
+						layout: 'border',
+            renderTo: 'mappa',
+						items: [
+							tolomeoPnl2,
+              tolomeoPnl3
+						]
+				});       
+  
+    }
+});
+
+</script>
+</head>
+<body>
+<h1 style="margin-bottom: 20px;">
+  Esempio mappe collegate
+</h1>
+<div id='mappa' ></div>
+</body>
+</html>
+

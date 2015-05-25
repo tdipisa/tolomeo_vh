@@ -1,0 +1,4 @@
+Come la precedente ma i 2 custom button, sono entrambi a due stati, facenti parte dello stesso gruppo mutuamente esclusivo.<br />
+Il primo mostra un alert, il secondo apre nel pannello la jsp mostraParametri<br />
+Utilizza esempiobase.map<br />
+Per la visualizzazione dei parametri utilizza /tolomeobinj/jsp/servizi/CorsoTolomeo/mostraParametri.jsp

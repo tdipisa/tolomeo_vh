@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Test JsUnit.Params object</title>
+    <link rel="stylesheet" type="text/css" href="../css/jsUnitStyle.css">
+    <script type="text/javascript" src="../app/jsUnitCore.js"></script>
+    <script type="text/javascript" src="../app/jsUnitTestManager.js"></script>
+    <script type="text/javascript" src="../app/jsUnitParams.js"></script>
+    <script type="text/javascript">
+
+        function testQueryStringParsing_Basic() {
+            assertObjectEquals({a: "b", c: "d", e: true, f: true},
+                    new JsUnit.Params("a=b&c=d&e&f").hash);
+        }
+
+        function testQueryStringParsing_CaseIsIgnored() {
+            assertObjectEquals({anycaseisallowed: "true", value: "IsPreserved"},
+                    new JsUnit.Params("AnyCaseIsAllowed=true&value=IsPreserved").hash);
+        }
+
+        function testQueryStringParsing_InitialPathIsRemoved() {
+            assertObjectEquals({a: "b", c: "d"},
+                    new JsUnit.Params("/some/path?a=b&c=d").hash);
+        }
+
+        function testQueryStringParsing_HexEscapedCharactersAreUnescaped() {
+            assertObjectEquals({a: "a string", b: "don't"},
+                    new JsUnit.Params("a=a%20string&b=don%27t").hash);
+        }
+
+        function testQueryStringParsing_MagicHexEscapedCharactersAreIgnored() {
+            assertObjectEquals({a: "y = x & 0xff % 3"},
+                    new JsUnit.Params("a=y %3D x %26 0xff %25 3").hash);
+        }
+
+        function testConstructTestParams_IgnoreCertainKeys() {
+            assertEquals("all=other&values=are&passed",
+                    new JsUnit.Params("testpage=A&autorun=B&submitresults=C&showtestframe=D&browserid=E&resultid=F&all=other&values=are&passed").constructTestParams());
+        }
+
+        function testConstructTestParams_ValuesAreEscaped() {
+            assertEquals("values=are%20url%20escaped",
+                    new JsUnit.Params("values=are%20url%20escaped").constructTestParams());
+        }
+
+        function testConstructTestParams_BooleansHaveNoValueWritten() {
+            assertEquals("test",
+                    new JsUnit.Params("test").constructTestParams());
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>JsUnit.Params tests</h1>
+</body>
+</html>

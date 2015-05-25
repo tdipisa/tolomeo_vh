@@ -1,0 +1,2 @@
+Come la precedente con inserimento punto con attributi. L'inserimento viene effettuato con codice custom, permettendo eventuali controlli aggiuntivi, inserimento in transazione etc.<br/>
+Utilizza pMSinistri.map<br />

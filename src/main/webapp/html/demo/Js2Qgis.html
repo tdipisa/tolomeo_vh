@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test Js2Qgis</title>
+
+<link type="image/x-icon" rel="shortcut icon" href="http://www.comune.prato.it/favicon.ico" />
+
+<!-- inizio css mappa -->
+<link rel="stylesheet" type="text/css" href="/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="/css/toloExt-inter.css?gg=ss" />
+<!-- fine css mappa -->
+
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/print.css" media="print" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/gener100.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/aree.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/formatta.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/immagini.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/liste.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/recapiti.css" type="text/css" />
+<link rel="stylesheet" href="http://www.comune.prato.it/common/css/comune/mappe.css" type="text/css" />
+		
+	<script type="text/JavaScript" src="/js/ext/extJS/ext-all-debug-w-comments.js" charset="utf-8"></script> 
+	<script type="text/JavaScript" src="/js/ext/extJS/locale/ext-lang-it.js" charset="utf-8"></script>
+	<script type="text/JavaScript" charset="utf-8" src="/js/ext/lz-string/libs/lz-string-1.3.3.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/OpenLayers-all.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/MapPatch.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/PointFromRef.js"></script>	
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPath.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPoint.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/openlayers/ConstrainedPolygon.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/tolomGeometry.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ExtFix.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloParamsJS.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/toloVars.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloCrossAjax.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloMeasurePanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloPanelBase.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloScaleComboExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloScalePanelExt.js"></script>		
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloViewerOLExt.js"></script>		
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/toloAPIOpCodes.js"></script>
+	
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTOCAbstractDataProvider.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTOCMultiServerDataProvider.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTOCPanelExt.js?hhh=kkk"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTreeTOCPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTOCNodeColumnExt.js"></script> 	
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloMenuTOCPanelExt.js"></script> 
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloStylePanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloQueryPanelExt.js"></script> 	
+	<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/ToloButtonPanelExt.js"></script>   
+ 	
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/toloLazyLoad.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloProjection.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloMapAPIExt.js"></script>
+	
+	
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloPointFromRefPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloCADPanelExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloGotoLocationWindowExt.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloContextMenu.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/extJS/ux/statusbar/StatusBar.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/extJS/ux/Carousel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/extJS/ux/CarouselPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTimeMachinePanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTimeMachineMultiPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloIFrame.js"></script>  
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloTOCInfo.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloLayerViewerAggregation.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/toloServerMappe.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloMapDefinition.js"></script>		
+				
+    <!-- CSW --> 
+	<script type="text/javascript" charset="utf-8" src="/js/ext/i18n/reader/Property.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/i18n/reader/Json.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/i18n/Bundle.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWRecord.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWRecordsReader.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWHttpProxy.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWGrid.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWCatalogChooser.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWSearchTool.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWPanel.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/ext/csw/src/CSWPagingToolbar.js"></script>
+	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloWMSExplorerPanel.js"></script>  
+	  
+	<!-- Cesium 3D 
+ 	<script type="text/JavaScript" charset="utf-8" src="/js/tolomeoExt/ToloCesiumPanelExt.js"></script>  
+ 	-->
+ 	
+ 	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloCommand.js"></script>		
+ 	<script type="text/javascript" charset="utf-8" src="/js/tolomeoExt/ToloProcedure.js"></script>		
+
+
+	<script type="text/javascript" charset="utf-8" src="/js/ext/proj4js/proj4js-compressed.js"></script>
+
+	
+	<!-- js preset e layout -->
+	<script type="text/JavaScript" src="/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+	<script type="text/JavaScript" src="/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script>
+	
+	<script type="text/JavaScript" charset="utf-8" src="/js/ext/underscore/underscore.js"></script>
+    <script type="text/JavaScript" charset="utf-8" src="/js/ext/js2qgis/jstoqgis.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		
+		Ext.application({
+		    name: 'TolomeoExt',
+		    appFolder: '/tolomeobinj/js/tolomeoExt',
+		            
+            bundle: {
+                bundle: 'CSWViewer',
+                lang: 'it-IT',
+                path: TolomeoExt.Vars.TOLOMEOServer+TolomeoExt.Vars.TOLOMEOContext+ "/jsp/i18n.jsp",
+                noCache: true,
+                format: "json"
+            },
+		               
+		    launch: function() {		    	
+	
+		    	Ext.BLANK_IMAGE_URL= "/img/pixel.gif";
+		    	Ext.Ajax.timeout = 180000;
+		    	Ext.data.JsonP.timeout = 180000;
+		    	
+		    	tolomeo = new TolomeoExt.ToloPanelInter({
+					toolbarOpt: {
+						withLegenda: false,
+						withQuery: false,
+						withInfoSelezione: true,
+						defaults: {scale:'medium'},
+						iconBasePath: TolomeoExt.Vars.TOLOMEOServer + '/img/icone/24-default/'
+					},					
+					cls: 'clearCSS',
+					region: 'center',
+					border: true,
+					titoloMappa: 'Js2Qgis'
+				});
+
+				new Ext.Viewport({
+					layout: 'border',
+					monitorResize: true,
+					items: [tolomeo]
+			    });
+				
+			/*
+				var j2qRunner = new Ext.util.TaskRunner();
+				
+				var j2qTask = j2qRunner.newTask({
+					
+				    run: function(){ 
+				    	
+				    	if(window.JSTOQGIS_INTERFACE){		
+				    		j2qTask.stop();
+			    			j2qTask.destroy();
+			    			tolomeo.api.qGisConnected = true;
+			    			Ext.getCmp('qgisConnection').setVisible(true);
+				    		Ext.MessageBox.show({
+				    			title: 'QGis Connection',
+				                msg: 'Stato : Connesso',				                
+				                width:300,				                
+				                animateTarget: 'qgisConnection',
+				                iconCls : 'iconConnected2QGis'
+				            });
+				            setTimeout(function(){
+				            	Ext.MessageBox.hide();				                 
+				            }, 3000);				            			    								        							        							        					
+				    	} 
+				    }, 
+				    interval: 250,
+				    repeat: 40
+				});		
+				
+				j2qTask.start();
+				
+				*/
+
+		    }
+            
+		});
+		
+		
+		
+		</script>
+</head>
+<body>
+
+</body>
+</html>

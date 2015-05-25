@@ -1,0 +1,4 @@
+Come la precedente ma con in più l'attivazione dell'identify sul layer circoscrizioni (visualizzazione parametri passati)<br />
+E' attivata sul layer Circoscrizioni l'opzione di identify automatico quando l'oggetto è selezionato<br />
+Utilizza esempiobase.map<br />
+Per la visualizzazione dei parametri utilizza /tolomeobinj/jsp/servizi/CorsoTolomeo/mostraParametri.jsp

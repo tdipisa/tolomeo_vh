@@ -1,0 +1,208 @@
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html>
+	 <head>
+		  <title>Test Page for Tolomeo Ext</title>
+		  
+		  <script language="javascript" src="../jsunit/app/jsUnitCore.js"></script>  
+		  <link rel="stylesheet" type="text/css" href="../jsunit/app/css/jsUnitStyle.css">
+		  
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/resources/css/ext-all.css"/>
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/resources/extTheme/olive/css/xtheme-olive.css" />
+		  <link rel="stylesheet" type="text/css" href="http://tolomeomachine:8080/tolomeohtdocs/css/tolomeoExt.css" />
+
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/ext-all-debug.js"></script>
+		  <script type="text/javascript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/extJS/ext-lang-it.js"></script>
+		  
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/ext/openlayers/OpenLayers.js" ></script>	
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/tolomGeometry.js" ></script>
+		  
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeobinj/ToloExtParamsJSServlet?paramPreset=EsempioBase"></script>
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/build/toloExt-all.js"></script>
+		  <script type="text/JavaScript" src="http://tolomeomachine:8080/tolomeohtdocs/js/tolomeoExt/layout/ToloPanelIntra.js"></script>
+		  
+		  <script language="javascript">
+
+		        var tolomeo = null;
+		        var fparams = null;
+	
+		        function setUp() {
+				    // ///////////////////////////////
+				    // Building ToloPanelIntra Test
+				    // ///////////////////////////////
+		        	tolomeo = new TolomeoExt.ToloPanelIntra({region: 'center', 
+			        	titoloMappa: 'Map',
+			    		withDataPanel: true,
+			    		toolbarOpt: {
+			    			withSeleziona: true,
+			    			withLayerList: true,
+			    			withIdentify: true,
+			    			withNuovo: true,
+			    			withUpdateAlfa: true,
+			    			withAdd: false,
+			    			withSubtract: false,
+			    			withAddSub: false,
+			    			withVertexEdit: false,
+			    			withDragDrop: true,
+			    			withDelete: true,
+			    			withMeasure: false,
+			    		    withPrint: false,
+			    		    withPan: true,
+			    		    withPanArrows: false,
+			    		    withZoomIn: true,
+			    		    withZoomOut: true,
+			    		    withZoomAll: true,
+			    		    withLegenda: true,
+			    		    withQuery: true,
+			    		    withAnnullaSeleziona: true,
+			    		    withAutoIdentify: true
+			    	}});
+
+		    		fparams = {
+		    				codTPN: -3808,
+		    				idRicerca: 1,
+		    				campoRicerca0: 44
+		    	    };
+		        }
+
+		        function tearDown() {
+		            tolomeo = null;
+		            fparams = null;
+		        }
+		        
+			    function testVarsParameters() {
+			        assertNotNull("testing js params", TolomeoExt.Vars.paramsJS);
+			        assertNotNull("testing tolomeoserver param", TolomeoExt.Vars.TOLOMEOServer);
+			        assertNotNull("testing tolomeo context param", TolomeoExt.Vars.TOLOMEOContext);
+			        inform("paramsJS setted correctly!");
+			    }
+
+			    function testFindAjax(){
+			    	assertNotNull("testing tolo panel intra", tolomeo);
+			    	assertNotUndefined("testing tolo panel intra", tolomeo);
+			    	inform("tolomeo panel is available");
+			    	
+					var window = new Ext.Window ({
+						title: 'Window',
+						layout: 'fit',
+						width: 1000,
+						height: 800,
+						items: tolomeo
+					}).show();
+					assertTrue("testing visualization", window.isVisible());
+					inform("windows visibility " + window.isVisible());
+
+				    // ///////////////////////////////
+				    // Query Search Test 
+				    // ///////////////////////////////				    
+				    var ricercaPanel = tolomeo.ricercaPanel;	
+				    assertNotNull("testing ricerca panel", ricercaPanel);	
+				    assertNotUndefined("testing ricerca panel", ricercaPanel);	;
+				    assertTrue("testing visualization", ricercaPanel.isVisible());	
+					inform("search panel is visible and available");
+
+			    	fparams.format = "ext";
+
+			    	var url = ricercaPanel.TOLOMEOServer + ricercaPanel.TOLOMEOContext + '/AjaxQueryServlet'; 
+				    assertNotNull("testing composed url", url);		
+				    assertNotUndefined("testing composed url", url);
+					debug("the url request is: " + url);
+				    
+			    	var submitOpt = {
+			        		url: url,
+			        		method: 'POST',
+			        		params: fparams,
+			        		waitMsg: 'Ricerca in corso...',
+			        		success: ricercaPanel.doOnQueryAjaxCallback,
+			        		failure: ricercaPanel.doOnQueryAjaxFailure,
+			        		scope: ricercaPanel
+			        };
+
+					var ajax = new TolomeoExt.ToloCrossAjax();
+					assertNotNull("testing ajax", ajax);
+					assertNotUndefined("testing ajax", ajax);
+					inform("tolo cross ajax is available");
+
+					inform("submitting options ... ");
+					ajax.request(submitOpt);
+
+					assertNotNull("testing ajax store", ajax.store);
+					assertNotUndefined("testing ajax store", ajax.store);
+					inform("the ajax store is configured");
+					
+					assertNotNull("testing store proxy", ajax.store.proxy);
+					assertNotUndefined("testing store proxy", ajax.store.proxy);
+					assertEquals("testing store proxy", ajax.store.proxy.url, url);
+					inform("the store proxy is configured");
+
+			    }
+			    
+		  </script>
+	 </head>
+	 <body>
+
+	 </body>
+</html>
+
+							    

@@ -1,0 +1,7 @@
+Come la precedente ma con in più una legenda per il seguenti layer<br/>
+<ul>
+	<li>-Circoscrizioni (con gestione trasparenza)</li>
+	<li>-Grafo</li>
+	<li>-Cartelli stradali</li>
+</ul>	
+Utilizza esempiobase.map

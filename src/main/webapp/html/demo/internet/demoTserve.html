@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!--
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Descrizione diversa dal titolo" />
+<meta name="keywords" content="elenco parole chiave separate da virgola" />
+<title>Tolomeo - Pagina Demo - Piani Attuativi</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="http://dvppratomaps.comune.prato.it/js/ext/extJS/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="http://dvppratomaps.comune.prato.it/css/toloExt-inter.css" />
+
+<!-- JAVASCRIPT -->
+<!-- js no build (solo per sviluppo)
+<script type="text/javascript" src="/js/ext/extJS/adapter/ext/ext-base-debug.js"></script>
+<script type="text/javascript" src="/js/ext/extJS/ext-all-debug.js"></script>
+<script type="text/javascript" src="/js/ext/extJS/ext-lang-it.js"></script>
+<script type="text/JavaScript" src="/js/ext/openlayers/OpenLayers.js" ></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/tolomGeometry.js" ></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/ExtFix.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/toloVars.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/toloCrossAjax.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/toloMeasurePanelExt.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/ToloPanelBase.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/toloScalePanelExt.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloViewerOLExt.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloAPIOpCodes.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloTOCDataProvider.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloTOCPanelExt.js"></script>
+<script type="text/JavaScript" src="/js/tolomeoExt/toloTreeTOCPanelExt.js"></script> 
+<script type="text/JavaScript" src="/js/tolomeoExt/toloQueryPanelExt.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloButtonPanel.js"></script>	
+<script type="text/JavaScript" src="/js/tolomeoExt/toloMapAPIExt.js"></script>
+-->
+
+<!-- js build (solo per sviluppo -->
+<script type="text/JavaScript" src="http://dvppratomaps.comune.prato.it/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvppratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Tserve" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvppratomaps.comune.prato.it/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script>
+<!-- 
+<script type="text/JavaScript" src="http://dvppratomaps.comune.prato.it/js/ext/proj4js/defs/EPSG26591.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="http://dvppratomaps.comune.prato.it/js/ext/proj4js/proj4js-compressed.js" charset="utf-8"></script>
+ -->
+
+
+<!-- js pratomaps test
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it:8443/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it:8443/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Stradario" charset="utf-8"></script>
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it:8443/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script>
+-->
+
+
+<!-- js produzione 
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it/js/tolomeoExt/build/toloExt-all.js" charset="utf-8"></script>
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it/pratomapsbinj/ToloExtParamsJSServlet?paramPreset=Tserve" charset="utf-8"></script>
+<script type="text/JavaScript" src="https://pratomaps.comune.prato.it/js/tolomeoExt/layout/ToloPanelInter.js" charset="utf-8"></script>
+-->
+
+<!-- panello mappa -->
+<script type="text/JavaScript">
+
+Ext.onReady(function(){
+	tolomeo = new TolomeoExt.ToloPanelInter({	
+		withDataPanel: false,	
+		withLegendaPanel: false,
+		toolbarOpt: {			
+			withPanArrows: true,
+			withQuery: false,
+			withLegenda: false,
+			//withSeleziona: false,
+			//withIdentify: false,
+			//withLayerList: false,
+			withNuovo: false,
+			withUpdateAlfa: false,
+			withAdd: false,
+			withSubtract: false,
+			withAddSub: false,
+			withVertexEdit: false,
+			withDragDrop: false,
+			withDelete: false,		
+			withShowCoordinate: true,	
+			defaults: {scale:'medium'},
+			iconBasePath: TolomeoExt.Vars.TOLOMEOServer + '/mycommon/img/icone24-default/'
+		},
+		/*
+		APIConfig: {
+			openActionsJS: function() {
+				this.zoomToObj(-101, ['PDL28'], false); 
+			}
+		},
+		*/
+		titoloMappa: 'Mappa Tabaccherie convenzionate T-serve',
+		descrizioneMappa: 'Tabaccheria XXX, Via XXX'
+	});
+	
+	var pannello = new Ext.Panel({
+		autoWidth: true,
+		monitorResize: true,
+		height: 550,
+		layout: 'fit',
+		items: tolomeo,
+		renderTo: 'sit_mappa'
+	});
+	
+	//tolomeo.api.lazyLoadScript('proj4js',function(){var p = new Point(1667101.19, 4859602.26);p.transform("EPSG:26591","EPSG:4326");alert(p);},null,this);
+});
+</script>
+
+<!-- finestra mappa zoom PA
+<script type="text/JavaScript">
+function apriMappa(pa) {
+	tolomeo = new TolomeoExt.ToloPanelInter({	
+		withDataPanel: false,	
+		toolbarOpt: {			
+			withPanArrows: true,
+			withQuery: false,
+			withLegenda: false,
+			//withSeleziona: false,
+			//withIdentify: false,
+			//withLayerList: false,
+			withNuovo: false,
+			withUpdateAlfa: false,
+			withAdd: false,
+			withSubtract: false,
+			withAddSub: false,
+			withVertexEdit: false,
+			withDragDrop: false,
+			withDelete: false,
+			defaults:{scale:'medium'},
+			iconBasePath: TolomeoExt.Vars.TOLOMEOServer + '/mycommon/img/icone24-default/'
+		},
+		APIConfig: {
+			openActionsJS: function() {
+				this.zoomToObj(-101, pa, false); 
+			}
+		}
+	});
+
+	mappa = new Ext.Window ({
+		title: 'Consultazione cartografica dei Piani Attuativi',
+		layout: 'fit',
+		width: 700,
+		height: 550,
+		cls: 'clearCSS',
+		closeAction: 'hide',
+		items: [tolomeo]
+	}).show();
+}
+</script>
+-->
+
+
+</head>
+
+<body>
+	<div id="tmpl_header">
+		<div id="tmpl_headerwrap">
+			<div id="tmpl_procedura">
+				<span id="tmpl_procedura_jmpmn"><a href="#tmpl_menu" title="salta al menù della procedura" accesskey="8">Salta al menù</a></span>
+				<span id="tmpl_procedura_jmpcntnt"><a href="#content" title="salta al contenuto della procedura" accesskey="0">Salta al contenuto</a></span>
+				<span id="tmpl_procedura_titolo">Tolomeo Ext</span>
+				<h1 id="sit_procedura_sottotitolo"></h1>
+			</div>
+		</div>	
+		
+		<div id="tmpl_utenza">
+			<span id="tmpl_utenza_nome"></span>
+			<span id="tmpl_utenza_data"></span>
+		</div>
+	</div>
+	<!-- Fine Intestazione/header -->
+	
+	<!-- Logout/Percorso -->
+	<div id="tmpl_barra">
+		<div id="tmpl_barrawrap"> 
+			<div id="tmpl_percorso">
+				<ol title="Percorso di navigazione dalla home page">
+					<li><a href="/tolomeohtdocs/html/">home</a></li>
+					<li></li>
+				</ol>
+			</div>
+		</div>
+		<div id="tmpl_logout"><a href="javascript:window.close();">logout</a></div>
+	</div>
+	<!-- Fine Logout/Percorso -->
+	
+	<!-- Menu/Content -->
+	<div id="tmpl_main">
+		<!-- Content -->
+		<div id="tmpl_mainwrap">		
+			<div id="tmpl_content">
+	
+				<h1>Pagina Demo - Piani Attuativi</h1>
+				<div id="sit_mappa" class="clearCSS" style="width: 98%"></div>
+				
+				<!-- <input type="button" value="Apri mappa" onclick="apriMappa('PDL28');" />  -->
+			</div>
+		</div>
+	</div>
+	
+	<!-- Copyright -->
+	<div id="tmpl_footer">
+		<div class="minibutton validator" title="CSS valido">W3C <span>CSS 3</span></div>
+		<div class="minibutton validator" title="XHTML valido">W3C <span>XHTML 1.0</span></div>
+		<div class="minibutton comune" title="Copyright Comune di Prato, tutti i diritti riservati">copyright <span>Comune di Prato</span></div>
+	</div>
+	<!-- Fine Copyright -->
+</body>
+</html>

@@ -1,0 +1,398 @@
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+@CHARSET "utf-8";
+
+/* importo css base tolomeo */
+@IMPORT url("toloExt.css");
+
+/*** stili per servizi ***/
+/* highlight row --> geometry */
+.relToHighlightGeom td{
+	background-color: #FF0 !important;
+	color: #000 !important;
+}
+/* sovrascrittura per CSS Martina *//*
+div#sit_action li {
+	margin-right:5px;
+}
+div#tmpl_messaggio div {
+	padding: 0.2em 0.2em 0 1.5em !important;
+}
+/* in attesa delle modifiche dei css della common intra, per evitare gli option inline *//*
+div.tmpl_form_nofloat option {
+    display:block;
+}
+div.tmpl_form_nofloat optgroup {
+    display:block;
+}
+*/
+div#tmpl_messaggio {
+    margin: 0 !important;
+}
+div#tmpl_messaggio div {
+    padding: 0.5% 0.5% 0 6% !important;
+}
+
+/*** sovrascrittura css commonintra (creano conflitto con css di ext) ***/
+div.clearCSS a:link {
+	background-color: transparent;
+	color: inherit !important;
+}
+div.clearCSS a:visited, div.clearCSS a:active {
+	background-color: transparent;
+	color: inherit !important;
+}
+div.clearCSS a:hover {
+	background-color: transparent;
+	color: inherit !important;
+}
+/*tabelle*/
+div.clearCSS table {
+	margin: 0;
+	padding: 0;
+	/*border-collapse: separate;*/
+	width: auto;
+	border: 0;
+	font-size: 100%;
+}
+div.clearCSS caption {
+	font: normal;
+	background-color: transparent;
+	color: inherit;
+	margin: 0;
+	padding: 0;
+}
+div.clearCSS th, div.clearCSS td {
+	padding: 0;
+	border: 0;
+}
+div.clearCSS th {
+	background-color: transparent;
+	text-align: left;
+	font-weight: normal;
+	font-variant: normal;
+	color: inherit;	
+}
+div.clearCSS td {
+	background-color: transparent !important;
+	border: none !important;
+}
+/*form*/
+div.clearCSS form div {
+	/*background-color: transparent;*/
+	clear: none;
+	padding: 0;
+}
+div.clearCSS legend {
+	background: transparent;
+}
+div.clearCSS input, div.clearCSS textarea, div.clearCSS select {
+	display: inline;
+}
+div.clearCSS input[type="hidden"] {
+	display: none;
+}
+
+div.clearCSS iframe {
+    background-color: white;
+}
+
+/*** sovrascrittura clasi extJs 4.x per correggere problemi commonintra ***/
+/* elementi condivisi */
+.x-table-plain {
+	padding: 1px !important;
+	border: 0 !important;
+}
+
+/* toolbar */
+.x-btn-tl, .x-btn-default-toolbar-small-tl, .x-btn-default-toolbar-small-icon-tl,
+.x-btn-tc, .x-btn-default-toolbar-small-tc, .x-btn-default-toolbar-small-icon-tc,
+.x-btn-tr, .x-btn-default-toolbar-small-tr, .x-btn-default-toolbar-small-icon-tr {
+	padding: 1px !important;
+}
+
+.x-btn-ml, .x-btn-default-toolbar-small-ml, .x-btn-default-toolbar-small-icon-ml,
+.x-btn-mc, .x-btn-default-toolbar-small-mc, .x-btn-default-toolbar-small-icon-mc,
+.x-btn-mr, .x-btn-default-toolbar-small-mr, .x-btn-default-toolbar-small-icon-mr {
+	padding: 1px !important;
+}
+
+.x-btn-bl, .x-btn-default-toolbar-small-bl, .x-btn-default-toolbar-small-icon-bl,
+.x-btn-bc, .x-btn-default-toolbar-small-bc, .x-btn-default-toolbar-small-icon-bc,
+.x-btn-br, .x-btn-default-toolbar-small-br, .x-btn-default-toolbar-small-icon-br {
+	padding: 1px !important;
+}
+
+/* tooltip */
+.x-tip-tl, .x-tip-default-tl,
+.x-tip-tc, .x-tip-default-tc,
+.x-tip-tr, .x-tip-default-tr {
+	padding: 1px !important;
+	border: 0 !important;
+}
+
+.x-tip-ml, .x-tip-default-ml,
+.x-tip-mc, .x-tip-default-mc,
+.x-tip-mr, .x-tip-default-mr {
+	padding: 1px !important;
+	border: 0 !important;
+}
+
+.x-tip-bl, .x-tip-default-bl,
+.x-tip-bc, .x-tip-default-bc,
+.x-tip-br, .x-tip-default-br {
+	padding: 1px !important;
+	border: 0 !important;
+}
+
+/* tabpanel */
+.x-tab-tl, .x-tab-default-tl, .x-tab-default-active-tl, .x-tab-default-top-active-tl, .x-tab-default-noicon-tl, .x-tab-default-top-tl,
+.x-tab-tc, .x-tab-default-tc, .x-tab-default-active-tc, .x-tab-default-top-active-tc, .x-tab-default-noicon-tc, .x-tab-default-top-tc,
+.x-tab-tr, .x-tab-default-tr, .x-tab-default-active-tr, .x-tab-default-top-active-tr, .x-tab-default-noicon-tr, .x-tab-default-top-tr {
+	padding: 1px !important;
+}
+
+.x-tab-ml, .x-tab-default-ml, .x-tab-default-active-ml, .x-tab-default-top-active-ml, .x-tab-default-noicon-ml, .x-tab-default-top-ml,
+.x-tab-mc, .x-tab-default-mc, .x-tab-default-active-mc, .x-tab-default-top-active-mc, .x-tab-default-noicon-mc, .x-tab-default-top-mc,
+.x-tab-mr, .x-tab-default-mr, .x-tab-default-active-mr, .x-tab-default-top-active-mr, .x-tab-default-noicon-mr, .x-tab-default-top-mr {
+	padding: 1px !important;
+}
+
+.x-tab-bl, .x-tab-default-bl, .x-tab-default-active-bl, .x-tab-default-top-active-bl, .x-tab-default-noicon-bl, .x-tab-default-top-bl,
+.x-tab-bc, .x-tab-default-bc, .x-tab-default-active-bc, .x-tab-default-top-active-bc, .x-tab-default-noicon-bc, .x-tab-default-top-bc,
+.x-tab-br, .x-tab-default-br, .x-tab-default-active-br, .x-tab-default-top-active-br, .x-tab-default-noicon-br, .x-tab-default-top-br {
+	padding: 0px !important;
+}
+
+/*** css commonintra (copiato e modificato i soli stili che mi servono) ***/
+/* Intestazione */
+body {
+	padding: 0;
+	font: 80% Verdana,arial,sans-serif !important;
+	color: #004000;
+}
+.x-body {
+	color: #000;
+    font-size: 12px;
+    font-family: tahoma,arial,verdana,sans-serif !important;
+}
+div#tmpl_header {
+	background-image: url(/commonintra2-0/img/body-bg.gif);
+	background-repeat: no-repeat;
+	margin: 0;
+	height: 80px;
+	width: 100%;
+}
+div#tmpl_headerwrap {
+	float: left;
+	width: 100%;
+}
+div#tmpl_procedura {
+	margin: 0 25% 0 30%;
+}
+div#tmpl_procedura a {
+	background: #0C4E37;
+	color: #fff;
+}
+span#tmpl_procedura_jmpmn, span#tmpl_procedura_jmpcntnt {
+	margin-left: -200%;
+}
+span#tmpl_procedura_titolo {
+	display: block;
+	font-size: 150%;
+	font-weight: bold;
+	font-variant: small-caps;
+	background: #0C4E37;
+	color: #FFFF99;
+}
+span#tmpl_procedura_sottotitolo {
+	font-size: 95%;
+	display: block;
+	background: #0C4E37;
+	color: #fff;
+}
+div#tmpl_utenza {
+	float: left;
+	width: 20%;
+	margin-top: 1%;
+	margin-left: -20%;
+	background: #0C4E37;
+	color: #fff;
+}
+div#tmpl_utenza a {
+	background: #0C4E37;
+	color: #fff;
+}
+span#tmpl_utenza_nome {
+	display: block;
+	background: #0C4E37;
+	color: #FFFF99;
+}
+span#tmpl_utenza_profilo {
+	display: block;
+	background: #0C4E37;
+	color: #FFFF99;
+	font-size: smaller;
+}
+span#tmpl_utenza_data {
+	display: block;
+	font-size: 80%;
+	background: #0C4E37;
+	color: #fff;
+}
+/* Logout e percorso di navigazione */
+div#tmpl_barra a:link {
+	background-color: #fff;
+	color: #000;
+}
+div#tmpl_barra a:visited, a:active {
+	background-color: #fff;
+	color: #004000;
+}
+div#tmpl_barra a:hover {
+	background-color: #000;
+	color: #F3FFC4;
+}
+
+div#tmpl_barrawrap {
+	line-height: 25px;
+	float: left;
+	width: 100%;
+	background: url(/commonintra2-0/img/barra-bg.jpg) no-repeat right;
+}
+div#tmpl_percorso {
+	margin: 0 0 0 30%;
+}
+div#tmpl_percorso ol {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+div#tmpl_percorso li {
+	display: inline;
+	list-style: none;
+	margin: 0;
+	padding: 0 0.5em 0 0.5em;
+	background: url(/commonintra2-0/img/li-percorso.gif) no-repeat left center;
+	background-color: #fff;
+	color: #000;
+}
+div#tmpl_logout {
+	float: left;
+	width: 20%;
+	margin-left: -100%;
+	font-variant: small-caps;
+	padding-left: 1.8em;
+	line-height: 25px;
+	background: url("/commonintra2-0/img/logout.gif") no-repeat center left;
+}
+/* Copyright */
+div#tmpl_footer {
+	font: 80%;
+	clear: left;
+	text-align: right;
+	padding: 0.5em 0.5em 0.08em 0;
+	background-color: #45733C;
+	color: #fff;
+	height: 25px;	
+}
+div#tmpl_footer a {
+	background-color: #45733C;
+	color: #fff;
+}
+div#tmpl_footer div {
+	display: inline;
+}
+div.minibutton {
+	font: 80% Arial, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: 0.06em solid;
+	border-color: #CCC #666 #666 #CCC;
+	padding-left: 0.08em;
+	margin-right: 0.5em;
+	background: #FFF;
+	color: #555;
+}
+div.minibutton:hover {
+	border-color: #333 #999 #999 #333;
+}
+div.minibutton span {
+	padding: 0 0.2em 0 0.2em;
+}
+div.validator {
+	background: #FFF;
+	color: #0C479D;
+}
+div.validator span {
+	background: #FC6;
+	color: #000;
+}
+div.comune {
+	background: #FFF;
+	color: #4C748C;
+}
+div.comune span {
+	background: #4C748C;
+	color: #FFF;
+}

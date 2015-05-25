@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stampaMappa" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normale" fontName="Arial" fontSize="12"/>
+	<style name="intestazione" style="normale" hAlign="Center" vAlign="Middle" fontSize="18" isBold="true"/>
+	<style name="titolo" style="normale" hAlign="Center" vAlign="Middle" fontSize="14" isBold="true"/>
+	<style name="descrizione" style="normale" hAlign="Justified" markup="none" fontSize="10"/>
+	<style name="immagine">
+		<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+			<pen lineWidth="1.0"/>
+			<topPen lineWidth="1.0"/>
+			<leftPen lineWidth="1.0"/>
+			<bottomPen lineWidth="1.0"/>
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="scala" style="normale" hAlign="Left" vAlign="Bottom" fontSize="10">
+		<box bottomPadding="2"/>
+	</style>
+	<style name="referer" style="normale" mode="Transparent" hAlign="Right" vAlign="Bottom" fontSize="8" isUnderline="true"/>
+	<style name="dataora" style="referer" hAlign="Left" isUnderline="false"/>
+	<style name="coordinata" style="normale" vAlign="Middle" fontSize="8" isBold="true"/>
+	<style name="sistemaRiferimento" style="normale" hAlign="Center" vAlign="Bottom" fontSize="8" isBold="true"/>
+	<style name="permalink" style="normale" hAlign="Right" vAlign="Bottom" fontSize="8" isUnderline="true"/>
+	<style name="sottotitolo" style="normale" hAlign="Center" vAlign="Middle"/>
+	<parameter name="titolo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Mappa di Prato"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="scala" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="descrizione" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imageMappa" class="java.awt.Image"/>
+	<parameter name="urlLogo" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["../img/stemma.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="referer" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["http://www.ilmiosito.it"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="urlLogoSecondario" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["../img/sori.bmp"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataOra" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="yMax" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["4122222222"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="xMax" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["166200000"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="xMin" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["1602320030"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="yMin" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["455870000"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="crs" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["EPSG:3003"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="permalinkImgUrl" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["../img/permalink.gif"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="permalinkHref" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["http://www.tin.it"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="permalinkTooltip" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["permalink"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sottotitolo" class="java.lang.String"/>
+	<detail>
+		<band height="190">
+			<image hAlign="Left" vAlign="Middle" onErrorType="Blank">
+				<reportElement key="logo" x="1" y="0" width="200" height="45"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{urlLogo}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="titolo" style="titolo" x="0" y="55" width="535" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{titolo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="descrizione" style="descrizione" positionType="Float" isPrintRepeatedValues="false" x="0" y="170" width="535" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement markup="html"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{descrizione}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement key="mappa" style="immagine" positionType="Float" x="10" y="120" width="515" height="30"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<imageExpression class="java.awt.Image"><![CDATA[$P{imageMappa}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement key="" style="scala" positionType="Float" x="10" y="100" width="47" height="20"/>
+				<textElement textAlignment="Right" markup="none"/>
+				<text><![CDATA[Scala 1 : ]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement key="scala" style="scala" positionType="Float" x="57" y="100" width="178" height="20"/>
+				<box leftPadding="1" bottomPadding="2"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$P{scala}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape" hAlign="Right" vAlign="Middle" onErrorType="Blank">
+				<reportElement key="logoCustom" x="334" y="0" width="200" height="40"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{urlLogoSecondario}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement key="topRightCoordY" style="coordinata" positionType="Float" x="525" y="120" width="10" height="30"/>
+				<box topPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top" rotation="Right" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{yMax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="topRightCoordX" style="coordinata" positionType="Float" x="336" y="110" width="189" height="10"/>
+				<box rightPadding="2">
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{xMax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="bottomLeftCoordX" style="coordinata" positionType="Float" x="10" y="150" width="189" height="10"/>
+				<box leftPadding="2">
+					<leftPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{xMin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="bottomLeftCoordY" style="coordinata" positionType="Float" x="0" y="120" width="10" height="30"/>
+				<box bottomPadding="2">
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Top" rotation="Left" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{yMin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="crs" style="sistemaRiferimento" positionType="Float" x="205" y="150" width="125" height="10"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{crs}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement key="permalink" positionType="Float" x="475" y="150" width="50" height="12">
+					<printWhenExpression><![CDATA[$P{permalinkHref} != null]]></printWhenExpression>
+				</reportElement>
+				<textField hyperlinkType="Reference" hyperlinkTarget="Blank">
+					<reportElement key="permalinkText" style="permalink" positionType="Float" x="12" y="-1" width="38" height="10"/>
+					<box leftPadding="0"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["permalink"]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA[$P{permalinkHref}]]></hyperlinkReferenceExpression>
+					<hyperlinkTooltipExpression><![CDATA[$P{permalinkTooltip}]]></hyperlinkTooltipExpression>
+				</textField>
+				<image scaleImage="RetainShape" isUsingCache="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
+					<reportElement key="permalinkImg" positionType="Float" x="0" y="-1" width="12" height="12"/>
+					<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{permalinkImgUrl}]]></imageExpression>
+					<hyperlinkReferenceExpression><![CDATA[$P{permalinkHref}]]></hyperlinkReferenceExpression>
+					<hyperlinkTooltipExpression><![CDATA[$P{permalinkTooltip}]]></hyperlinkTooltipExpression>
+				</image>
+			</frame>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="sottotitolo" style="sottotitolo" x="0" y="75" width="535" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{sottotitolo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Prevent">
+			<printWhenExpression><![CDATA[$P{dataOra} != null || $P{referer} != null]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement style="dataora" isPrintRepeatedValues="false" x="0" y="0" width="90" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{dataOra}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="referer" style="referer" isPrintRepeatedValues="false" x="92" y="0" width="443" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{referer}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

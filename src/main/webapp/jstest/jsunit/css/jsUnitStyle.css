@@ -1,0 +1,165 @@
+/* 
+ Tolomeo is a developing framework for visualization, editing,  
+ geoprocessing and decisional support application based on cartography.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ This file is part of Tolomeo.
+ 
+ Tolomeo is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License 
+ as published by the Free Software Foundation; either version 3 of the License, 
+ or (at your option) any later version.
+ 
+ Tolomeo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.
+ 
+ You should have received a copy of the GNU Lesser General Public License along with Tolomeo; 
+ if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110­1301  USA
+ 
+ Developers Information:
+ 
+ Tolomeo is developed by Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it 
+ 
+ 
+ Versione in Italiano LGPL
+ 
+ Tolomeo è un framework per lo sviluppo di applicazioni per
+ visualizzazione, editing, geoprocessing e supporto alla decisione basate su cartografia.
+ 
+ Tolomeo Copyright 2011 Comune di Prato;
+ 
+ Questo file fa parte di Tolomeo.
+ 
+ Tolomeo è un software libero; è possibile redistribuirlo e / o 
+ modificarlo sotto i termini della GNU Lesser General Public License, 
+ come pubblicato dalla Free Software Foundation, sia la versione 3 della licenza o (a propria scelta) una versione successiva.
+  
+ Tolomeo è distribuito nella speranza che possa essere utile,
+ ma SENZA ALCUNA GARANZIA, senza neppure la garanzia implicita di COMMERCIABILITÀ o
+ IDONEITÀ PER UN PARTICOLARE SCOPO. Vedere la GNU Lesser General Public License per ulteriori dettagli.
+ 
+ Si dovrebbe avere ricevuto una copia della GNU Lesser General Public insieme a Tolomeo, in caso contrario, 
+ si scriva alla Free Software  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110­1301 USA
+   
+ 
+ Informazioni Sviluppatori:
+ 
+ Tolomeo è sviluppato dal Comune di Prato
+ 
+ Alessandro Radaelli
+ Federico Nieri
+ Mattia Gennari
+ 
+ sit@comune.prato.it
+*/
+body {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Trebuchet MS, Verdana, Arial, Sans-serif;
+    color: #000;
+    font-size: 0.8em;
+}
+
+.button {
+    color: #000000;
+    font-family: 'trebuchet ms', helvetica, sans-serif;
+    font-size: 100%;
+    font-weight: bold;
+    background-color: #dddddd;
+    border: 1px solid;
+    border-top-color: #696;
+    border-left-color: #696;
+    border-right-color: #363;
+    border-bottom-color: #363;
+}
+
+table {
+    font-size: 1em;
+}
+
+a:link, a:visited {
+    color: #0000AA;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #810;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #039;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-weight: bold;
+    color: #039;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-weight: bold;
+    color: #039;
+    text-decoration: underline;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+}
+
+h4 {
+    color: #039;
+    font-family: Trebuchet MS, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+}
+
+.jsUnitTestResultSuccess {
+    color: #000;
+}
+
+.jsUnitTestResultNotSuccess {
+    color: #F00;
+}
+
+.rb0roundbox {
+    background: url( ../images/nt0.gif ) repeat;
+}
+
+.rb0top div {
+    background: url( ../images/tl0.gif ) no-repeat top left;
+}
+
+.rb0top {
+    background: url( ../images/tr0.gif ) no-repeat top right;
+}
+
+.rb0bot div {
+    background: url( ../images/bl0.gif ) no-repeat bottom left;
+}
+
+.rb0bot {
+    background: url( ../images/br0.gif ) no-repeat bottom right;
+}
+
+.rb0top div, .rb0top, .rb0bot div, .rb0bot {
+    width: 100%;
+    height: 7px;
+    font-size: 1px;
+}
+
+.rb0content {
+    margin: 0 7px;
+}
+
+.rb0roundbox {
+    width: 100%;
+    margin: 4px auto;
+}
