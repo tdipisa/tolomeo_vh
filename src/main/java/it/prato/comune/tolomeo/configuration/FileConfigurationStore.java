@@ -22,11 +22,15 @@ import javax.naming.InvalidNameException;
  */
 public class FileConfigurationStore implements ConfigurationStore {
 
+	final private LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
+	
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#get(java.lang.Object, it.prato.comune.sit.SITLayersManager)
+	 */
 	@Override
 	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
 	    
-    	LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-    	String fileName= TolomeoApplicationContext.getInstance().getPresetFileName() + configurationId + ".xml";
+    	String fileName = TolomeoApplicationContext.getInstance().getPresetFileName() + configurationId + ".xml";
         Parametri retVal = new Parametri();
         
         // Lettura file
@@ -37,8 +41,12 @@ public class FileConfigurationStore implements ConfigurationStore {
             if(!presetFile.exists()){
                 throw new FileNotFoundException ("Il file di preset " + fileName + " non esiste!");
             }
-            // Sostituisco all'espressione di #INCLUDE il contenuto specifico del file che si intende includere sotto forma di stringa
-            // Lo stesso faccio con le #PROPERTIES
+            
+            // ///////////////////////////////////////////////////////////////////////////////
+            // Sostituisco all'espressione di #INCLUDE il contenuto specifico del file 
+            // che si intende includere sotto forma di stringa, lo stesso faccio con le 
+            // #PROPERTIES.
+            // ///////////////////////////////////////////////////////////////////////////////
             String newPreset = Parametri.loadPreset(presetFile);
             
             retVal = Parametri.createParametriFromString(newPreset, comunePO); 
@@ -54,7 +62,20 @@ public class FileConfigurationStore implements ConfigurationStore {
         } catch (SITException site){
             log.error("Imopssibile rilevare la versione del SIT core",site);
         }
+        
         return retVal;
     }
+
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#delete(java.lang.Object)
+	 */
+	@Override
+	public <T> void delete(T configurationId) {}
+
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#save(java.lang.String)
+	 */
+	@Override
+	public long save(String name, String configuration) throws Exception {return -1;}
 
 }

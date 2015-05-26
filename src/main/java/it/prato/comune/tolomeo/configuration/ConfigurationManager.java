@@ -6,6 +6,7 @@ package it.prato.comune.tolomeo.configuration;
 import it.prato.comune.sit.SITLayersManager;
 import it.prato.comune.tolomeo.web.parametri.Parametri;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -14,18 +15,50 @@ import java.util.Map;
  */
 public class ConfigurationManager {
 	
+	String defaultConfigStoreType;
+	
 	Map<String, ConfigurationStore> configurationStores;
 	
+	/**
+	 * 
+	 */
+	public ConfigurationManager() {
+		super();
+	}
+
+	/**
+	 * @param defaultConfigStoreType
+	 * @param configurationStores
+	 */
+	public ConfigurationManager(String defaultConfigStoreType,
+			Map<String, ConfigurationStore> configurationStores) {
+		super();
+		this.defaultConfigStoreType = defaultConfigStoreType;
+		this.configurationStores = configurationStores;
+	}
+
+	/**
+	 * @param configurationStores
+	 */
 	public void setConfigurationStores(
 			Map<String, ConfigurationStore> configurationStores) {
 		this.configurationStores = configurationStores;
 	}
 
 	/**
-	 * @return
+	 * @param defaultConfigStoreType the defaultConfigStoreType to set
 	 */
-	public <T> Parametri get(String type, SITLayersManager comunePO, T configurationId){
-		return configurationStores.get(type).get(configurationId, comunePO);
+	public void setDefaultConfigStoreType(String defaultConfigStoreType) {
+		this.defaultConfigStoreType = defaultConfigStoreType;
+	}
+
+	/**
+	 * @return
+	 * @throws IOException 
+	 */
+	public <T> Parametri get(SITLayersManager comunePO, T configurationId, String type) throws Exception{
+		String configType = type != null ? type : this.defaultConfigStoreType;
+		return configurationStores.get(configType).get(configurationId, comunePO);
 	}
 
 }

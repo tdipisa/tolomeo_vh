@@ -65,8 +65,6 @@ package it.prato.comune.tolomeo.utility;
 import it.prato.comune.menu.core.Abilitazione;
 import it.prato.comune.menu.core.Application;
 import it.prato.comune.menu.core.Function;
-import it.prato.comune.tolomeo.servizi.elettorale.beans.Statistica;
-import it.prato.comune.utilita.core.beans.ApplicationContextInterface;
 import it.prato.comune.utilita.core.beans.BeanContextInterface;
 import it.prato.comune.utilita.core.context.MixedContext;
 import it.prato.comune.utilita.core.type.IdType;
@@ -81,7 +79,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -140,7 +137,7 @@ public class TolomeoApplicationContext extends MixedContext {
     public static final String PROPERTY_NAME__HELP_FAQ_URL            = "HELP.FAQ.URL".intern();
     public static final String PROPERTY_NAME__HELP_INFO_MAIN_TITLE    = "HELP.INFO.MAIN_TITLE".intern();
     
-    public static final String PROPERTY_NAME__MODE           		  = "MODE".intern();    
+    public static final String PROPERTY_NAME__MODE           		  = "MODE".intern();   
     
     public static enum MODE {
     		READ_ONLY,
@@ -538,11 +535,8 @@ public class TolomeoApplicationContext extends MixedContext {
             }
         });
         
-        
-        
         return hicList;
     }
-    
 
     public String getLogName(){
         return (String)this.getProperty(PROPERTY_NAME__LOGGER_NAME);
@@ -657,7 +651,9 @@ public class TolomeoApplicationContext extends MixedContext {
      */
     public File getPresetDirectory(){
         String presetFileName = getPresetFileName();
-        int lastIndex = presetFileName.lastIndexOf(File.separator);
+//        int lastIndex = presetFileName.lastIndexOf(File.separator);
+        int lastIndex = presetFileName.lastIndexOf("\\");
+        lastIndex = lastIndex > presetFileName.lastIndexOf("/") ? lastIndex : presetFileName.lastIndexOf("/");
         if(lastIndex != -1){
             File presetDirectory = new File(presetFileName.substring(0, lastIndex));
             if(presetDirectory.exists()) return presetDirectory;

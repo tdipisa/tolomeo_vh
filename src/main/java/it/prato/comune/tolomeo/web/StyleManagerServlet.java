@@ -170,7 +170,7 @@ public class StyleManagerServlet extends TolomeoServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);       
 
-        ServletContext servletContext =this.getServletContext();
+        ServletContext servletContext = this.getServletContext();
 
         WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
         

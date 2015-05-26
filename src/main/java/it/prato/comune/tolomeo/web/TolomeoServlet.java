@@ -71,6 +71,7 @@ import it.prato.comune.sit.OggettoTerritorio;
 import it.prato.comune.sit.SITException;
 import it.prato.comune.sit.SITLayersManager;
 import it.prato.comune.sit.SITPunto;
+import it.prato.comune.tolomeo.configuration.ConfigurationManager;
 import it.prato.comune.tolomeo.utility.HelpInfoConfig;
 import it.prato.comune.tolomeo.utility.Input;
 import it.prato.comune.tolomeo.utility.Messaggio;
@@ -113,6 +114,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -121,6 +123,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 /**
@@ -147,11 +151,19 @@ public abstract class TolomeoServlet extends HttpServlet {
 	public static final String ERROR_PAGE_INTER           = "/jsp/erroreInter.jsp";
 	public static final String ERROR_PAGE_INTER_PANNELLO  = "/jsp/erroreInterPannello.jsp";
 	private String connectorUriEncoding = null; 
+	
+	private ConfigurationManager configManager;
 
-	public void init(ServletConfig config) throws ServletException
-	{
+	public void init(ServletConfig config) throws ServletException{
 		this.connectorUriEncoding = config.getServletContext().getInitParameter("connectorUriEncoding");
-		super.init(config);	       
+		super.init(config);	      
+		
+		// ///////////////////////////////////////////////////
+		// Get the configurationManager through Spring WAC
+		// ///////////////////////////////////////////////////
+        ServletContext servletContext = this.getServletContext();
+        WebApplicationContext wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);        
+        configManager = (ConfigurationManager)wac.getBean("configurationManager");		
 	}	
 
 	/**
@@ -688,7 +700,7 @@ public abstract class TolomeoServlet extends HttpServlet {
 	 * @return l'oggetto istanziato
 	 * @throws IOException
 	 */
-	protected Parametri getParametri(HttpServletRequest request, SITLayersManager terr, boolean bSetZoomToObj) throws IOException {
+	protected Parametri getParametri(HttpServletRequest request, SITLayersManager terr, boolean bSetZoomToObj) throws Exception {
 		// Recupero il logger
 		LogInterface logger = getLogger(request);
 		Parametri params = null;
@@ -696,12 +708,6 @@ public abstract class TolomeoServlet extends HttpServlet {
 		// Recupero il parametro che contiene il nome del file xml da utilizzare
 		String paramPreset = request.getParameter("paramPreset");
 		String paramPresetString = request.getParameter("paramPresetString");
-		
-		// //////////////////////////////////////////////////////////////////////////////////////////////////////
-		// TODO: Eventualmente il ConfigurationManager si potrebbe instanziare direttamente nel
-		//       SITLayersManager dato che quest'ultimo viene instanziato tutte le volte ad ogni richiesta ???
-		// //////////////////////////////////////////////////////////////////////////////////////////////////////
-		//ConfigurationManager config_manager = new ConfigurationManager();
 		
 		TolomeoApplicationContext context = TolomeoApplicationContext.getInstance();
 		//logger.debug("paramPreset = " + paramPreset);
@@ -733,7 +739,8 @@ public abstract class TolomeoServlet extends HttpServlet {
 		
 		if(!StringUtils.isEmpty(paramPreset)){
 		    // Creo l'oggetto parametri a partire dal file xml indicato
-	        params = Parametri.createParametri(paramPreset, terr);
+	        //params = Parametri.createParametri(paramPreset, terr);
+	        params = configManager.get(terr, paramPreset, null);
 	        params.setNomePreset(paramPreset);
 		}
 				
