@@ -39,8 +39,6 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	
 	private String defaultConfigCategoryName;
 
-	final private LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-
 	/**
 	 * @param resourceService
 	 */
@@ -67,7 +65,9 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	 */
 	@Override
 	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
-	    
+		
+		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
+		
     	File fileBasePath = TolomeoApplicationContext.getInstance().getPresetDirectory();
     	
         Parametri retVal = new Parametri();
@@ -76,8 +76,7 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         	logger.info("File di preset utilizzato: " + configurationId);
 
             // //////////////////////////////////////////////////////////////////
-            // Retrieving the preset configuration from GeoStore and write the 
-            // content inside the new created file.
+            // Retrieving the preset configuration from GeoStore 
             // //////////////////////////////////////////////////////////////////
         	logger.info("Retrieving a full resource");
     		
@@ -141,6 +140,8 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	 */
 	@Override
 	public <T> void delete(T configurationId) throws Exception{
+		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
+		
 		try {
 	    	SearchFilter filter;
 	    	if(configurationId instanceof String){
@@ -166,7 +167,7 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         // ////////////////////////////////
         // Creating a new full resource
         // ////////////////////////////////
-        
+		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
 		logger.info("Creating a new full resource...");
         	
     	Category category = categoryService.get(defaultConfigCategoryName);

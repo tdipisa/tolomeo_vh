@@ -22,14 +22,14 @@ import javax.naming.InvalidNameException;
  */
 public class FileConfigurationStore implements ConfigurationStore {
 
-	final private LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-	
 	/* (non-Javadoc)
 	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#get(java.lang.Object, it.prato.comune.sit.SITLayersManager)
 	 */
 	@Override
 	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
 	    
+		LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
+		
     	String fileName = TolomeoApplicationContext.getInstance().getPresetFileName() + configurationId + ".xml";
         Parametri retVal = new Parametri();
         
