@@ -8,6 +8,8 @@ import it.geosolutions.geostore.core.model.Resource;
 import it.geosolutions.geostore.core.model.StoredData;
 import it.geosolutions.geostore.services.CategoryService;
 import it.geosolutions.geostore.services.ResourceService;
+import it.geosolutions.geostore.services.StoredDataService;
+import it.geosolutions.geostore.services.dto.ShortResource;
 import it.geosolutions.geostore.services.dto.search.BaseField;
 import it.geosolutions.geostore.services.dto.search.FieldFilter;
 import it.geosolutions.geostore.services.dto.search.SearchFilter;
@@ -37,7 +39,9 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	
 	private CategoryService categoryService;
 	
-	private String defaultConfigCategoryName;
+	private StoredDataService storedDataService;
+	
+	private String defaultConfigTypeName;
 
 	/**
 	 * @param resourceService
@@ -52,13 +56,21 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
+	
+	/**
+	 * @param storedDataService the storedDataService to set
+	 */
+	public void setStoredDataService(StoredDataService storedDataService) {
+		this.storedDataService = storedDataService;
+	}
 
 	/**
-	 * @param defaultConfigCategoryName the defaultConfigCategoryName to set
+	 * @param defaultConfigTypeName the defaultConfigTypeName to set
 	 */
-	public void setDefaultConfigCategoryName(String defaultConfigCategoryName) {
-		this.defaultConfigCategoryName = defaultConfigCategoryName;
+	public void setDefaultConfigTypeName(String defaultConfigTypeName) {
+		this.defaultConfigTypeName = defaultConfigTypeName;
 	}
+
 	
 	/* (non-Javadoc)
 	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#get(java.lang.Object, it.prato.comune.sit.SITLayersManager)
@@ -162,6 +174,9 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#save(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public long save(String name, String configuration) throws Exception{
         // ////////////////////////////////
@@ -170,15 +185,15 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
 		logger.info("Creating a new full resource...");
         	
-    	Category category = categoryService.get(defaultConfigCategoryName);
+    	Category category = categoryService.get(defaultConfigTypeName);
     	
     	if(category == null){
-    		logger.info("Category " + defaultConfigCategoryName + " does not exists: "
-    				+ defaultConfigCategoryName + " category must be created...");
+    		logger.info("Category " + defaultConfigTypeName + " does not exists: "
+    				+ defaultConfigTypeName + " category must be created...");
     		category = new Category();
-        	category.setName(defaultConfigCategoryName);
+        	category.setName(defaultConfigTypeName);
         	categoryService.insert(category);
-        	logger.info("Category " + defaultConfigCategoryName + " successfully created!");            	
+        	logger.info("Category " + defaultConfigTypeName + " successfully created!");            	
     	}
     	
     	StoredData storedData = new StoredData();
@@ -198,4 +213,30 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         return resourceId;
 	}
 
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#update(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public long update(String name, String configuration) throws Exception{
+        // ////////////////////////////////
+        // Creating a new full resource
+        // ////////////////////////////////
+		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
+		
+		logger.info("Creating a new full resource...");
+        	
+    	SearchFilter filter;
+		filter = new FieldFilter(BaseField.NAME, name, SearchOperator.EQUAL_TO);
+    	
+		List<ShortResource> resources = resourceService.getResources(filter, null);
+		
+    	long storedDataId = storedDataService.update(resources.get(0).getId(), configuration);
+    	
+        if(storedDataId > 0){
+        	logger.info("Configuration resource successfully updated with ID=" + storedDataId);
+        }
+        
+        return storedDataId;
+	}
+	
 }

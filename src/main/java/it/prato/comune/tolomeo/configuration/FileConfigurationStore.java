@@ -22,6 +22,15 @@ import javax.naming.InvalidNameException;
  */
 public class FileConfigurationStore implements ConfigurationStore {
 
+	private String defaultConfigTypeName;
+	
+	/**
+	 * @param defaultConfigTypeName the defaultConfigTypeName to set
+	 */
+	public void setDefaultConfigTypeName(String defaultConfigTypeName) {
+		this.defaultConfigTypeName = defaultConfigTypeName;
+	}
+
 	/* (non-Javadoc)
 	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#get(java.lang.Object, it.prato.comune.sit.SITLayersManager)
 	 */
@@ -77,5 +86,11 @@ public class FileConfigurationStore implements ConfigurationStore {
 	 */
 	@Override
 	public long save(String name, String configuration) throws Exception {return -1;}
+
+	/* (non-Javadoc)
+	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#update(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public long update(String name, String configuration) {return -1;}
 
 }

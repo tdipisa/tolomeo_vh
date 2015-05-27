@@ -6,7 +6,6 @@ package it.prato.comune.tolomeo.configuration;
 import it.prato.comune.sit.SITLayersManager;
 import it.prato.comune.tolomeo.web.parametri.Parametri;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -53,12 +52,48 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * @return
-	 * @throws IOException 
+	 * @param comunePO
+	 * @param configurationId
+	 * @param type
+	 * @return Parametri
 	 */
 	public <T> Parametri get(SITLayersManager comunePO, T configurationId, String type){
 		String configType = type != null ? type : this.defaultConfigStoreType;
 		return configurationStores.get(configType).get(configurationId, comunePO);
+	}
+	
+	/**
+	 * @param name
+	 * @param configuration
+	 * @param type
+	 * @return long
+	 * @throws Exception
+	 */
+	public <T> long update(String name, String configuration, String type) throws Exception{
+		String configType = type != null ? type : this.defaultConfigStoreType;
+		return configurationStores.get(configType).update(name, configuration);
+	}
+	
+	/**
+	 * @param name
+	 * @param configuration
+	 * @param type
+	 * @return long
+	 * @throws Exception
+	 */
+	public <T> long save(String name, String configuration, String type) throws Exception{
+		String configType = type != null ? type : this.defaultConfigStoreType;
+		return configurationStores.get(configType).save(name, configuration);
+	}
+	
+	/**
+	 * @param configurationId
+	 * @param type
+	 * @throws Exception
+	 */
+	public <T> void delete(T configurationId, String type) throws Exception{
+		String configType = type != null ? type : this.defaultConfigStoreType;
+		configurationStores.get(configType).delete(configurationId);
 	}
 
 }

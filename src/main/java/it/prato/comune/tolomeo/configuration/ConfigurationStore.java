@@ -13,12 +13,12 @@ import it.prato.comune.tolomeo.web.parametri.Parametri;
  */
 public interface ConfigurationStore {
 
-
 	<T> Parametri get(T configurationId, SITLayersManager comunePO);
 
 	<T> void delete(T configurationId) throws Exception;
 
 	long save(String name, String configuration) throws Exception;
-    
+
+	long update(String name, String configuration) throws Exception;
 	
 }

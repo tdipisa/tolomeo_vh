@@ -30,10 +30,12 @@
 	<bean id="geostoreConfigurationStore" class="it.prato.comune.tolomeo.configuration.GeoStoreConfigurationStore">
 		<property name="resourceService" ref="resourceService" />
 		<property name="categoryService" ref="categoryService" />
-		<property name="defaultConfigCategoryName" value="PRESET" />
+		<property name="storedDataService" ref="storedDataService" />
+		<property name="defaultConfigTypeName" value="PRESET" />
 	</bean>
 	
 	<bean id="fileConfigurationStore" class="it.prato.comune.tolomeo.configuration.FileConfigurationStore">
+		<property name="defaultConfigTypeName" value="PRESET" />
 	</bean>
 	
 	<bean id="configurationManager" class="it.prato.comune.tolomeo.configuration.ConfigurationManager">
