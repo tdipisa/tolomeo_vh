@@ -56,7 +56,7 @@ public class ConfigurationManager {
 	 * @return
 	 * @throws IOException 
 	 */
-	public <T> Parametri get(SITLayersManager comunePO, T configurationId, String type) throws Exception{
+	public <T> Parametri get(SITLayersManager comunePO, T configurationId, String type){
 		String configType = type != null ? type : this.defaultConfigStoreType;
 		return configurationStores.get(configType).get(configurationId, comunePO);
 	}

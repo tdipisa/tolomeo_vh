@@ -14,7 +14,7 @@ import it.prato.comune.tolomeo.web.parametri.Parametri;
 public interface ConfigurationStore {
 
 
-	<T> Parametri get(T configurationId, SITLayersManager comunePO) throws Exception;
+	<T> Parametri get(T configurationId, SITLayersManager comunePO);
 
 	<T> void delete(T configurationId) throws Exception;
 

@@ -22,12 +22,10 @@ import it.prato.comune.tolomeo.web.parametri.Parametri;
 import it.prato.comune.utilita.logging.interfaces.LogInterface;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 import javax.naming.InvalidNameException;
-import javax.servlet.ServletException;
 
 /**
  * @author Tobia Di Pisa at <tobia.dipisa@geo-solutions.it>
@@ -68,7 +66,7 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	 * @see it.prato.comune.tolomeo.configuration.ConfigurationStore#get(java.lang.Object, it.prato.comune.sit.SITLayersManager)
 	 */
 	@Override
-	public <T> Parametri get(T configurationId, SITLayersManager comunePO) throws Exception {
+	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
 	    
     	File fileBasePath = TolomeoApplicationContext.getInstance().getPresetDirectory();
     	
@@ -126,19 +124,13 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
             
             retVal.setSitCoreVersion(SITCoreVersion.getInstance().getCoreVersion().format());
             
-        } catch (FileNotFoundException e) {
-        	logger.error("Il file di preset " + configurationId + " non e' stato trovato!", e);
-        	throw new Exception(e);
         } catch (IOException e) {
             if (configurationId != null) 
             	logger.error("Errore I/O durante lettura preset: " + configurationId, e);
-            throw new Exception(e);
         } catch (InvalidNameException e){
         	logger.error("Errore con i nomi degli INCLUDE nel file: " + configurationId, e); 
-            throw new Exception(e);
         } catch (SITException site){
         	logger.error("Imopssibile rilevare la versione del SIT core", site);
-            throw new Exception(site);
         }
         
         return retVal;

@@ -173,7 +173,8 @@ public class Parametri {
 	
     public Parametri() {
     }
-    
+
+    @Deprecated
     public static Parametri createParametri(String presetID, SITLayersManager comunePO) {
     
     	LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
@@ -456,6 +457,11 @@ public class Parametri {
         File basePath = presetFile.getParentFile();
         String presetString = leggiFile(presetFile);        
         presetString = loadIncludeEProperties(presetString,basePath);
+        return presetString;
+    }
+    
+    public static String loadPreset(String presetString, File basePath) throws IOException, InvalidNameException {                
+        presetString = loadIncludeEProperties(presetString, basePath);
         return presetString;
     }
     

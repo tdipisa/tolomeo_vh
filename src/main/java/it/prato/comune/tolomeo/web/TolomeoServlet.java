@@ -700,7 +700,7 @@ public abstract class TolomeoServlet extends HttpServlet {
 	 * @return l'oggetto istanziato
 	 * @throws IOException
 	 */
-	protected Parametri getParametri(HttpServletRequest request, SITLayersManager terr, boolean bSetZoomToObj) throws Exception {
+	protected Parametri getParametri(HttpServletRequest request, SITLayersManager terr, boolean bSetZoomToObj) throws IOException {
 		// Recupero il logger
 		LogInterface logger = getLogger(request);
 		Parametri params = null;
