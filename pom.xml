@@ -298,9 +298,120 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.0</version>
 			<scope>provided</scope>
-		</dependency>
-		
+		</dependency>		
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>h2_disk</id>
+			<build>
+				<!-- Copy the postgres custom geostore-datasource-ovr.properties -->
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<phase>process-classes</phase>
+								<configuration>
+									<tasks>
+										<copy file="geostore-conf/h2_disk.properties"
+											tofile="${project.build.outputDirectory}/geostore-datasource-ovr.properties"
+											overwrite="true" verbose="true" />
+										<copy file="geostore-conf/tolomeo-ovr.properties"
+											tofile="${project.build.outputDirectory}/tolomeo-ovr.properties"
+											overwrite="true" verbose="true" />
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>postgres</id>
+			<build>
+				<!-- Copy the postgres custom geostore-datasource-ovr.properties -->
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<phase>process-classes</phase>
+								<configuration>
+									<tasks>
+										<copy file="geostore-conf/postgres.properties"
+											tofile="${project.build.outputDirectory}/geostore-datasource-ovr.properties"
+											overwrite="true" verbose="true" />
+									    <copy file="geostore-conf/tolomeo-ovr.properties"
+											tofile="${project.build.outputDirectory}/tolomeo-ovr.properties"
+											overwrite="true" verbose="true" />
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<!-- POSTGRESQL database driver 
+				<dependency>
+					<groupId>postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+				</dependency> -->
+			</dependencies>
+		</profile>
+		
+		<profile>
+			<id>oracle</id>
+			<build>
+				<!-- Copy the postgres custom geostore-datasource-ovr.properties -->
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<phase>process-classes</phase>
+								<configuration>
+									<tasks>
+										<copy file="geostore-conf/oracle.properties"
+											tofile="${project.build.outputDirectory}/geostore-datasource-ovr.properties"
+											overwrite="true" verbose="true" />
+										<copy file="geostore-conf/tolomeo-ovr.properties"
+											tofile="${project.build.outputDirectory}/tolomeo-ovr.properties"
+											overwrite="true" verbose="true" />
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+			<dependencies>
+				<!-- ORACLE database driver 
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc6</artifactId>
+					<version>11.2.0</version>
+				</dependency> -->
+			</dependencies>
+		</profile>		
+	</profiles>
 
 	<build>
 		<resources>
@@ -309,7 +420,6 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-
 	</build>
 
 	<dependencyManagement>
