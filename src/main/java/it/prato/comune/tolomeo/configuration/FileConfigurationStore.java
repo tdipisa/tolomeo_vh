@@ -8,7 +8,6 @@ import it.prato.comune.sit.SITLayersManager;
 import it.prato.comune.sit.runtime.SITCoreVersion;
 import it.prato.comune.tolomeo.utility.TolomeoApplicationContext;
 import it.prato.comune.tolomeo.web.parametri.Parametri;
-import it.prato.comune.utilita.logging.interfaces.LogInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,13 +15,18 @@ import java.io.IOException;
 
 import javax.naming.InvalidNameException;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Tobia Di Pisa at <tobia.dipisa@geo-solutions.it>
  *
  */
 public class FileConfigurationStore implements ConfigurationStore {
 
+	@SuppressWarnings("unused")
 	private String defaultConfigTypeName;
+	
+	private static final Logger LOGGER = Logger.getLogger(FileConfigurationStore.class);
 	
 	/**
 	 * @param defaultConfigTypeName the defaultConfigTypeName to set
@@ -37,14 +41,13 @@ public class FileConfigurationStore implements ConfigurationStore {
 	@Override
 	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
 	    
-		LogInterface log = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-		
     	String fileName = TolomeoApplicationContext.getInstance().getPresetFileName() + configurationId + ".xml";
         Parametri retVal = new Parametri();
         
         // Lettura file
         try {
-            log.info("File di preset utilizzato: " + fileName);
+        	if(LOGGER.isInfoEnabled())
+        		LOGGER.info("File di preset utilizzato: " + fileName);
             
             File presetFile = new File(fileName);
             if(!presetFile.exists()){
@@ -63,13 +66,13 @@ public class FileConfigurationStore implements ConfigurationStore {
             retVal.setSitCoreVersion(SITCoreVersion.getInstance().getCoreVersion().format());
             
         } catch (FileNotFoundException e) {
-        	log.error("Il file di preset " + fileName + " non e' stato trovato!", e);
+        	LOGGER.error("Il file di preset " + fileName + " non e' stato trovato!", e);
         } catch (IOException e) {
-            if (fileName!=null) log.error("Errore I/O durante lettura preset: " + fileName, e);
+            if (fileName!=null) LOGGER.error("Errore I/O durante lettura preset: " + fileName, e);
         } catch (InvalidNameException e){
-            log.error("Errore con i nomi degli INCLUDE nel file: " + fileName, e); 
+        	LOGGER.error("Errore con i nomi degli INCLUDE nel file: " + fileName, e); 
         } catch (SITException site){
-            log.error("Imopssibile rilevare la versione del SIT core",site);
+        	LOGGER.error("Imopssibile rilevare la versione del SIT core",site);
         }
         
         return retVal;

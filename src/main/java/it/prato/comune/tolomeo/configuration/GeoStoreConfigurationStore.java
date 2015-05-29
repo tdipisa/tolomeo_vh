@@ -21,7 +21,6 @@ import it.prato.comune.sit.SITLayersManager;
 import it.prato.comune.sit.runtime.SITCoreVersion;
 import it.prato.comune.tolomeo.utility.TolomeoApplicationContext;
 import it.prato.comune.tolomeo.web.parametri.Parametri;
-import it.prato.comune.utilita.logging.interfaces.LogInterface;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,12 +28,16 @@ import java.util.List;
 
 import javax.naming.InvalidNameException;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Tobia Di Pisa at <tobia.dipisa@geo-solutions.it>
  *
  */
 public class GeoStoreConfigurationStore implements ConfigurationStore {
 
+	private static final Logger LOGGER = Logger.getLogger(GeoStoreConfigurationStore.class);
+	
 	private ResourceService resourceService;
 	
 	private CategoryService categoryService;
@@ -78,19 +81,19 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	@Override
 	public <T> Parametri get(T configurationId, SITLayersManager comunePO) {
 		
-		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-		
     	File fileBasePath = TolomeoApplicationContext.getInstance().getPresetDirectory();
     	
         Parametri retVal = new Parametri();
         
         try {
-        	logger.info("File di preset utilizzato: " + configurationId);
+        	if(LOGGER.isInfoEnabled()){
+        		LOGGER.info("File di preset utilizzato: " + configurationId);
+        		LOGGER.info("Retrieving a full resource");
+        	}
 
             // //////////////////////////////////////////////////////////////////
             // Retrieving the preset configuration from GeoStore 
             // //////////////////////////////////////////////////////////////////
-        	logger.info("Retrieving a full resource");
     		
     		List<Resource> resourcesFull;
     		
@@ -106,7 +109,7 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
                 	
                 resourcesFull = resourceService.getResourcesFull(filter, null);
             } catch (Exception ex) {
-            	logger.error(ex.getMessage(), ex);
+            	LOGGER.error(ex.getMessage(), ex);
                 throw new IOException("Exception durante il reperimento della risorsa preset da GeoStore.");
             }
             
@@ -119,7 +122,8 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
             String presetString;
             if(storedData != null){
             	presetString = storedData.getData();
-            	logger.debug("DATA is " + presetString);
+            	if(LOGGER.isDebugEnabled())
+            		LOGGER.debug("DATA is " + presetString);
             }else{
             	throw new IOException("Style Stored Data not available");
             }  
@@ -137,11 +141,11 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
             
         } catch (IOException e) {
             if (configurationId != null) 
-            	logger.error("Errore I/O durante lettura preset: " + configurationId, e);
+            	LOGGER.error("Errore I/O durante lettura preset: " + configurationId, e);
         } catch (InvalidNameException e){
-        	logger.error("Errore con i nomi degli INCLUDE nel file: " + configurationId, e); 
+        	LOGGER.error("Errore con i nomi degli INCLUDE nel file: " + configurationId, e); 
         } catch (SITException site){
-        	logger.error("Imopssibile rilevare la versione del SIT core", site);
+        	LOGGER.error("Imopssibile rilevare la versione del SIT core", site);
         }
         
         return retVal;
@@ -152,8 +156,6 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	 */
 	@Override
 	public <T> void delete(T configurationId) throws Exception{
-		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-		
 		try {
 	    	SearchFilter filter;
 	    	if(configurationId instanceof String){
@@ -166,10 +168,10 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
 	    	
 			resourceService.deleteResources(filter);
 		} catch (BadRequestServiceEx e) {
-			logger.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			throw new Exception(e);
 		} catch (InternalErrorServiceEx e) {
-			logger.error(e.getMessage(), e);
+			LOGGER.error(e.getMessage(), e);
 			throw new Exception(e);
 		}
 	}
@@ -182,18 +184,21 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         // ////////////////////////////////
         // Creating a new full resource
         // ////////////////////////////////
-		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-		logger.info("Creating a new full resource...");
+
+		if(LOGGER.isInfoEnabled())
+			LOGGER.info("Creating a new full resource...");
         	
     	Category category = categoryService.get(defaultConfigTypeName);
     	
     	if(category == null){
-    		logger.info("Category " + defaultConfigTypeName + " does not exists: "
+    		if(LOGGER.isInfoEnabled())
+    			LOGGER.info("Category " + defaultConfigTypeName + " does not exists: "
     				+ defaultConfigTypeName + " category must be created...");
     		category = new Category();
         	category.setName(defaultConfigTypeName);
         	categoryService.insert(category);
-        	logger.info("Category " + defaultConfigTypeName + " successfully created!");            	
+        	if(LOGGER.isInfoEnabled())
+        		LOGGER.info("Category " + defaultConfigTypeName + " successfully created!");            	
     	}
     	
     	StoredData storedData = new StoredData();
@@ -207,7 +212,8 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         long resourceId = resourceService.insert(resource);
         
         if(resourceId > 0){
-        	logger.info("Configuration resource successfully saved with ID=" + resourceId);
+        	if(LOGGER.isInfoEnabled())
+        		LOGGER.info("Configuration resource successfully saved with ID=" + resourceId);
         }
         
         return resourceId;
@@ -221,9 +227,9 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
         // ////////////////////////////////
         // Creating a new full resource
         // ////////////////////////////////
-		LogInterface logger = TolomeoApplicationContext.getInstance().getAnonymousLogger();
-		
-		logger.info("Creating a new full resource...");
+
+		if(LOGGER.isInfoEnabled())
+			LOGGER.info("Creating a new full resource...");
         	
     	SearchFilter filter;
 		filter = new FieldFilter(BaseField.NAME, name, SearchOperator.EQUAL_TO);
@@ -233,7 +239,8 @@ public class GeoStoreConfigurationStore implements ConfigurationStore {
     	long storedDataId = storedDataService.update(resources.get(0).getId(), configuration);
     	
         if(storedDataId > 0){
-        	logger.info("Configuration resource successfully updated with ID=" + storedDataId);
+        	if(LOGGER.isInfoEnabled())
+        		LOGGER.info("Configuration resource successfully updated with ID=" + storedDataId);
         }
         
         return storedDataId;

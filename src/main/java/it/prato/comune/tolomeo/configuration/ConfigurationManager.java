@@ -52,6 +52,20 @@ public class ConfigurationManager {
 	}
 
 	/**
+	 * @return the defaultConfigStoreType
+	 */
+	public String getDefaultConfigStoreType() {
+		return defaultConfigStoreType;
+	}
+
+	/**
+	 * @return the configurationStores
+	 */
+	public Map<String, ConfigurationStore> getConfigurationStores() {
+		return configurationStores;
+	}
+	
+	/**
 	 * @param comunePO
 	 * @param configurationId
 	 * @param type
