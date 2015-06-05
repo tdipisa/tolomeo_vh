@@ -303,7 +303,7 @@
 	
 	<profiles>
 		<profile>
-			<id>h2_disk</id>
+			<id>h2</id>
 			<build>
 				<!-- Copy the postgres custom geostore-datasource-ovr.properties -->
 				<plugins>
@@ -315,7 +315,7 @@
 								<phase>process-classes</phase>
 								<configuration>
 									<tasks>
-										<copy file="geostore-conf/h2_disk.properties"
+										<copy file="geostore-conf/h2.properties"
 											tofile="${project.build.outputDirectory}/geostore-datasource-ovr.properties"
 											overwrite="true" verbose="true" />
 										<copy file="geostore-conf/tolomeo-ovr.properties"
